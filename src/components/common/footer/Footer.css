@@ -1,0 +1,144 @@
+.footer-widget .footer-title h3 {
+  color: #ffffff;
+}
+.subscribe-style p,
+.footer-widget .footer-list ul li a,
+.footer-top ul li a,
+.theme_footer_top .social_widget a,
+.footer-widget .footer-list ul li {
+  color: #ffffff;
+}
+.theme_footer_top .footer-widget .subscribe-style p {
+  color: #ffffff;
+}
+.subscribe-style .subscribe-form .mc-form .clear:hover {
+  background-color: #dd321e;
+}
+.footer-top ul li a:hover {
+  color: #dd321e;
+}
+.subscribe-style .subscribe-form .mc-form input::-moz-placeholder {
+  color: #ffffff !important;
+}
+.subscribe-style .subscribe-form .mc-form input::-webkit-input-placeholder {
+  color: #ffffff !important;
+}
+.subscribe-style .subscribe-form .mc-form input {
+  border-color: #ffffff;
+}
+.footer-widget .footer_about_contact p {
+  color: #ffffff;
+}
+.theme_footer_top .top_bar_social a {
+  color: #ffffff;
+}
+.theme_footer_top .top_bar_social a:hover {
+  color: #dd321e;
+}
+@font-face {
+  font-family: Futura;
+  font-weight: 400;
+  font-style: normal;
+  src: url("/public/Assets/fonts/futura/futura_n4.df36ce3d9db534a4d7947f4aa825495ed740e4107941.woff2?h1=YXNzeXJpYW4tMy5hY2NvdW50Lm15c2hvcGlmeS5jb20&amp;h2=ZHVua2ktZGVtby5teXNob3BpZnkuY29t&amp;hmac=4685eb3a7180e62ddf191370d23164d60304af1a30c582deb0889ba465b1b403")
+      format("woff2"),
+    url("/public/Assets/fonts/futura/futura_n4.6bce24beb4ba1ff4ddeb20f7cd6e2fa513a3d6ec2d45.woff?h1=YXNzeXJpYW4tMy5hY2NvdW50Lm15c2hvcGlmeS5jb20&amp;h2=ZHVua2ktZGVtby5teXNob3BpZnkuY29t&amp;hmac=e4130ced5fd30018d43e34eaa324b8777e07b07982b23cb6f1a3039115366e9a")
+      format("woff");
+}
+@font-face {
+  font-family: Futura;
+  font-weight: 400;
+  font-style: normal;
+  src: url("/public/Assets/fonts/futura/futura_n4.df36ce3d9db534a4d7947f4aa825495ed740e4107941.woff2?h1=YXNzeXJpYW4tMy5hY2NvdW50Lm15c2hvcGlmeS5jb20&amp;h2=ZHVua2ktZGVtby5teXNob3BpZnkuY29t&amp;hmac=4685eb3a7180e62ddf191370d23164d60304af1a30c582deb0889ba465b1b403")
+      format("woff2"),
+    url("/public/Assets/fonts/futura/futura_n4.6bce24beb4ba1ff4ddeb20f7cd6e2fa513a3d6ec2d45.woff?h1=YXNzeXJpYW4tMy5hY2NvdW50Lm15c2hvcGlmeS5jb20&amp;h2=ZHVua2ktZGVtby5teXNob3BpZnkuY29t&amp;hmac=e4130ced5fd30018d43e34eaa324b8777e07b07982b23cb6f1a3039115366e9a")
+      format("woff");
+}
+.theme_footer_top .footer-widget .footer-title h3 {
+  font-family: Futura, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+}
+.theme_footer_top .subscribe-style p,
+.theme_footer_top .footer-widget .footer-list ul li a,
+.theme_footer_top .footer-top ul li a,
+.theme_footer_top .footer-widget .footer_about_contact p,
+.theme_footer_top .social_widget a {
+  font-family: Futura, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+data-shopify > #section-footer_5 {
+  background: #282828 no-repeat scroll center center / cover;
+  padding-top: 80px;
+  padding-bottom: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  #section-footer_5 {
+    padding-top: 80px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
+@media (max-width: 767px) {
+  #section-footer_5 {
+    padding-top: 60px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
+data-shopify > #section-footer-bottom {
+  padding-top: 20px;
+  padding-bottom: 0px;
+  background: #242424 no-repeat scroll center center / cover;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  #section-footer-bottom {
+    padding-top: 20px;
+    padding-bottom: 0px;
+  }
+}
+@media (max-width: 767px) {
+  #section-footer-bottom {
+    padding-top: 20px;
+    padding-bottom: 0px;
+  }
+}
+
+.footer-bottom .footer-social a,
+.footer-bottom .copyright p,
+.footer-bottom .copyright a {
+  color: #ffffff;
+}
+.footer-bottom .footer-social a:hover,
+.footer-bottom .copyright a:hover {
+  color: #dd321e;
+}
+@font-face {
+  font-family: Futura;
+  font-weight: 400;
+  font-style: normal;
+  src: url("/public/Assets/fonts/futura/futura_n4.df36ce3d9db534a4d7947f4aa825495ed740e4107941.woff2?h1=YXNzeXJpYW4tMy5hY2NvdW50Lm15c2hvcGlmeS5jb20&amp;h2=ZHVua2ktZGVtby5teXNob3BpZnkuY29t&amp;hmac=4685eb3a7180e62ddf191370d23164d60304af1a30c582deb0889ba465b1b403")
+      format("woff2"),
+    url("/public/Assets/fonts/futura/futura_n4.6bce24beb4ba1ff4ddeb20f7cd6e2fa513a3d6ec2d45.woff?h1=YXNzeXJpYW4tMy5hY2NvdW50Lm15c2hvcGlmeS5jb20&amp;h2=ZHVua2ktZGVtby5teXNob3BpZnkuY29t&amp;hmac=e4130ced5fd30018d43e34eaa324b8777e07b07982b23cb6f1a3039115366e9a")
+      format("woff");
+}
+.footer-bottom .footer-social a,
+.footer-bottom .copyright p {
+  font-family: Futura, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+}
+.footer-bottom.position_fb {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}

@@ -1,7 +1,9 @@
-import React from "react";
+import axios from "axios";
 
-function config() {
-  return <div>config</div>;
-}
+export const axiosInstance = axios.create({
+  baseURL: `https://api.asianpublisher.in`,
+  withCredentials: true,
+});
+//   baseURL : `https://api.asianpublisher.in/api/BookApi`
 
-export default config;
+export const REACT_APP_URL = "https://api.asianpublisher.in";
