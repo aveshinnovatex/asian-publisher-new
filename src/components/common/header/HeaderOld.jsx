@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import "./Header.css";
 function Header() {
+  const navigate = useNavigate();
+  const { quantity } = useSelector((state) => state.cart);
+
   return (
     <header class="header-area sticky-bar menu-center">
       <div class="main-header-wrap">
@@ -22,14 +28,27 @@ function Header() {
                 <nav>
                   <ul>
                     <li className="angle-shape">
-                      <a href="/" style={{ fontWeight: 800, letterSpacing: 1 }}>
+                      <a
+                        href="/"
+                        style={{
+                          fontWeight: 800,
+                          letterSpacing: 1,
+                          color: "#000",
+                          fontSize: "18px",
+                        }}
+                      >
                         Home
                       </a>
                     </li>
                     <li className="angle-shape">
                       <a
                         href="/about-us"
-                        style={{ fontWeight: 800, letterSpacing: 1 }}
+                        style={{
+                          fontWeight: 800,
+                          letterSpacing: 1,
+                          color: "#000",
+                          fontSize: "18px",
+                        }}
                       >
                         About Us
                       </a>
@@ -37,7 +56,12 @@ function Header() {
                     <li className="angle-shape">
                       <a
                         href="/shop"
-                        style={{ fontWeight: 800, letterSpacing: 1 }}
+                        style={{
+                          fontWeight: 800,
+                          letterSpacing: 1,
+                          color: "#000",
+                          fontSize: "18px",
+                        }}
                       >
                         Shop
                       </a>
@@ -46,23 +70,38 @@ function Header() {
                     <li className="angle-shape">
                       <a
                         href="/author"
-                        style={{ fontWeight: 800, letterSpacing: 1 }}
+                        style={{
+                          fontWeight: 800,
+                          letterSpacing: 1,
+                          color: "#000",
+                          fontSize: "18px",
+                        }}
                       >
                         Authors
                       </a>
                     </li>
                     <li className="angle-shape">
                       <a
-                        href="/contact-us"
-                        style={{ fontWeight: 800, letterSpacing: 1 }}
+                        href="/orderForm"
+                        style={{
+                          fontWeight: 800,
+                          letterSpacing: 1,
+                          color: "#000",
+                          fontSize: "18px",
+                        }}
                       >
                         Order Form
                       </a>
                     </li>
                     <li className="angle-shape">
                       <a
-                        href="/contact-us"
-                        style={{ fontWeight: 800, letterSpacing: 1 }}
+                        href="/becomean-author"
+                        style={{
+                          fontWeight: 800,
+                          letterSpacing: 1,
+                          color: "#000",
+                          fontSize: "18px",
+                        }}
                       >
                         Become an Author
                       </a>
@@ -70,15 +109,25 @@ function Header() {
                     <li className="angle-shape">
                       <a
                         href="/contact-us"
-                        style={{ fontWeight: 800, letterSpacing: 1 }}
+                        style={{
+                          fontWeight: 800,
+                          letterSpacing: 1,
+                          color: "#000",
+                          fontSize: "18px",
+                        }}
                       >
                         Contact Us
                       </a>
                     </li>
                     <li className="angle-shape">
                       <a
-                        href="/contact-us"
-                        style={{ fontWeight: 800, letterSpacing: 1 }}
+                        href="/login"
+                        style={{
+                          fontWeight: 800,
+                          letterSpacing: 1,
+                          color: "#000",
+                          fontSize: "18px",
+                        }}
                       >
                         Login
                       </a>
@@ -100,6 +149,7 @@ function Header() {
                           xmlns="http://www.w3.org/2000/svg"
                           className="ionicon"
                           viewBox="0 0 512 512"
+                          style={{ color: "#000" }}
                         >
                           <path
                             d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z"
@@ -154,7 +204,10 @@ function Header() {
                   </div>
                 </div>
                 <div className="cart-wrap">
-                  <button className="icon-cart-active">
+                  <button
+                    className="icon-cart-active"
+                    onClick={() => navigate("/cart")}
+                  >
                     <span
                       className="icon-cart HeaderIcons2"
                       style={{ fontWeight: 800, letterSpacing: 1 }}
@@ -164,6 +217,7 @@ function Header() {
                         xmlns="http://www.w3.org/2000/svg"
                         className="ionicon"
                         viewBox="0 0 512 512"
+                        style={{ color: "#000" }}
                       >
                         <path
                           d="M80 176a16 16 0 00-16 16v216c0 30.24 25.76 56 56 56h272c30.24 0 56-24.51 56-54.75V192a16 16 0 00-16-16zM160 176v-32a96 96 0 0196-96h0a96 96 0 0196 96v32"
@@ -186,11 +240,11 @@ function Header() {
                         className="count-style bigcounter"
                         style={{ backgroundColor: "#fff", color: "#000" }}
                       >
-                        0
+                        {quantity}
                       </span>
                     </span>
                   </button>
-                  <div className="shopping-cart-content">
+                  {/* <div className="shopping-cart-content">
                     <div className="shopping-cart-top">
                       <h4>Shoping Cart</h4>
                       <a className="cart-close" href="#">
@@ -231,12 +285,11 @@ function Header() {
                     >
                       <p>Your cart is empty now.</p>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="setting-wrap">
                   <button className="setting-active">
                     <svg
-                      className="HeaderIcons1"
                       viewBox="-42 0 512 512.001"
                       xmlns="http://www.w3.org/2000/svg"
                     >

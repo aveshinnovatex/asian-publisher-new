@@ -1,842 +1,745 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchBooks } from "../../../redux/slices/bookSlice";
-import "./Home.css";
-import { REACT_APP_URL } from "../../../config/config";
-import HomeHeader from "../../common/header/Home/HomeHeader";
+import React from "react";
+import Header from "../../common/header/Header";
 import Footer from "../../common/footer/Footer";
-import LogoSlider from "../../common/slider/LogoSlider";
-import BookSlider from "../../common/slider/BookSlider";
+import AboutUs from "../../../Images/AboutUs.png";
+import CivilEngineering from "../../../Images/CivilEngineering.png";
+import ElectricalEngineering from "../../../Images/ElectricalEngineering.png";
+import MechanicalEngineering from "../../../Images/MechanicalEngineering.png";
+import Book1 from "../../../Images/Book1.jpg";
+import Book2 from "../../../Images/Book2.jpg";
+import Book3 from "../../../Images/Book3.jpg";
+import Book4 from "../../../Images/Book4.jpg";
+// import "../../../css/Style.css";
+import "../../../css/bootstrap.min.css";
+
 function Home() {
-  const slider = [
-    "Images/Logo/1.jpg",
-    "Images/Logo/11.png",
-    "Images/Logo/2.jpg",
-    "Images/Logo/22.png",
-    "Images/Logo/3.jpg",
-    "Images/Logo/4.jpg",
-    "Images/Logo/44.png",
-    "Images/Logo/5.jpg",
-    "Images/Logo/55.png",
-    "Images/Logo/6.jpg",
-    "Images/Logo/66.png",
-  ];
-
-  const { loading, books } = useSelector((state) => state.book);
-  const dispatch = useDispatch();
-  const [allBooks, setAllBooks] = useState([]);
-  useEffect(() => {
-    dispatch(fetchBooks());
-  }, [dispatch]);
-  useEffect(() => {
-    if (loading === "fulfilled") {
-      setAllBooks(books);
-    }
-  }, [loading]);
-
   return (
     <>
-      <div id="preloader_active">
-        <div id="loading-center">
-          <div id="loading-center-absolute">
-            <div className="object" id="object_four" />
-            <div className="object" id="object_three" />
-            <div className="object" id="object_two" />
-            <div className="object" id="object_one" />
-          </div>
+      <Header />
+      <div className="Headerrow">
+        <div className="video-background">
+          <video autoPlay loop muted className="video homeheadervideo">
+            <source src="Images/HomeVideo.mp4" type="video/mp4" />
+          </video>
         </div>
-      </div>
-      <div id="shopify-section-header" className="shopify-section"></div>
-      <div style={{ height: "100vh", overflow: "hidden" }}>
-        <HomeHeader />
-        <div className="mobile-off-canvas-active">
-          <a className="mobile-aside-close">
-            <i className="sli sli-close" />
-          </a>
-          <div className="header-mobile-aside-wrap">
-            <div className="mobile-search">
-              <form
-                className="search-form"
-                action="#"
-                method="get"
-                role="search"
-              >
-                <input
-                  type="search"
-                  name="q"
-                  defaultValue=""
-                  placeholder="I'm looking for…"
-                />
-                <button className="button-search" type="submit">
-                  <i className="sli sli-magnifier" />
-                </button>
-              </form>
-            </div>
-            <div className="mobile-menu-wrap">
-              <div className="mobile-navigation">
-                <nav>
-                  <ul className="mobile-menu">
-                    <li className="menu-item-has-children">
-                      <a href="/">Home</a>
-                      <ul className="dropdown">
-                        <li>
-                          <a href="index501f.html?preview_theme_id=122477707344">
-                            Home Demo v1
-                          </a>
-                        </li>
-                        <li>
-                          <a href="index2c6b.html?preview_theme_id=122478461008">
-                            Home Demo v2
-                          </a>
-                        </li>
-                        <li>
-                          <a href="index712d.html?preview_theme_id=122478493776">
-                            Home Demo v3
-                          </a>
-                        </li>
-                        <li>
-                          <a href="index3b70.html?preview_theme_id=122479902800">
-                            Home Demo v4
-                          </a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li className="menu-item-has-children">
-                      <a href="/shop">Shop</a>
-                      <ul className="dropdown">
-                        <li className="mobile_img_menu">
-                          <a href="collections/featured-books.html">
-                            <img
-                              src="../../Assets/shop/collections/p3f10c.png?v=1698470305"
-                              alt="Featured Books"
-                              loading="lazy"
-                            />
-                          </a>
-                          <span>
-                            <a href="collections/featured-books.html" title="">
-                              Featured Books
-                            </a>{" "}
-                          </span>
-                        </li>
-                        <li className="mobile_img_menu">
-                          <a href="collections/best-sellers.html">
-                            <img
-                              src="Assets/shop/collections/2d8ec.png?v=1698470765"
-                              alt="Best Sellers"
-                              loading="lazy"
-                            />
-                          </a>
-                          <span>
-                            <a href="collections/best-sellers.html" title="">
-                              Best Sellers
-                            </a>{" "}
-                          </span>
-                        </li>
-                        <li className="mobile_img_menu">
-                          <a href="collections/most-viewed.html">
-                            <img
-                              src="Assets/shop/collections/p880c1.png?v=1698470737"
-                              alt="Most Viewed"
-                              loading="lazy"
-                            />
-                          </a>
-                          <span>
-                            <a href="collections/most-viewed.html" title="">
-                              Most Viewed
-                            </a>{" "}
-                          </span>
-                        </li>
-                        <li className="m_mega-menu-li">
-                          <a href="collections.html">All Collections</a>
-                          <ul className="dropdown">
-                            <li>
-                              <a href="collections/featured-books.html">
-                                Romance
-                              </a>
-                            </li>
-                            <li>
-                              <a href="collections/best-sellers.html">
-                                History
-                              </a>
-                            </li>
-                            <li>
-                              <a href="collections/best-sellers.html">Comedy</a>
-                            </li>
-                            <li>
-                              <a href="collections/most-viewed.html">Fiction</a>
-                            </li>
-                            <li>
-                              <a href="collections/best-sellers.html">
-                                Adventure
-                              </a>
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="blogs/news.html">Blog</a>
-                    </li>
-                    <li className="menu-item-has-children">
-                      <a href="#">Pages</a>
-                      <ul className="dropdown">
-                        <li>
-                          <a href="/author">Author</a>
-                        </li>
-                        <li>
-                          <a href="/about-us">About Us</a>
-                        </li>
-                        <li>
-                          <a href="/contact-us">Contact us</a>
-                        </li>
-                        <li>
-                          <a href="pages/faq.html">Faq Page</a>
-                        </li>
-                        <li>
-                          <a href="404.html">404 Error Page</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
-                      <a href="/about-us">About Us</a>
-                    </li>
-                    <li>
-                      <a href="/contact-us">Contact Us</a>
-                    </li>
-                  </ul>
-                </nav>
-              </div>
-            </div>
-            <div className="mobile-curr-lang-wrap">
-              <div className="single-mobile-curr-lang">
-                <a className="mobile-account-active remove_href" href="#">
-                  Account <i className="sli sli-arrow-down" />
-                </a>
-                <div className="lang-curr-dropdown account-dropdown-active">
-                  <ul>
-                    <li>
-                      <a href="/login">Login</a>
-                    </li>
-                    <li>
-                      <a href="/register">Create Account</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="gradient-overlay" />
+        <div className="col-lg-2" style={{ float: "left" }}>
+          &nbsp;
         </div>
-        <div className="video-overlay" />
-        <video autoPlay="" muted="" loop="" style={{ width: "100%" }}>
-          <source src="Images/HomeVideo.mp4" type="video/mp4" />
-        </video>
-        <center>
-          <div className="welcome-text">
-            <h1
+        <div className="col-lg-8" style={{ float: "left" }}>
+          <div
+            className="video-content"
+            style={{
+              "-webkit-text-align": "center",
+              "text-align": "center",
+              "padding-top": "200px",
+            }}
+          >
+            <p
+              className="text"
               style={{
-                color: "#fff",
-                fontWeight: 600,
-                letterSpacing: 10,
-                textTransform: "uppercase",
-                fontSize: 50,
+                "-webkit-text-transform": "uppercase",
+                "text-transform": "uppercase",
+                "font-size": "50px",
+                "font-weight": "600",
+                "-webkit-text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.5)",
+                "text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.5)",
               }}
             >
               Asian Publishers
-            </h1>
-            <p style={{ color: "#fff", letterSpacing: 2, fontSize: 20 }}>
+            </p>
+            <p style={{ "font-size": "20px" }}>
               Asian Publishers is your life long Learning Partner. We have
               empowered the growth of Students,Teachers, &amp; Professionals
               since 1981.
             </p>
-            {/* <div class="show-more-btn_title"> */}
+            <br />
             <a
-              className="ban_btn1 banner_style_2"
-              href="/shop"
-              style={{ backgroundColor: "#DD321E !important" }}
+              href="#"
+              style={{
+                color: "#fff",
+                "background-color": "#d82028",
+                padding: "10px 30px 10px 30px",
+                "-webkit-text-decoration": "none",
+                "text-decoration": "none",
+                "border-radius": "5px",
+                "box-shadow": "4px 4px 6px rgba(0, 0, 0, 0.3)",
+              }}
             >
-              Shop Now
+              SHOP NOW
             </a>
-            {/* </div> */}
           </div>
-        </center>
+        </div>
+        <div className="col-lg-2" style={{ float: "left" }}>
+          &nbsp;
+        </div>
       </div>
-      <main>
-        <div
-          id="shopify-section-template--14595761504336__a30e2f27-f19c-4ea6-9e6c-e0862c20c3dc"
-          className="shopify-section"
-        >
-          <div
-            className="feature-area"
-            id="section-template--14595761504336__a30e2f27-f19c-4ea6-9e6c-e0862c20c3dc"
-          >
-            <div className="container default ">
-              <div className="row">
-                <div className="col-xl-4 col-md-6 col-sm-12 col-12">
-                  <div
-                    className="single-feature mb-40"
-                    style={{ background: "#eee" }}
-                  >
-                    <div className="feature-icon">
-                      <i
-                        style={{ color: "#000000" }}
-                        className="icofont-credit-card"
-                      />
-                    </div>
-                    <div className="feature-content">
-                      <h4 style={{ color: "#000000" }}>Easy Payment</h4>
-                      <p style={{ color: "#000000" }}>
-                        Have 100% Secure Payments
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-4 col-md-6 col-sm-12 col-12">
-                  <div
-                    className="single-feature mb-40"
-                    style={{ background: "#eee" }}
-                  >
-                    <div className="feature-icon">
-                      <i
-                        style={{ color: "#000000" }}
-                        className="icofont-fast-delivery"
-                      />
-                    </div>
-                    <div className="feature-content">
-                      <h4 style={{ color: "#000000" }}>Free Delivery</h4>
-                      <p style={{ color: "#000000" }}>Order over $300 More</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-xl-4 col-md-6 col-sm-12 col-12">
-                  <div
-                    className="single-feature mb-40"
-                    style={{ background: "#eee" }}
-                  >
-                    <div className="feature-icon">
-                      <i
-                        style={{ color: "#000000" }}
-                        className="icofont-read-book"
-                      />
-                    </div>
-                    <div className="feature-content">
-                      <h4 style={{ color: "#000000" }}>Availabley</h4>
-                      <p style={{ color: "#000000" }}>
-                        6 Million Books Available
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          id="shopify-section-template--14595761569872__main"
-          className="shopify-section"
-          style={{ backgroundColor: "#FAF4EB" }}
-        >
-          <div
-            className="about-story-area"
-            id="section-template--14595761569872__main"
-          >
-            <div className="container">
-              <div className="row">
-                <div className="col-lg-6">
-                  <div className="story-img">
-                    <div className="ab-wrapper-4 p-relative">
-                      <div className="ab-right-img">
-                        <img
-                          src="../Assets/shop/files/libraryc279.png?v=1698129435"
-                          alt=""
-                        />
-                      </div>
-                      <div className="tm-deg-left-meta">
-                        <h3>
-                          Good Experience <br /> In Last{" "}
-                        </h3>
-                        <h4>10</h4>
-                        <h5>Years</h5>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-6">
-                  <div className="story-details">
-                    <div className="story-details-top">
-                      <h2>
-                        Since 1987, We have established ourselves with a strong
-                        reputation.
-                      </h2>
-                    </div>
-                    <div className="story-details-bottom">
-                      <h4>Win best Book Shop Award At 2023.</h4>
-                      <p>
-                        Accepting the award visionary founder expressed
-                        gratitude for the team's dedication and the patronage of
-                        discerning clients who appreciate the finer things in
-                        life. This win marks a milestone in journey, solidifying
-                        its position as a trailblazer in the realm of exquisite
-                        adornments.
-                      </p>
-                    </div>
-                    <a className="ban_btn1 banner_style_2" href="index.html">
-                      Explore More
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          id="shopify-section-template--14595761504336__480bb6da-bf95-4066-9784-92e5f4a7ecb0"
-          className="shopify-section"
-          style={{ paddingTop: "20px" }}
-        >
-          <div
-            className="product-area pb-50 pt-30 feature_deal_collection common_slick_slider"
-            id="section-template--14595761504336__480bb6da-bf95-4066-9784-92e5f4a7ecb0"
-            data-section="Feature_Collection"
-          >
-            <div className="container default " style={{ maxWidth: "1300px" }}>
-              <div className="section-title text-left pb-30  title_button_show ">
-                <h2>Featured Books</h2>
-                <div className="deal_count_area_wrap show-more-btn_title">
-                  <a
-                    className="ban_btn1 banner_style_2"
-                    href="/shop"
-                    style={{ backgroundColor: "#DD321E !important" }}
-                  >
-                    Shop Now
-                  </a>
-                </div>
-              </div>
-              <div
-                className=" container-fluid product-menu-banner-wrapper row "
-                style={{ paddingLeft: "0px", paddingRight: "0px" }}
-              >
-                <div class="col-md-12">
-                  {allBooks && allBooks.length > 0 && (
-                    <BookSlider slider={allBooks} />
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          id="shopify-section-template--14595761504336__f23eabeb-498a-423f-9f12-647d250a1110"
-          className="shopify-section"
-        >
-          <div
-            className="custom-content"
-            id="section-template--14595761504336__f23eabeb-498a-423f-9f12-647d250a1110"
-          >
-            <div className="container default ">
-              <div className="row custom-content-align">
-                <div className="col-lg-6 col-md-6 col-xs-12">
-                  <div className="html-content">
-                    <div className="html-content-class">
-                      <h4 className="text-1"> We Are</h4>
-                      <h2>The largest Book Publisher on the planet</h2>
-                      <span className="cstm_ul_li">
-                        <ul className="trx_addons_list_dot text_link2">
-                          <li style={{ color: "#000" }}>Civil Engineering</li>
-                          <li style={{ color: "#000" }}>
-                            Electrical Engineering
-                          </li>
-                          <li style={{ color: "#000" }}>
-                            Mechanical Engineering
-                          </li>
-                        </ul>
-                        <ul className="trx_addons_list_dot text_link2">
-                          <li style={{ color: "#000" }}>
-                            Electronics Engineering
-                          </li>
-                          <li style={{ color: "#000" }}>
-                            Computer Science Engineering
-                          </li>
-                          <li style={{ color: "#000" }}>
-                            Information Technology
-                          </li>
-                        </ul>
-                      </span>
-                      <a className="btn_main" href="collections/all.html">
-                        Shop Now
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-lg-6 col-md-6 col-xs-12">
-                  <div className="image-content">
-                    <img
-                      src="Assets/shop/files/sthm6c13.png?v=1697959738"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          id="shopify-section-template--14595761504336__480bb6da-bf95-4066-9784-92e5f4a7ecb0"
-          className="shopify-section"
-        >
-          <div
-            className="product-area pb-50 pt-20 feature_deal_collection common_slick_slider"
-            id="section-template--14595761504336__480bb6da-bf95-4066-9784-92e5f4a7ecb0"
-            data-section="Feature_Collection"
-          >
-            <div className="container default " style={{ maxWidth: "1300px" }}>
-              <div className="section-title text-left pb-30  title_button_show ">
-                <h2>Our Books</h2>
-                <div className="deal_count_area_wrap show-more-btn_title">
-                  <a
-                    className="ban_btn1 banner_style_2"
-                    href="/shop"
-                    style={{ backgroundColor: "#DD321E !important" }}
-                  >
-                    View All Books
-                  </a>
-                </div>
-              </div>
-              <div
-                className=" container-fluid product-menu-banner-wrapper row "
-                style={{ paddingLeft: "0px", paddingRight: "0px" }}
-              >
-                <div class="col-md-12">
-                  {allBooks && allBooks.length > 0 && (
-                    <BookSlider slider={allBooks} />
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          id="shopify-section-template--14595761504336__bc7a5bd5-6193-47a8-9a53-156c9db8ef14"
-          className="shopify-section"
-        >
-          {/*====================  brand logo slider area ====================*/}
-          <div
-            className="brand-logo-slider-area mb-40 common_slick_slider"
-            id="section-template--14595761504336__bc7a5bd5-6193-47a8-9a53-156c9db8ef14"
-            data-section="BrandSlider"
-          >
-            <div className="container default ">
-              <div className="row align-items-center">
-                <div className="col-lg-12">
-                  <LogoSlider slider={slider} />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          id="shopify-section-template--14595761504336__16335890543c7ff7c6"
-          className="shopify-section"
-        >
-          <div
-            className="blog-area common_slick_slider"
-            id="section-template--14595761504336__16335890543c7ff7c6"
-            data-section="Latest_Blog"
-          >
-            <div className="container default ">
-              <div className="section-title text-left  title_button_show   pb-40 pt-20">
-                <h2>Our Catagories</h2>
-                <div className="show-more-btn_title">
-                  <a className="ban_btn1 banner_style_2" href="blogs/news.html">
-                    Shop Now
-                  </a>
-                </div>
-              </div>
-              <div
-                className=" blog-slider-active carsoule_arrow_style row"
-                data-slick='{
-                  "infinite": true,
-                  "slidesToShow": 3,
-                  "slidesToScroll": 1,
-                  "arrows": false,
-                  "responsive": [{
-                  "breakpoint": 1600,
-                  "settings": {
-                  "slidesToShow": 3,
-                  "slidesToScroll": 1
-                  }
-                  },
-                  {
-                  "breakpoint": 1400,
-                  "settings": {
-                  "slidesToShow": 3,
-                  "slidesToScroll": 1
-                  }
-                  },
-                  {
-                  "breakpoint": 1367,
-                  "settings": {
-                  "slidesToShow": 3,
-                  "slidesToScroll": 1
-                  }
-                  },
-                  {
-                  "breakpoint": 767,
-                  "settings": {
-                  "slidesToShow": 1,
-                  "slidesToScroll": 1
-                  }
-                  },
-                  {
-                  "breakpoint": 458,
-                  "settings": {
-                  "slidesToShow": 1,
-                  "slidesToScroll": 1
-                  }
-                  },
-                  {
-                  "breakpoint": 349,
-                  "settings": {
-                  "slidesToShow": 1,
-                  "slidesToScroll": 1
-                  }
-                  }
-                  ]
-                  }'
-              >
-                <div className="col-md-12 ">
-                  <div className="blog-wrap mb-40 text-center">
-                    <div className="blog-img mb-25">
-                      <a href="blogs/news/miracle-morning-with-book-store-shopify.html">
-                        <img
-                          src="Images/CivilEngineering.png"
-                          alt="Miracle morning with Book shopify"
-                        />
-                      </a>
-                    </div>
-                    <div className="blog-content text-left">
-                      <div className="blog-meta blog-mrg-border">
-                        {/* <ul>
-                                 <li><a href="#" class="remove_href">28 October, 2023</a></li>
-                                 <li><a href="blogs/news/miracle-morning-with-book-store-shopify.html#comments">0 comments</a></li>
-                              </ul> */}
-                      </div>
-                      <center>
-                        <h3>
-                          <a href="#">Civil Engineering</a>
-                        </h3>
-                      </center>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12 ">
-                  <div className="blog-wrap mb-40 text-center">
-                    <div className="blog-img mb-25">
-                      <a href="blogs/news/best-book-store-shopify-theme-ever.html">
-                        <img
-                          src="Images/ElectricalEngineering.png"
-                          alt="Best Book store shopify theme ever"
-                        />
-                      </a>
-                    </div>
-                    <div className="blog-content text-left">
-                      <div className="blog-meta blog-mrg-border">
-                        {/* <ul>
-                                <li><a href="#" class="remove_href">28 October, 2023</a></li>
-                                <li><a href="blogs/news/miracle-morning-with-book-store-shopify.html#comments">0 comments</a></li>
-                             </ul> */}
-                      </div>
-                      <center>
-                        <h3>
-                          <a href="#">Electrical Engineering</a>
-                        </h3>
-                      </center>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12 ">
-                  <div className="blog-wrap mb-40 text-center">
-                    <div className="blog-img mb-25">
-                      <a href="blogs/news/top-5-book-for-world-summit-2023.html">
-                        <img
-                          src="Images/MechanicalEngineering.png"
-                          alt="Top 5  Book  for World Summit 2023"
-                        />
-                      </a>
-                    </div>
-                    <div className="blog-content text-left">
-                      <div className="blog-meta blog-mrg-border">
-                        {/* <ul>
-                                <li><a href="#" class="remove_href">28 October, 2023</a></li>
-                                <li><a href="blogs/news/miracle-morning-with-book-store-shopify.html#comments">0 comments</a></li>
-                             </ul> */}
-                      </div>
-                      <center>
-                        <h3>
-                          <a href="#">Mechanical Engineering</a>
-                        </h3>
-                      </center>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12 ">
-                  <div className="blog-wrap mb-40 text-center">
-                    <div className="blog-img mb-25">
-                      <a href="blogs/news/a-beautiful-morning-with-my-baby-book.html">
-                        <img
-                          src="Images/ElectronicsEngineering.png"
-                          alt="A Beautiful Morning with my baby book"
-                        />
-                      </a>
-                    </div>
-                    <div className="blog-content text-left">
-                      <div className="blog-meta blog-mrg-border">
-                        {/* <ul>
-                                <li><a href="#" class="remove_href">28 October, 2023</a></li>
-                                <li><a href="blogs/news/miracle-morning-with-book-store-shopify.html#comments">0 comments</a></li>
-                             </ul> */}
-                      </div>
-                      <center>
-                        <h3>
-                          <a href="#">Electronics Engineering</a>
-                        </h3>
-                      </center>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12 ">
-                  <div className="blog-wrap mb-40 text-center">
-                    <div className="blog-img mb-25">
-                      <a href="blogs/news/top-10-books-to-make-it-a-great-year.html">
-                        <img
-                          src="Images/ComputerScienceEngineering.png"
-                          alt="Top 10 Books to Make It a Great Year"
-                        />
-                      </a>
-                    </div>
-                    <div className="blog-content text-left">
-                      <div className="blog-meta blog-mrg-border">
-                        {/* <ul>
-                                <li><a href="#" class="remove_href">28 October, 2023</a></li>
-                                <li><a href="blogs/news/miracle-morning-with-book-store-shopify.html#comments">0 comments</a></li>
-                             </ul> */}
-                      </div>
-                      <center>
-                        <h3>
-                          <a href="#">Computer Science Engineering</a>
-                        </h3>
-                      </center>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12 ">
-                  <div className="blog-wrap mb-40 text-center">
-                    <div className="blog-img mb-25">
-                      <a href="blogs/news/novels-changed-our-history.html">
-                        <img
-                          src="Images/InformationTechnology.png"
-                          alt="Novels changed our history"
-                        />
-                      </a>
-                    </div>
-                    <div className="blog-content text-left">
-                      <div className="blog-meta blog-mrg-border">
-                        {/* <ul>
-                                <li><a href="#" class="remove_href">28 October, 2023</a></li>
-                                <li><a href="blogs/news/miracle-morning-with-book-store-shopify.html#comments">0 comments</a></li>
-                             </ul> */}
-                      </div>
-                      <center>
-                        <h3>
-                          <a href="#">Information Technology</a>
-                        </h3>
-                      </center>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-      <Footer />
-
+      <br />
       <div
-        className="modal fade productModal"
-        id="quickViewModal"
-        tabIndex={-1}
-        role="dialog"
-        aria-hidden="true"
+        className="row"
+        id="AboutUsSection"
+        style={{
+          display: "block",
+          margin: "0px",
+          padding: "0px",
+          clear: "both",
+        }}
       >
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-body">
-              <div className="row">
-                <div className="col-lg-6 col-md-6 col-12">
-                  <div className="qwick-view-left">
-                    <div className="quick-view-learg-img">
-                      <div className="quick-view-tab-content tab-content">
-                        <div className="product-main-image__item">
-                          <div className="img_box_1" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-6 col-md-6 col-12">
-                  <div className="qwick-view-right product-details-content quickview-content">
-                    <div className="qwick-view-content">
-                      <h2 className="product_title">FROM_JS</h2>
-                      <div className="product-price product-info__price price-part product-details-price">
-                        <span className="price-box__new">jsprice</span>
-                        <span className="main">jsprice</span>
-                      </div>
-                      <div className="product-rating pro-details-rating-wrap">
-                        <div className="quick-view-rating rating pro-details-rating">
-                          FROM_JS
-                        </div>
-                      </div>
-                      <div className="short-description product-des">
-                        FROM_JS
-                      </div>
-                      <form id="add-item-qv" action="#" method="post">
-                        <div className="quick-view-select variants select-option-part" />
-                        <div className="quickview-plus-minus">
-                          <div className="cart-plus-minus">
-                            <input
-                              type="text"
-                              defaultValue={0o1}
-                              name="quantity"
-                              className="cart-plus-minus-box"
-                            />
-                          </div>
-                          <div className="quickview-btn-cart">
-                            <button
-                              type="submit"
-                              className="addtocartqv theme-default-button"
-                            >
-                              Add to cart
-                            </button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <i className="sli sli-close" />
-              </button>
-            </div>
+        <p
+          style={{
+            "-webkit-text-align": "center",
+            "text-align": "center",
+            "font-size": "15px",
+            "-webkit-text-transform": "uppercase",
+            "text-transform": "uppercase",
+            "-webkit-text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
+            "text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
+          }}
+        >
+          Our Story
+          <br />
+          <span
+            style={{
+              "-webkit-text-align": "center",
+              "text-align": "center",
+              "font-size": "40px",
+              "-webkit-text-transform": "uppercase",
+              "text-transform": "uppercase",
+              "font-weight": "600",
+              "-webkit-text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.5)",
+              "text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.5)",
+            }}
+          >
+            Know About <span style={{ color: "red" }}>Asian Publisher</span>
+          </span>
+        </p>
+        <br />
+        <div className="col-lg-6" style={{ float: "left" }}>
+          <img src={AboutUs} className="Knowmorestyle" />
+        </div>
+        <div className="col-lg-6" style={{ float: "left" }}>
+          <div className="col-lg-1" style={{ float: "left" }} />
+          <div className="col-lg-11 aboutcontent">
+            <p
+              style={{
+                "font-size": "22px",
+                "font-weight": "600",
+                "-webkit-text-shadow": "2px 2px 10px rgba(0, 0, 0, 0.5)",
+                "text-shadow": "2px 2px 10px rgba(0, 0, 0, 0.5)",
+              }}
+            >
+              " Helping Teachers to Teach and Students to Learn "
+            </p>
+            <p style={{ "font-size": "18px" }}>
+              Asian Publishers was established in 1981. Since then, it has grown
+              to be the leading academic publisher of low-cost and high-quality
+              Diploma Education in Uttar Pradesh. With the help and support of
+              our experienced authors, Asian Publishers has worked to empower
+              the growth of students, teachers and professionals.
+              <br />
+              <br />
+              The name “Asian Publishers, Muzaffarnagar” has been echoed all
+              over Uttar Pradesh and Uttarakhand for almost three generations in
+              the field of Engineering and Polytechnic books.
+              <br />
+              <br />
+              And as we are constantly strengthening our core foundations by
+              introducing new and updated versions of our books every year, we
+              are overwhelmed by the support shown by students and teachers
+              throughout Uttar Pradesh which motivates us, even more, to
+              influence as many students as we can by publishing top-grade study
+              material.
+            </p>
           </div>
         </div>
       </div>
+      <div className="row" style={{ clear: "both", height: "5vh" }} />
+      <div
+        className="row"
+        id="number-scroller"
+        style={{
+          clear: "both",
+          "background-color": "#d82028",
+          padding: "25px 10px 25px 10px",
+        }}
+      >
+        <div className="col-lg-4" style={{ float: "left", padding: "25px" }}>
+          <div className="col-lg-7 numstyle1">
+            <div className="number" data-count={35}>
+              0
+            </div>
+          </div>
+          <div className="col-lg-5 numstyle2">Years of Experience</div>
+        </div>
+        <div className="col-lg-4" style={{ float: "left", padding: "25px" }}>
+          <div className="col-lg-7 numstyle1">
+            <div className="number" data-count={50}>
+              0
+            </div>
+          </div>
+          <div className="col-lg-5 numstyle2">Experienced Authors</div>
+        </div>
+        <div className="col-lg-4" style={{ float: "left", padding: "25px" }}>
+          <div className="col-lg-7 numstyle1">
+            <div className="number" data-count={300}>
+              0
+            </div>
+          </div>
+          <div className="col-lg-5 numstyle2">Books Titles</div>
+        </div>
+      </div>
+      <div className="row" style={{ clear: "both", height: "5vh" }} />
+      <div className="row featuredbookdiv">
+        <p
+          style={{
+            "-webkit-text-align": "center",
+            "text-align": "center",
+            "font-size": "15px",
+            "-webkit-text-transform": "uppercase",
+            "text-transform": "uppercase",
+            "-webkit-text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
+            "text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
+          }}
+        >
+          Our Books
+          <br />
+          <span
+            style={{
+              "-webkit-text-align": "center",
+              "text-align": "center",
+              "font-size": "40px",
+              "-webkit-text-transform": "uppercase",
+              "text-transform": "uppercase",
+              "font-weight": "600",
+              "-webkit-text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.5)",
+              "text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.5)",
+            }}
+          >
+            Top Selling <span style={{ color: "red" }}>Books</span>
+          </span>
+        </p>
+        <br />
+        <div className="container-fluid">
+          <div className="col-lg-3" style={{ float: "left" }}>
+            <center>
+              <div className="book">
+                <div
+                  className="book-cover"
+                  style={{ backgroundImage: `url(${Book1})` }}
+                >
+                  <div className="effect"></div>
+                  <div className="light"></div>
+                </div>
+                <div className="book-inside"></div>
+              </div>
+            </center>
+
+            <p
+              style={{
+                "font-size": "15px",
+                "-webkit-text-align": "center",
+                "text-align": "center",
+                "margin-top": "15px",
+                "font-weight": "700",
+              }}
+            >
+              <span style={{ "font-size": "12px", "font-weight": "500" }}>
+                ISBN No. 0987654321
+              </span>
+              <br />
+              Computer Programming using Python
+              <br />
+              <span style={{ "font-size": "12px", "font-weight": "500" }}>
+                Author Name Here
+              </span>
+              <br />
+              <span
+                style={{
+                  color: "red",
+                  "font-size": "16px",
+                  "font-weight": "600",
+                }}
+              >
+                Rs. 300
+              </span>
+            </p>
+          </div>
+          <div className="col-lg-3" style={{ float: "left" }}>
+            <center>
+              <div className="book">
+                <div
+                  className="book-cover"
+                  style={{ backgroundImage: `url(${Book2})` }}
+                >
+                  <div className="effect" />
+                  <div className="light" />
+                </div>
+                <div className="book-inside" />
+              </div>
+            </center>
+            <p
+              style={{
+                "font-size": "15px",
+                "-webkit-text-align": "center",
+                "text-align": "center",
+                "margin-top": "15px",
+                "font-weight": "700",
+              }}
+            >
+              <span style={{ "font-size": "12px", "font-weight": "500" }}>
+                ISBN No. 0987654321
+              </span>
+              <br />
+              Computer Programming using Python
+              <br />
+              <span style={{ "font-size": "12px", "font-weight": "500" }}>
+                Author Name Here
+              </span>
+              <br />
+              <span
+                style={{
+                  color: "red",
+                  "font-size": "16px",
+                  "font-weight": "600",
+                }}
+              >
+                Rs. 300
+              </span>
+            </p>
+          </div>
+          <div className="col-lg-3" style={{ float: "left" }}>
+            <center>
+              <div className="book">
+                <div
+                  className="book-cover"
+                  style={{ backgroundImage: `url(${Book3})` }}
+                >
+                  <div className="effect" />
+                  <div className="light" />
+                </div>
+                <div className="book-inside" />
+              </div>
+            </center>
+            <p
+              style={{
+                "font-size": "15px",
+                "-webkit-text-align": "center",
+                "text-align": "center",
+                "margin-top": "15px",
+                "font-weight": "700",
+              }}
+            >
+              <span style={{ "font-size": "12px", "font-weight": "500" }}>
+                ISBN No. 0987654321
+              </span>
+              <br />
+              Computer Programming using Python
+              <br />
+              <span style={{ "font-size": "12px", "font-weight": "500" }}>
+                Author Name Here
+              </span>
+              <br />
+              <span
+                style={{
+                  color: "red",
+                  "font-size": "16px",
+                  "font-weight": "600",
+                }}
+              >
+                Rs. 300
+              </span>
+            </p>
+          </div>
+          <div className="col-lg-3" style={{ float: "left" }}>
+            <center>
+              <div className="book">
+                <div
+                  className="book-cover"
+                  style={{ backgroundImage: `url(${Book4})` }}
+                >
+                  <div className="effect" />
+                  <div className="light" />
+                </div>
+                <div className="book-inside" />
+              </div>
+            </center>
+            <p
+              style={{
+                "font-size": "15px",
+                "-webkit-text-align": "center",
+                "text-align": "center",
+                "margin-top": "15px",
+                "font-weight": "700",
+              }}
+            >
+              <span style={{ "font-size": "12px", "font-weight": "500" }}>
+                ISBN No. 0987654321
+              </span>
+              <br />
+              Computer Programming using Python
+              <br />
+              <span style={{ "font-size": "12px", "font-weight": "500" }}>
+                Author Name Here
+              </span>
+              <br />
+              <span
+                style={{
+                  color: "red",
+                  "font-size": "16px",
+                  "font-weight": "600",
+                }}
+              >
+                Rs. 300
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        className="row"
+        style={{
+          display: "block",
+          margin: "0px",
+          padding: "0px",
+          clear: "both",
+        }}
+      >
+        <br />
+        <br />
+        <p
+          style={{
+            "-webkit-text-align": "center",
+            "text-align": "center",
+            "font-size": "15px",
+            "-webkit-text-transform": "uppercase",
+            "text-transform": "uppercase",
+            "-webkit-text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
+            "text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
+          }}
+        >
+          Asian Books
+          <br />
+          <span
+            style={{
+              "-webkit-text-align": "center",
+              "text-align": "center",
+              "font-size": "40px",
+              "-webkit-text-transform": "uppercase",
+              "text-transform": "uppercase",
+              "font-weight": "600",
+              "-webkit-text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.5)",
+              "text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.5)",
+            }}
+          >
+            Books <span style={{ color: "red" }}>Available for</span>
+          </span>
+        </p>
+        <br />
+        <div className="col-lg-4" style={{ float: "left" }}>
+          <img src={CivilEngineering} className="homecoursesstyle" />
+          <p
+            style={{
+              "font-size": "20px",
+              "-webkit-text-align": "center",
+              "text-align": "center",
+              "margin-top": "15px",
+              "font-weight": "600",
+              "-webkit-text-transform": "uppercase",
+              "text-transform": "uppercase",
+              "-webkit-text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
+              "text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            Civil <span style={{ color: "red" }}>Engineering</span>
+            <br />
+            <span
+              style={{
+                "font-size": "15px",
+                "font-weight": "normal",
+                "-webkit-text-transform": "none",
+                "text-transform": "none",
+                color: "#000",
+                "-webkit-text-shadow": "none",
+                "text-shadow": "none",
+              }}
+            >
+              Our Civil Engineering books furnish the students with the
+              knowledge to apply various principles of Mathematics and Science
+              in solving real-life engineering problems through a range of
+              private and public projects.
+            </span>
+          </p>
+        </div>
+        <div className="col-lg-4" style={{ float: "left" }}>
+          <img src={ElectricalEngineering} className="homecoursesstyle" />
+          <p
+            style={{
+              "font-size": "20px",
+              "-webkit-text-align": "center",
+              "text-align": "center",
+              "margin-top": "15px",
+              "font-weight": "600",
+              "-webkit-text-transform": "uppercase",
+              "text-transform": "uppercase",
+              "-webkit-text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
+              "text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            Electrical <span style={{ color: "red" }}>Engineering</span>
+            <br />
+            <span
+              style={{
+                "font-size": "15px",
+                "font-weight": "normal",
+                "-webkit-text-transform": "none",
+                "text-transform": "none",
+                color: "#000",
+                "-webkit-text-shadow": "none",
+                "text-shadow": "none",
+              }}
+            >
+              Our Civil Engineering books furnish the students with the
+              knowledge to apply various principles of Mathematics and Science
+              in solving real-life engineering problems through a range of
+              private and public projects.
+            </span>
+          </p>
+        </div>
+        <div className="col-lg-4" style={{ float: "left" }}>
+          <img src={MechanicalEngineering} className="homecoursesstyle" />
+          <p
+            style={{
+              "font-size": "20px",
+              "-webkit-text-align": "center",
+              "text-align": "center",
+              "margin-top": "15px",
+              "font-weight": "600",
+              "-webkit-text-transform": "uppercase",
+              "text-transform": "uppercase",
+              "-webkit-text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
+              "text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
+            }}
+          >
+            Mechanical <span style={{ color: "red" }}>Engineering</span>
+            <br />
+            <span
+              style={{
+                "font-size": "15px",
+                "font-weight": "normal",
+                "-webkit-text-transform": "none",
+                "text-transform": "none",
+                color: "#000",
+                "-webkit-text-shadow": "none",
+                "text-shadow": "none",
+              }}
+            >
+              Our Civil Engineering books furnish the students with the
+              knowledge to apply various principles of Mathematics and Science
+              in solving real-life engineering problems through a range of
+              private and public projects.
+            </span>
+          </p>
+          <br />
+          <br />
+        </div>
+      </div>
+      <div
+        className="row"
+        style={{
+          display: "block",
+          margin: "0px",
+          padding: "0px 0px 20px 0px",
+          clear: "both",
+          background: "linear-gradient(to bottom, rgb(216, 32, 40, 0.1), #fff)",
+        }}
+      >
+        <br />
+        <br />
+        <p
+          style={{
+            "-webkit-text-align": "center",
+            "text-align": "center",
+            "font-size": "15px",
+            "-webkit-text-transform": "uppercase",
+            "text-transform": "uppercase",
+            "-webkit-text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
+            "text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
+          }}
+        >
+          Our Books
+          <br />
+          <span
+            style={{
+              "-webkit-text-align": "center",
+              "text-align": "center",
+              "font-size": "40px",
+              "-webkit-text-transform": "uppercase",
+              "text-transform": "uppercase",
+              "font-weight": "600",
+              "-webkit-text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.5)",
+              "text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.5)",
+            }}
+          >
+            How <span style={{ color: "red" }}>Our Books</span> Will Help You
+          </span>
+        </p>
+        <br />
+        <div className="col-lg-12 bookhelpstyle">
+          <p>
+            We guide our students throughout the path to unlock their highest
+            potential. We understand the value of education and hence offer the
+            finest content developed by highly qualified and experienced authors
+            who spare no effort to make the books exceptional.
+          </p>
+          <br />
+          <p>
+            <b>• AICTE recognized - </b>The majority of our books have been
+            awarded by the AICTE, Government of India.
+          </p>
+          <p>
+            <b>• Language-Friendly - </b>We provide books in English as well as
+            in Hindi for each subject such that English and Hindi medium
+            students can study together in one class.
+          </p>
+          <p>
+            <b>• Theoretical concepts explained vividly -</b>Our books offer
+            theoretical concepts explained in an elaborate yet easy to
+            understand manner with the help of diagrams and illustrations so
+            that the students can have sound knowledge that goes beyond the
+            reach of mainstream books in the market.
+          </p>
+          <p>
+            <b>• Brimming with a wide range of practice questions - </b>Each
+            chapter includes practice questions ranging from low to high level
+            difficulty.
+          </p>
+          <p>
+            <b>• Provide effective summaries - </b>The authors have included
+            comprehensive summaries at the end of each chapter so that students
+            can quickly review their syllabus.
+          </p>
+          <p>
+            <b>• Affordable and easily available - </b>We make our books widely
+            and easily available at affordable market prices so that everybody
+            can benefit from them.
+          </p>
+          <p>
+            <b>• Extensive syllabus coverage - </b>Our books are designed to
+            cover the entire new syllabus for UP and UK Board of Technical
+            Education, so that our students do not need to hunt for other
+            resources.
+          </p>
+          <p>
+            <b>• Design - </b>Our books are presented in such a beautiful and an
+            organized way that the students can never get bored and rather enjoy
+            studying the subject.
+          </p>
+        </div>
+      </div>
+      <div className="row" style={{ clear: "both", height: "5vh" }} />
+      <p
+        style={{
+          "-webkit-text-align": "center",
+          "text-align": "center",
+          "font-size": "15px",
+          "-webkit-text-transform": "uppercase",
+          "text-transform": "uppercase",
+          "-webkit-text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
+          "text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
+        }}
+      >
+        Asian Publishers
+        <br />
+        <span
+          style={{
+            "-webkit-text-align": "center",
+            "text-align": "center",
+            "font-size": "40px",
+            "-webkit-text-transform": "uppercase",
+            "text-transform": "uppercase",
+            "font-weight": "600",
+            "-webkit-text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.5)",
+            "text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.5)",
+          }}
+        >
+          Extreme Colleges <span style={{ color: "red" }}>We Are Serving</span>
+        </span>
+      </p>
+      <div
+        className="row"
+        id="slideshow"
+        style={{
+          "background-color": "#d82028",
+          padding: "35px 100px 35px 100px",
+          "box-shadow":
+            "0px 5px 10px rgba(0, 0, 0, 0.5),          0px -5px 10px rgba(0, 0, 0, 0.5)",
+          "-webkit-flex-wrap": "nowrap",
+          "-ms-flex-wrap": "nowrap",
+          "flex-wrap": "nowrap",
+        }}
+      >
+        <div className="col-lg-2 col2column" style={{ float: "left" }}>
+          <center>
+            <div className="col-lg-11 col2column1" style={{}} />
+          </center>
+        </div>
+        <div className="col-lg-2 col2column" style={{ float: "left" }}>
+          <center>
+            <div className="col-lg-11 col2column1" style={{}} />
+          </center>
+        </div>
+        <div className="col-lg-2 col2column" style={{ float: "left" }}>
+          <center>
+            <div className="col-lg-11 col2column1" style={{}} />
+          </center>
+        </div>
+        <div className="col-lg-2 col2column" style={{ float: "left" }}>
+          <center>
+            <div className="col-lg-11 col2column1" style={{}} />
+          </center>
+        </div>
+        <div className="col-lg-2 col2column" style={{ float: "left" }}>
+          <center>
+            <div className="col-lg-11 col2column1" style={{}} />
+          </center>
+        </div>
+        <div className="col-lg-2 col2column" style={{ float: "left" }}>
+          <center>
+            <div className="col-lg-11 col2column1" style={{}} />
+          </center>
+        </div>
+        <div className="col-lg-2 col2column" style={{ float: "left" }}>
+          <center>
+            <div className="col-lg-11 col2column1" style={{}} />
+          </center>
+        </div>
+        <div className="col-lg-2 col2column" style={{ float: "left" }}>
+          <center>
+            <div className="col-lg-11 col2column1" style={{}} />
+          </center>
+        </div>
+        <div className="col-lg-2 col2column" style={{ float: "left" }}>
+          <center>
+            <div className="col-lg-11 col2column1" style={{}} />
+          </center>
+        </div>
+        <div className="col-lg-2 col2column" style={{ float: "left" }}>
+          <center>
+            <div className="col-lg-11 col2column1" style={{}} />
+          </center>
+        </div>
+        <div className="col-lg-2 col2column" style={{ float: "left" }}>
+          <center>
+            <div className="col-lg-11 col2column1" style={{}} />
+          </center>
+        </div>
+        <div className="col-lg-2 col2column" style={{ float: "left" }}>
+          <center>
+            <div className="col-lg-11 col2column1" style={{}} />
+          </center>
+        </div>
+      </div>
+      <Footer />
     </>
   );
 }

@@ -6,6 +6,9 @@ import "./Checkout.css";
 import { useDispatch, useSelector } from "react-redux";
 import { REACT_APP_URL } from "../../../config/config";
 import useOrder from "../../../hooks/useOrder";
+import Book1 from "../../../Images/Book1.jpg";
+import Book2 from "../../../Images/Book2.jpg";
+import CartHeaderImage from "../../../Images/CartHeaderImage.png";
 
 function Checkout() {
   const { cartdata } = useSelector((state) => state.cart);
@@ -79,273 +82,282 @@ function Checkout() {
 
   return (
     <>
-      <link
-        href="../../Assets/shop/t/9/assets/bootstrap.min528d.css?v=19868337340211324411698938058"
-        rel="stylesheet"
-        type="text/css"
-        media="all"
-      />
-      <link
-        href="../../Assets/shop/t/9/assets/stylea2a8.css?v=23287745902246098161698938060"
-        rel="stylesheet"
-        type="text/css"
-        media="all"
-      />
-      <link
-        href="../../Assets/shop/t/9/assets/theme-custom0acb.css?v=63313606314167933051698938089"
-        rel="stylesheet"
-        type="text/css"
-        media="all"
-      />
-      <link
-        href="../../Assets/shop/t/9/assets/skin-and-color85c1.css?v=64489753365287532231698938089"
-        rel="stylesheet"
-        type="text/css"
-        media="all"
-      />
-      <script src="../../Assets/shop/t/9/assets/jquery-1.12.4.min61ad.js?v=167620768852842279821698938059"></script>
-      <script src="../../Assets/shop/t/9/assets/theme08ca.js?v=58729172318499673551698938089"></script>
-      <link
-        href="../../Assets/shop/t/9/assets/icons.min4e41.css?v=144771626144460745771698938059"
-        rel="stylesheet"
-        type="text/css"
-        media="all"
-      />
-      <link
-        href="../../Assets/shop/t/9/assets/icofont.minba8d.css?v=49818375117710154861698938058"
-        rel="stylesheet"
-        type="text/css"
-        media="all"
-      />
-
-      <div id="preloader_active">
-        <div id="loading-center">
-          <div id="loading-center-absolute">
-            <div className="object" id="object_four" />
-            <div className="object" id="object_three" />
-            <div className="object" id="object_two" />
-            <div className="object" id="object_one" />
+      <Header />
+      <div
+        className="Headerrowabout"
+        style={{
+          backgroundImage: `url(${CartHeaderImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="gradient-overlay" />
+        <div className="col-lg-2" style={{ float: "left" }}>
+          &nbsp;
+        </div>
+        <div className="col-lg-8" style={{ float: "left" }}>
+          <div
+            className="video-content"
+            style={{ textAlign: "center", paddingTop: 150 }}
+          >
+            <p
+              className="text"
+              style={{
+                textTransform: "uppercase",
+                fontSize: 50,
+                fontWeight: 600,
+                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+              }}
+            >
+              Check Out
+            </p>
+            <p style={{ fontSize: 20 }}>
+              Asian Publishers is your life long Learning Partner. We have
+              empowered the growth of Students,Teachers, &amp; Professionals
+              since 1981.
+            </p>
+            {}
           </div>
         </div>
-      </div>
-      <div id="shopify-section-header" className="shopify-section">
-        <div style={{ height: "16vh" }}>
-          <Header />
+        <div className="col-lg-2" style={{ float: "left" }}>
+          &nbsp;
         </div>
       </div>
-      <div className="breadcrumb-area breadcrumbs-section">
-        <div className="breadcrumbs overlay-bg">
-          <div className="container">
-            <div className="breadcrumb-content text-center breadcrumbs-inner">
-              <div className="page-title">
-                <h1
-                  className="breadcrumbs-title"
-                  style={{ textTransform: "unset" }}
+      <br />
+      <div
+        className="row"
+        id="AboutUsSection"
+        style={{ display: "block", margin: 0, padding: 0, clear: "both" }}
+      >
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-lg-6 col-md-6">
+              <div
+                className="contact-from contact-shadow"
+                style={{ marginLeft: 0 }}
+              >
+                <form
+                  method="post"
+                  action=""
+                  id="contact-form"
+                  acceptcharset="UTF-8"
+                  className="contact-form"
                 >
-                  Check Out
-                </h1>
+                  <input
+                    type="hidden"
+                    name="form_type"
+                    defaultvalue="contact"
+                  />
+                  <input type="hidden" name="utf8" defaultvalue="✓" />
+                  <div className="col-lg-12">
+                    <input
+                      type="text"
+                      placeholder="Name"
+                      className="form-controlCustomized"
+                      name="contact[name]"
+                      id="ContactFormName"
+                      defaultvalue=""
+                    />
+                  </div>
+                  <div
+                    className="col-lg-6"
+                    style={{ float: "left", marginTop: 20 }}
+                  >
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      className="form-controlCustomized"
+                      name="contact[email]"
+                      id="ContactFormEmail"
+                      defaultvalue=""
+                    />
+                  </div>
+                  <div
+                    className="col-lg-6"
+                    style={{ float: "left", marginTop: 20 }}
+                  >
+                    <input
+                      type="text"
+                      id="ContactFormSubject"
+                      name="contact[subject]"
+                      placeholder="Mobile No."
+                      defaultvalue=""
+                      className="form-controlCustomized"
+                    />
+                  </div>
+                  <div
+                    className="col-lg-12"
+                    style={{ float: "left", marginTop: 20 }}
+                  >
+                    <input
+                      type="text"
+                      id="ContactFormSubject"
+                      name="contact[subject]"
+                      placeholder="Address"
+                      defaultvalue=""
+                      className="form-controlCustomized"
+                    />
+                  </div>
+                  <div
+                    className="col-lg-6"
+                    style={{ float: "left", marginTop: 20 }}
+                  >
+                    <input
+                      type="text"
+                      id="ContactFormSubject"
+                      name="contact[subject]"
+                      placeholder="City"
+                      defaultvalue=""
+                      className="form-controlCustomized"
+                    />
+                  </div>
+                  <div
+                    className="col-lg-6"
+                    style={{ float: "left", marginTop: 20 }}
+                  >
+                    <input
+                      type="text"
+                      id="ContactFormSubject"
+                      name="contact[subject]"
+                      placeholder="State"
+                      defaultvalue=""
+                      className="form-controlCustomized"
+                    />
+                  </div>
+                  <div
+                    className="col-lg-6"
+                    style={{ float: "left", marginTop: 20 }}
+                  >
+                    <input
+                      type="text"
+                      id="ContactFormSubject"
+                      name="contact[subject]"
+                      placeholder="Country"
+                      defaultvalue=""
+                      className="form-controlCustomized"
+                    />
+                  </div>
+                  <div
+                    className="col-lg-6"
+                    style={{ float: "left", marginTop: 20 }}
+                  >
+                    <input
+                      type="text"
+                      id="ContactFormSubject"
+                      name="contact[subject]"
+                      placeholder="Pin Code"
+                      defaultvalue=""
+                      className="form-controlCustomized"
+                    />
+                  </div>
+                </form>
               </div>
-              <nav>
-                <ul className="breadcrumb-list">
-                  <li>
-                    <a href="/" title="Back to the home page">
-                      Home
-                    </a>
-                  </li>
-                  <li style={{ textTransform: "unset" }}>Check Out</li>
-                </ul>
-              </nav>
+            </div>
+            <div className="col-lg-6 col-md-6">
+              <table className="table table-spriped">
+                <tbody>
+                  <tr>
+                    <th style={{ fontSize: 18, width: "10%" }}>Product</th>
+                    <th style={{ fontSize: 18, width: "30%" }}>Details</th>
+                    <th style={{ fontSize: 16, width: "20%" }}>Qty</th>
+                    <th
+                      style={{ fontSize: 16, width: "20%", textAlign: "right" }}
+                    >
+                      Price
+                    </th>
+                    <th
+                      style={{ fontSize: 16, width: "20%", textAlign: "right" }}
+                    >
+                      Sub Total
+                    </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <img
+                        src={Book1}
+                        alt="Best Sellers"
+                        loading="lazy"
+                        style={{ height: "12vh" }}
+                      />
+                    </td>
+                    <td style={{ fontWeight: 600, fontSize: 18 }}>
+                      Book Name Here
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        className="form-control"
+                        name="quantity"
+                        defaultValue={10}
+                        style={{ width: "60%" }}
+                      />
+                    </td>
+                    <td style={{ textAlign: "right" }}>Rs. 300</td>
+                    <td style={{ textAlign: "right" }}>Rs. 3000</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <img
+                        src={Book2}
+                        alt="Best Sellers"
+                        loading="lazy"
+                        style={{ height: "12vh" }}
+                      />
+                    </td>
+                    <td style={{ fontWeight: 600, fontSize: 18 }}>
+                      Book Name Here
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        className="form-control"
+                        name="quantity"
+                        defaultValue={10}
+                        style={{ width: "60%" }}
+                      />
+                    </td>
+                    <td style={{ textAlign: "right" }}>Rs. 300</td>
+                    <td style={{ textAlign: "right" }}>Rs. 3000</td>
+                  </tr>
+                </tbody>
+              </table>
+              <center>
+                <a
+                  href="#"
+                  style={{
+                    textDecoration: "none",
+                    backgroundColor: "#d82028",
+                    color: "#fff",
+                    padding: "10px 50px 10px 50px",
+                    marginTop: 20,
+                    borderRadius: 10,
+                  }}
+                >
+                  PLACE YOUR ORDER NOW
+                </a>
+              </center>
             </div>
           </div>
         </div>
       </div>
-      <div id="shopify-section-breadcrumb" className="shopify-section"></div>
-      <main>
-        <br />
-        <div
-          id="shopify-section-template--14595761635408__main"
-          className="shopify-section"
-        >
-          <div className="contact-area pt-100 pb-100">
-            <div className="container-fluid">
-              <div className="row">
-                <div className="col-lg-6 col-md-6">
-                  <div
-                    className="contact-from contact-shadow"
-                    style={{ marginLeft: "0px" }}
-                  >
-                    <form
-                      method="post"
-                      onSubmit={handleSubmit}
-                      id="contact-form"
-                      action=""
-                      acceptCharset="UTF-8"
-                      className="contact-form"
-                    >
-                      <input
-                        type="hidden"
-                        name="form_type"
-                        defaultValue="contact"
-                      />
-                      <input type="hidden" name="utf8" defaultValue="✓" />
-                      <div className="col-lg-12">
-                        <input
-                          type="text"
-                          id="ContactFormName"
-                          placeholder="Name"
-                          className=""
-                          name="name"
-                          required
-                          value={formData.name}
-                          onChange={handleChange}
-                        />
-                      </div>
-                      <div className="col-lg-6" style={{ float: "left" }}>
-                        <input
-                          type="email"
-                          id="ContactFormEmail"
-                          placeholder="Email"
-                          name="email"
-                          required
-                          value={formData.email}
-                          onChange={handleChange}
-                        />
-                      </div>
-                      <div className="col-lg-6" style={{ float: "left" }}>
-                        <input
-                          type="text"
-                          id="ContactFormSubject"
-                          placeholder="Mobile No."
-                          name="mobileNo"
-                          required
-                          value={formData.mobileNo}
-                          onChange={handleChange}
-                        />
-                      </div>
-                      <div className="col-lg-12" style={{ float: "left" }}>
-                        <input
-                          type="text"
-                          id="ContactFormSubject"
-                          placeholder="Address"
-                          name="address"
-                          required
-                          value={formData.address}
-                          onChange={handleChange}
-                        />
-                      </div>
-                      <div className="col-lg-6" style={{ float: "left" }}>
-                        <input
-                          type="text"
-                          id="ContactFormSubject"
-                          placeholder="City"
-                          name="city"
-                          required
-                          value={formData.city}
-                          onChange={handleChange}
-                        />
-                      </div>
-                      <div className="col-lg-6" style={{ float: "left" }}>
-                        <input
-                          type="text"
-                          id="ContactFormSubject"
-                          placeholder="State"
-                          name="state"
-                          required
-                          value={formData.state}
-                          onChange={handleChange}
-                        />
-                      </div>
-                      <div className="col-lg-6" style={{ float: "left" }}>
-                        <input
-                          type="text"
-                          id="ContactFormSubject"
-                          placeholder="Country"
-                          name="country"
-                          required
-                          value={formData.country}
-                          onChange={handleChange}
-                        />
-                      </div>
-                      <div className="col-lg-6" style={{ float: "left" }}>
-                        <input
-                          type="text"
-                          id="ContactFormSubject"
-                          placeholder="Pin Code"
-                          name="pincode"
-                          required
-                          value={formData.pincode}
-                          onChange={handleChange}
-                        />
-                      </div>
-                      <center>
-                        <button
-                          className="ban_btn1 banner_style_2"
-                          type="submit"
-                        >
-                          Place Your Order Now
-                        </button>
-                      </center>
-                    </form>
-                  </div>
-                </div>
-                <div className="col-lg-6 col-md-6">
-                  <table className="table table-spriped">
-                    <tr>
-                      <th style={{ fontSize: "18px", width: "20%" }}>
-                        Product
-                      </th>
-                      <th>Description</th>
-                      <th style={{ textAlign: "right", fontSize: "18px" }}>
-                        Qty
-                      </th>
-                      <th style={{ textAlign: "right", fontSize: "18px" }}>
-                        Price
-                      </th>
-                      <th style={{ textAlign: "right", fontSize: "18px" }}>
-                        Amount
-                      </th>
-                    </tr>
-                    {cartItem &&
-                      cartItem.length > 0 &&
-                      cartItem.map((book, index) => (
-                        <tr key={index}>
-                          <td>
-                            <img
-                              src={`${REACT_APP_URL}/Image/${book.image}`}
-                              alt="Best Sellers"
-                              loading="lazy"
-                              style={{ height: "10vh" }}
-                            />
-                          </td>
-                          <td style={{ fontWeight: "600", fontSize: "18px" }}>
-                            {book.name}
-                          </td>
-                          <td style={{ textAlign: "right" }}>
-                            {" "}
-                            {book.quantity}
-                          </td>
-                          <td style={{ textAlign: "right" }}>Rs. {book.mRP}</td>
-                          <td style={{ textAlign: "right" }}>
-                            Rs. {book.quantity * book.mRP}
-                          </td>
-                        </tr>
-                      ))}
-
-                    <tr>
-                      <th>Total</th>
-                      <th></th>
-                      <th style={{ textAlign: "right" }}>{totalQnt}</th>
-                      <th style={{ textAlign: "right" }}>Rs. {totalPrice}</th>
-                      <th style={{ textAlign: "right" }}>Rs. {totalAmmount}</th>
-                    </tr>
-                  </table>
-                  <br></br>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
+      <div
+        className="row"
+        style={{
+          clear: "both",
+          height: "10vh",
+          background: "linear-gradient(to top, rgb(216, 32, 40, 0.1), #fff)",
+        }}
+      />
+      <div
+        className="row"
+        style={{
+          backgroundColor: "white",
+          position: "relative",
+          padding: "50px 30px 0px 30px",
+          textAlign: "left",
+          color: "black",
+        }}
+      ></div>
       <Footer />
     </>
   );
