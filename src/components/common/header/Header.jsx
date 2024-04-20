@@ -27,7 +27,7 @@ function Header() {
                     <a
                       className="nav-link active"
                       aria-current="page"
-                      href="#"
+                      href="/"
                       style={{ color: "#fff", fontSize: 16, fontWeight: 600 }}
                     >
                       HOME
@@ -36,7 +36,7 @@ function Header() {
                   <li className="nav-item" style={{ zIndex: 1 }}>
                     <a
                       className="nav-link"
-                      href="#"
+                      href="/about-us"
                       style={{
                         color: "#fff",
                         fontSize: 16,

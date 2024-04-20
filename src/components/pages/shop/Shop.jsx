@@ -4,6 +4,8 @@ import Footer from "../../common/footer/Footer";
 import AboutUs from "../../../Images/AboutUs.png";
 import WhoWeAreImage from "../../../Images/WhoWeAreImage.png";
 import WhyUsImage from "../../../Images/WhyUsImage.png";
+import Director from "../../../Images/Director.jpg";
+import ShopHeaderImage from "../../../Images/ShopHeaderImage.png";
 
 function Shop() {
   return (
@@ -26,7 +28,7 @@ function Shop() {
         <div
           className="Headerrowabout"
           style={{
-            backgroundImage: "url(Images/ShopHeaderImage.png)",
+            backgroundImage: `url(${ShopHeaderImage})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -343,7 +345,7 @@ function Shop() {
               className="col-lg-5"
               style={{
                 float: "left",
-                backgroundImage: "url(Images/Director.jpg)",
+                backgroundImage: `url(${Director})`,
                 height: "70vh",
                 borderTopLeftRadius: 100,
                 borderBottomRightRadius: 100,
