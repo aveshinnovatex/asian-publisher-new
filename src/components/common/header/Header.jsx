@@ -1,6 +1,6 @@
 import React from "react";
-import "../../..//Style.css";
-import "../../../bootstrap.min.css";
+import "../../../css/Style.css";
+import "../../../css/bootstrap.min.css";
 import AsianLogo from "../../../Images/AsianLogo.jpeg";
 
 function Header() {
