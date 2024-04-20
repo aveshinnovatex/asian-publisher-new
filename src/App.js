@@ -11,7 +11,7 @@ import Checkout from "./components/pages/checkout/Checkout";
 import BookDetails from "./components/pages/shop/BookDetails";
 import OrderForm from "./components/pages/orderForm/OrderForm";
 import ContactUs from "./components/pages/contactUs/ContactUs";
-import BecomeAuthor from "./components/pages/becomeauthoe/BecomeAuthor";
+import BecomeAuthor from "./components/pages/becomeauthor/BecomeAuthor";
 // import Layout from "./components/Layout";
 
 const App = () => {
