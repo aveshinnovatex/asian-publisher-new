@@ -31,21 +31,21 @@ const App = () => {
     <Router>
       {/* <Layout> */}
       <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/shopn" element={<ShopNew />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/order" element={<OrderForm />} />
-        <Route path="/becomean" element={<BecomeanAuthor />} />
-        <Route path="/contact" element={<ContactUs />} />
-        <Route path="/log" element={<Login />} />
-        <Route path="/reg" element={<Register />} />
-        <Route path="/auth" element={<Author />} />
-        <Route path="/check" element={<Checkout />} />
-        <Route path="/cart-show" element={<Cart />} />
-        <Route path="/book" element={<BookDetails />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/shop" element={<ShopNew />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/orderForm" element={<OrderForm />} />
+        <Route path="/becomean-author" element={<BecomeanAuthor />} />
+        <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/author" element={<Author />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/bookdetails/:id" element={<BookDetails />} />
 
         {/**old routing */}
-        <Route path="/" element={<HomeOld />} />
+        {/* <Route path="/" element={<HomeOld />} />
         <Route path="/about-us" element={<AboutUsOld />} />
         <Route path="/author" element={<AuthorOld />} />
         <Route path="/becomean-author" element={<BecomeanAuthorOld />} />
@@ -56,7 +56,7 @@ const App = () => {
         <Route path="/shop" element={<Shop />} />
         <Route path="/cart" element={<CartOld />} />
         <Route path="/checkout" element={<CheckoutOld />} />
-        <Route path="/bookdetails/:id" element={<BookDetailsOld />} />
+        <Route path="/bookdetails/:id" element={<BookDetailsOld />} /> */}
       </Routes>
       {/* </Layout> */}
     </Router>
