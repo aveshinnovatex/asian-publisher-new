@@ -103,13 +103,13 @@
     padding: 50px;
     background-color: #fff;
   }
-  .col2column1 {
+  /* .col2column1 {
     background-image: url(../Images/Logo/1.jpg);
     background-position: center;
     background-size: cover;
     height: 18vh;
     width: 150px;
-  }
+  } */
 }
 
 @media screen and (max-width: 990px) {

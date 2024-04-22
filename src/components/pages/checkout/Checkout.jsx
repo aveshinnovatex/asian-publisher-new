@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../../common/header/Header";
 import Footer from "../../common/footer/Footer";
 import "./Checkout.css";
+import { updateTocart } from "../../../redux/slices/cartSlice";
 // import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { REACT_APP_URL } from "../../../config/config";
@@ -12,6 +13,7 @@ import CartHeaderImage from "../../../Images/CartHeaderImage.png";
 
 function Checkout() {
   const { cartdata } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   const { loading, submitData } = useOrder();
   const [cartItem, setCartItem] = useState([]);
   const [totalQnt, setTotalQnt] = useState(0);
@@ -33,31 +35,14 @@ function Checkout() {
     quantity: cart.quantity,
     price: cart.mRP,
   }));
-  // const { name, email, mobileNo, address, city, state, country, pincode } =
-  //   formData;
-
-  /**handle change  method implement here */
   function handleChange(event) {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   }
 
-  /**handle submit  method implement here */
   function handleSubmit(event) {
     event.preventDefault();
-    /** create instance of Form data here */
-    // let orderData = new FormData();
-    // orderData.append("name", name);
-    // orderData.append("email", email);
-    // orderData.append("mobileNo", mobNumber);
-    // orderData.append("address", address);
-    // orderData.append("city", city);
-    // orderData.append("state", state);
-    // orderData.append("country", country);
-    // orderData.append("pincode", pincode);
-    // orderData.append("orderMetas", cartdataitem);
 
-    /** hitt the create order from api from  here */
     submitData({ ...formData, orderMetas: cartdataitem });
   }
   useEffect(() => {
@@ -79,6 +64,44 @@ function Checkout() {
       setTotalAmmount(tempTotalAmmount);
     }
   }, [cartItem]);
+  const updateOnChangeHandler = (newVal, currentObj) => {
+    let updatedObj = { ...currentObj };
+    updatedObj.quantity = newVal;
+
+    const {
+      id,
+      authors,
+      bookCode,
+      courseSemesters,
+      image,
+      isFeatured,
+      languageId,
+      quantity,
+      languageNav,
+      mRP,
+      numId,
+      name,
+      ...rest
+    } = updatedObj;
+    dispatch(
+      updateTocart({
+        product: {
+          id,
+          authors,
+          bookCode,
+          courseSemesters,
+          image,
+          isFeatured,
+          languageId,
+          languageNav,
+          mRP,
+          numId,
+          name,
+          quantity,
+        },
+      })
+    );
+  };
 
   return (
     <>
@@ -116,7 +139,6 @@ function Checkout() {
               empowered the growth of Students,Teachers, &amp; Professionals
               since 1981.
             </p>
-            {}
           </div>
         </div>
         <div className="col-lg-2" style={{ float: "left" }}>
@@ -138,6 +160,7 @@ function Checkout() {
               >
                 <form
                   method="post"
+                  onSubmit={handleSubmit}
                   action=""
                   id="contact-form"
                   acceptcharset="UTF-8"
@@ -154,9 +177,13 @@ function Checkout() {
                       type="text"
                       placeholder="Name"
                       className="form-controlCustomized"
-                      name="contact[name]"
-                      id="ContactFormName"
-                      defaultvalue=""
+                      // name="contact[name]"
+                      // id="ContactFormName"
+                      // defaultvalue=""
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
                     />
                   </div>
                   <div
@@ -167,9 +194,13 @@ function Checkout() {
                       type="email"
                       placeholder="Email"
                       className="form-controlCustomized"
-                      name="contact[email]"
-                      id="ContactFormEmail"
-                      defaultvalue=""
+                      // name="contact[email]"
+                      // id="ContactFormEmail"
+                      // defaultvalue=""
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
                     />
                   </div>
                   <div
@@ -179,10 +210,14 @@ function Checkout() {
                     <input
                       type="text"
                       id="ContactFormSubject"
-                      name="contact[subject]"
+                      // name="contact[subject]"
                       placeholder="Mobile No."
-                      defaultvalue=""
+                      //defaultvalue=""
                       className="form-controlCustomized"
+                      name="mobileNo"
+                      required
+                      value={formData.mobileNo}
+                      onChange={handleChange}
                     />
                   </div>
                   <div
@@ -192,10 +227,14 @@ function Checkout() {
                     <input
                       type="text"
                       id="ContactFormSubject"
-                      name="contact[subject]"
+                      //name="contact[subject]"
                       placeholder="Address"
-                      defaultvalue=""
+                      //defaultvalue=""
                       className="form-controlCustomized"
+                      name="address"
+                      required
+                      value={formData.address}
+                      onChange={handleChange}
                     />
                   </div>
                   <div
@@ -205,10 +244,14 @@ function Checkout() {
                     <input
                       type="text"
                       id="ContactFormSubject"
-                      name="contact[subject]"
+                      //name="contact[subject]"
                       placeholder="City"
-                      defaultvalue=""
+                      //defaultvalue=""
                       className="form-controlCustomized"
+                      name="city"
+                      required
+                      value={formData.city}
+                      onChange={handleChange}
                     />
                   </div>
                   <div
@@ -218,10 +261,14 @@ function Checkout() {
                     <input
                       type="text"
                       id="ContactFormSubject"
-                      name="contact[subject]"
+                      //name="contact[subject]"
                       placeholder="State"
-                      defaultvalue=""
+                      //defaultvalue=""
                       className="form-controlCustomized"
+                      name="state"
+                      required
+                      value={formData.state}
+                      onChange={handleChange}
                     />
                   </div>
                   <div
@@ -231,10 +278,14 @@ function Checkout() {
                     <input
                       type="text"
                       id="ContactFormSubject"
-                      name="contact[subject]"
+                      //name="contact[subject]"
                       placeholder="Country"
-                      defaultvalue=""
+                      //defaultvalue=""
                       className="form-controlCustomized"
+                      name="country"
+                      required
+                      value={formData.country}
+                      onChange={handleChange}
                     />
                   </div>
                   <div
@@ -244,12 +295,31 @@ function Checkout() {
                     <input
                       type="text"
                       id="ContactFormSubject"
-                      name="contact[subject]"
+                      //name="contact[subject]"
                       placeholder="Pin Code"
-                      defaultvalue=""
+                      //defaultvalue=""
                       className="form-controlCustomized"
+                      name="pincode"
+                      required
+                      value={formData.pincode}
+                      onChange={handleChange}
                     />
                   </div>
+                  <center>
+                    <button
+                      type="submit"
+                      style={{
+                        textDecoration: "none",
+                        backgroundColor: "#d82028",
+                        color: "#fff",
+                        padding: "10px 50px 10px 50px",
+                        marginTop: 20,
+                        borderRadius: 10,
+                      }}
+                    >
+                      PLACE YOUR ORDER NOW
+                    </button>
+                  </center>
                 </form>
               </div>
             </div>
@@ -271,71 +341,43 @@ function Checkout() {
                       Sub Total
                     </th>
                   </tr>
-                  <tr>
-                    <td>
-                      <img
-                        src={Book1}
-                        alt="Best Sellers"
-                        loading="lazy"
-                        style={{ height: "12vh" }}
-                      />
-                    </td>
-                    <td style={{ fontWeight: 600, fontSize: 18 }}>
-                      Book Name Here
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        className="form-control"
-                        name="quantity"
-                        defaultValue={10}
-                        style={{ width: "60%" }}
-                      />
-                    </td>
-                    <td style={{ textAlign: "right" }}>Rs. 300</td>
-                    <td style={{ textAlign: "right" }}>Rs. 3000</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img
-                        src={Book2}
-                        alt="Best Sellers"
-                        loading="lazy"
-                        style={{ height: "12vh" }}
-                      />
-                    </td>
-                    <td style={{ fontWeight: 600, fontSize: 18 }}>
-                      Book Name Here
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        className="form-control"
-                        name="quantity"
-                        defaultValue={10}
-                        style={{ width: "60%" }}
-                      />
-                    </td>
-                    <td style={{ textAlign: "right" }}>Rs. 300</td>
-                    <td style={{ textAlign: "right" }}>Rs. 3000</td>
-                  </tr>
+                  {cartItem &&
+                    cartItem.length > 0 &&
+                    cartItem?.map((book, index) => (
+                      <tr key={index}>
+                        <td>
+                          <img
+                            src={`${REACT_APP_URL}/Image/${book.image}`}
+                            alt="Best Sellers"
+                            loading="lazy"
+                            style={{ height: "12vh" }}
+                          />
+                        </td>
+                        <td style={{ fontWeight: 600, fontSize: 18 }}>
+                          {book.name}
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control"
+                            name="quantity"
+                            min={1}
+                            max={1000}
+                            value={book.quantity || null}
+                            style={{ width: "100%" }}
+                            onChange={(e) => {
+                              updateOnChangeHandler(e.target.value, book);
+                            }}
+                          />
+                        </td>
+                        <td style={{ textAlign: "right" }}>Rs. {book.mRP}</td>
+                        <td style={{ textAlign: "right" }}>
+                          Rs. {book.quantity * book.mRP}
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
-              <center>
-                <a
-                  href="#"
-                  style={{
-                    textDecoration: "none",
-                    backgroundColor: "#d82028",
-                    color: "#fff",
-                    padding: "10px 50px 10px 50px",
-                    marginTop: 20,
-                    borderRadius: 10,
-                  }}
-                >
-                  PLACE YOUR ORDER NOW
-                </a>
-              </center>
             </div>
           </div>
         </div>
@@ -357,8 +399,9 @@ function Checkout() {
           textAlign: "left",
           color: "black",
         }}
-      ></div>
-      <Footer />
+      >
+        <Footer />
+      </div>
     </>
   );
 }

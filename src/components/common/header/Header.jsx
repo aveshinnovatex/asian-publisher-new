@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 // import "../../../css/Style.css";
 // import "../../../css/bootstrap.min.css";
 import AsianLogo from "../../../Images/AsianLogo.jpeg";
 
 function Header() {
+  const navigate = useNavigate();
+  const { quantity } = useSelector((state) => state.cart);
+
   return (
     <>
       <div className="navbar navbar-expand-lg bg-body-tertiary sticky-top">
@@ -167,7 +172,7 @@ function Header() {
                   <li className="nav-item" style={{ zIndex: 1 }}>
                     <a
                       className="nav-link"
-                      href="#"
+                      // href="#"
                       style={{
                         color: "#fff",
                         fontSize: 16,
@@ -175,7 +180,12 @@ function Header() {
                         marginLeft: 10,
                       }}
                     >
-                      <i className="fa fa-shopping-cart" />
+                      <i
+                        className="fa fa-shopping-cart"
+                        onClick={() => navigate("/cart")}
+                      >
+                        {quantity}
+                      </i>
                     </a>
                   </li>
                   <li className="nav-item" style={{ zIndex: 1 }}>

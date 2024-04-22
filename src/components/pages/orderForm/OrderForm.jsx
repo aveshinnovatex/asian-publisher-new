@@ -6,8 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { fetchBooks } from "../../../redux/slices/bookSlice";
-import AsianLogo from "../../../Images/AsianLogo.jpeg";
-import AsianLogoText from "../../../Images/AsianLogoText.jpeg";
 import orderformimage from "../../../Images/orderformimage.png";
 
 function OrderForm() {
@@ -111,8 +109,12 @@ function OrderForm() {
             <input
               className="form-control"
               type="text"
-              defaultValue=""
               placeholder="Name"
+              name="name"
+              required
+              value={formData.name}
+              onChange={handleChange}
+              // defaultValue=""
             />
           </div>
           <div className="col-lg-6" style={{ float: "left" }}>
@@ -120,8 +122,12 @@ function OrderForm() {
             <input
               className="form-control"
               type="text"
-              defaultValue=""
               placeholder="Email"
+              name="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+              // defaultValue=""
             />
           </div>
           <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
@@ -129,8 +135,12 @@ function OrderForm() {
             <input
               className="form-control"
               type="text"
-              defaultValue=""
-              placeholder="Address"
+              placeholder="Enter your Address"
+              name="address"
+              required
+              value={formData.address}
+              onChange={handleChange}
+              // defaultValue=""
             />
           </div>
           <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
@@ -138,24 +148,46 @@ function OrderForm() {
             <input
               className="form-control"
               type="text"
-              defaultValue=""
-              placeholder="City"
+              placeholder="Enter Your City"
+              name="city"
+              required
+              value={formData.city}
+              onChange={handleChange}
+              // defaultValue=""
             />
           </div>
           <div className="col-lg-12" style={{ float: "left", marginTop: 20 }}>
-            <label style={{ fontWeight: 600 }}>Book</label>
-            <select className="form-control">
-              <option value="Book Name">Book Name</option>
-              <option value="Book Name">Book Name</option>
-              <option value="Book Name">Book Name</option>
-            </select>
+            <label style={{ fontWeight: 600 }}>Books</label>
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={topBooks}
+              onChange={(event, value) => {
+                setFormData((prev) => ({
+                  ...prev,
+                  book: value?.id,
+                }));
+              }}
+              sx={{
+                width: 700,
+                ".MuiAutocomplete-inputRoot": {
+                  "& .MuiAutocomplete-input": {
+                    fontSize: "16px",
+                  },
+                },
+              }}
+              renderInput={(params) => <TextField {...params} label="Books" />}
+            />
           </div>
           <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
             <label style={{ fontWeight: 600 }}>Quantity</label>
             <input
               className="form-control"
               type="text"
-              defaultValue=""
+              name="quantity"
+              required
+              value={formData.quantity}
+              onChange={handleChange}
               placeholder="Quantity"
             />
           </div>
@@ -164,18 +196,29 @@ function OrderForm() {
             <input
               className="form-control"
               type="text"
-              defaultValue=""
+              name="mobileNo"
+              required
+              value={formData.mobileNo}
+              onChange={handleChange}
               placeholder="Mobile No."
             />
           </div>
           <div className="col-lg-12" style={{ float: "left", marginTop: 20 }}>
             <label style={{ fontWeight: 600 }}>Description</label>
-            <textarea rows={5} className="form-control" defaultValue={""} />
+            <textarea
+              rows={5}
+              className="form-control"
+              name="description"
+              required
+              value={formData.description}
+              onChange={handleChange}
+            />
           </div>
           <div className="col-lg-12" style={{ float: "left", marginTop: 40 }}>
             <center>
               <a
                 href="#"
+                onClick={handleSubmit}
                 style={{
                   textDecoration: "none",
                   backgroundColor: "#d82028",

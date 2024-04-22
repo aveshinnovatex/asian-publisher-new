@@ -8,26 +8,33 @@ import AsianLogo from "../../../Images/AsianLogo.jpeg";
 import AsianLogoText from "../../../Images/AsianLogoText.jpeg";
 
 function ContactUs() {
-  //   const { loading, submitData } = useContactUs();
-  //   const [formData, setFormData] = useState({
-  //     name: "",
-  //     email: "",
-  //     subject: "",
-  //     message: "",
-  //   });
-  //   function handleChange(event) {
-  //     const { name, value } = event.target;
-  //     setFormData((prev) => ({ ...prev, [name]: value }));
-  //   }
-  //   function handleSubmit(event) {
-  //     event.preventDefault();
-  //     submitData(formData);
-  //   }
-  //   useEffect(() => {
-  //     if (!loading) {
-  //       setFormData({ name: "", email: "", subject: "", message: "" });
-  //     }
-  //   }, [loading]);
+  const { loading, submitData } = useContactUs();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    mobileNo: "",
+    address: "",
+    message: "",
+  });
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    submitData(formData);
+  }
+  useEffect(() => {
+    if (!loading) {
+      setFormData({
+        name: "",
+        email: "",
+        mobileNo: "",
+        address: "",
+        message: "",
+      });
+    }
+  }, [loading]);
 
   return (
     <>
@@ -158,8 +165,12 @@ function ContactUs() {
                 <input
                   className="form-controlCustomized"
                   type="text"
-                  defaultValue=""
                   placeholder="Name"
+                  name="name"
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                  //defaultValue=""
                 />
               </div>
               <div className="col-lg-6" style={{ float: "left" }}>
@@ -167,8 +178,12 @@ function ContactUs() {
                 <input
                   className="form-controlCustomized"
                   type="text"
-                  defaultValue=""
                   placeholder="Email"
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  // defaultValue=""
                 />
               </div>
               <div
@@ -179,8 +194,12 @@ function ContactUs() {
                 <input
                   className="form-controlCustomized"
                   type="text"
-                  defaultValue=""
                   placeholder="Mobile No."
+                  name="mobileNo"
+                  required
+                  value={formData.mobileNo}
+                  onChange={handleChange}
+                  //defaultValue=""
                 />
               </div>
               <div
@@ -191,8 +210,12 @@ function ContactUs() {
                 <input
                   className="form-controlCustomized"
                   type="text"
-                  defaultValue=""
                   placeholder="Address"
+                  name="address"
+                  required
+                  value={formData.address}
+                  onChange={handleChange}
+                  //defaultValue=""
                 />
               </div>
               <div
@@ -200,7 +223,15 @@ function ContactUs() {
                 style={{ float: "left", marginTop: 20 }}
               >
                 <label style={{ fontWeight: 600 }}>Message</label>
-                <textarea rows={5} className="form-control" defaultValue={""} />
+                <textarea
+                  rows={5}
+                  className="form-control"
+                  placeholder="Your Message"
+                  name="message"
+                  required
+                  value={formData.message}
+                  onChange={handleChange}
+                />
               </div>
               <div
                 className="col-lg-12"
@@ -209,6 +240,7 @@ function ContactUs() {
                 <center>
                   <a
                     href="#"
+                    onClick={handleSubmit}
                     style={{
                       textDecoration: "none",
                       backgroundColor: "#d82028",

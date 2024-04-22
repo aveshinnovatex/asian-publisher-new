@@ -1,10 +1,70 @@
-import React from "react";
-import Footer from "../../common/footer/Footer";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Header from "../../common/header/Header";
+import Footer from "../../common/footer/Footer";
+import "./Shop.css";
+import { fetchBookDetails } from "../../../redux/slices/bookSlice";
+import { REACT_APP_URL } from "../../../config/config";
+import { useParams } from "react-router-dom";
+import { updateTocart } from "../../../redux/slices/cartSlice";
 import contactusheaderimage from "../../../Images/contactusheaderimage.png";
 import Book1 from "../../../Images/Book1.jpg";
 
 function BookDetails() {
+  const { loading, bookDetails } = useSelector((state) => state.book);
+  const { cartdata } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  let { id } = useParams();
+
+  const [bookDetail, setBookDetail] = useState({});
+  const [bookQuantity, setQuantity] = useState(1);
+  const bookQnty = cartdata.find((item) => item.id === id);
+  console.log("bookQuantity", bookQnty?.quantity);
+  useEffect(() => {
+    dispatch(fetchBookDetails(id));
+  }, [id]);
+  useEffect(() => {
+    if (loading === "fulfilled") {
+      setBookDetail(bookDetails);
+      setQuantity(bookQnty?.quantity ?? 1);
+    }
+  }, [loading]);
+
+  function handleUpdateCart(book) {
+    const {
+      id,
+      authors,
+      bookCode,
+      courseSemesters,
+      image,
+      isFeatured,
+      languageId,
+
+      languageNav,
+      mRP,
+      numId,
+      name,
+      ...rest
+    } = book;
+    dispatch(
+      updateTocart({
+        product: {
+          id,
+          authors,
+          bookCode,
+          courseSemesters,
+          image,
+          isFeatured,
+          languageId,
+          languageNav,
+          mRP,
+          numId,
+          name,
+          quantity: bookQuantity,
+        },
+      })
+    );
+  }
   return (
     <>
       <Header />
@@ -80,15 +140,20 @@ function BookDetails() {
             }}
           >
             <div className="col-lg-6" style={{ float: "left", padding: "0px" }}>
-              <img src={Book1} style={{ height: "100vh" }} />
+              <img
+                src={`${REACT_APP_URL}/Image/${bookDetail.image}`}
+                style={{ height: "100vh" }}
+              />
             </div>
             <div
               className="col-lg-6"
               style={{ float: "left", padding: "50px" }}
             >
-              <h4 style={{ "font-weight": "600" }}>Book Name Here</h4>
-              <h6>ISBN No. : 0987654321</h6>
-              <p style={{ color: "red", "font-weight": "600" }}>Rs. 3000</p>
+              <h4 style={{ "font-weight": "600" }}>{bookDetail.name}</h4>
+              <h6>ISBN: {bookDetail.iSBN}</h6>
+              <p style={{ color: "red", "font-weight": "600" }}>
+                Rs. {bookDetail.mRP}{" "}
+              </p>
               <table classname="table table-spriped">
                 <tbody>
                   <tr>
@@ -102,19 +167,42 @@ function BookDetails() {
                 </tbody>
               </table>
               <center>
-                <div classname="quantity" style={{ width: "50%" }}>
-                  <button classname="minus" aria-label="Decrease">
+                <div className="quantity" style={{ width: "50%" }}>
+                  {/* Button to decrease quantity */}
+                  <button
+                    className="minus"
+                    aria-label="Decrease"
+                    onClick={() =>
+                      setQuantity((prevQuantity) =>
+                        Math.max(parseInt(prevQuantity) - 1, 1)
+                      )
+                    }
+                  >
                     −
                   </button>
+                  {/* Input for quantity */}
                   <input
                     type="number"
-                    classname="input-box"
-                    defaultValue="{bookQuantity}"
-                    min="{1}"
-                    max="{10}"
+                    className="input-box"
+                    value={bookQuantity}
+                    min={1}
+                    max={1000}
+                    onChange={(e) => {
+                      const value = parseInt(e.target.value);
+                      setQuantity(isNaN(value) ? null : value);
+                    }}
                     style={{ width: "100%" }}
                   />
-                  <button classname="plus" aria-label="Increase">
+                  {/* Button to increase quantity */}
+                  <button
+                    className="plus"
+                    aria-label="Increase"
+                    onClick={() =>
+                      setQuantity((prevQuantity) =>
+                        Math.min(parseInt(prevQuantity) + 1, 1000)
+                      )
+                    }
+                  >
                     +
                   </button>
                 </div>
@@ -123,7 +211,7 @@ function BookDetails() {
               <br />
               <center>
                 <a
-                  href="#"
+                  onClick={() => handleUpdateCart(bookDetail)}
                   style={{
                     "-webkit-text-decoration": "none",
                     "text-decoration": "none",

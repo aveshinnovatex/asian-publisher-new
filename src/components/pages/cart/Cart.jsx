@@ -1,13 +1,69 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { REACT_APP_URL } from "../../../config/config";
+import { MdOutlineRemoveShoppingCart } from "react-icons/md";
+import {
+  removeTocart,
+  resetCart,
+  updateTocart,
+} from "../../../redux/slices/cartSlice";
 import Header from "../../common/header/Header";
 import Footer from "../../common/footer/Footer";
-import Book1 from "../../../Images/Book1.jpg";
-import Book2 from "../../../Images/Book2.jpg";
 import AsianLogoText from "../../../Images/AsianLogoText.jpeg";
 import CartHeaderImage from "../../../Images/CartHeaderImage.png";
 function Cart() {
+  const { cartdata } = useSelector((state) => state.cart);
+  const [cartItem, setCartItem] = useState([]);
+  // console.log(" cart data loaded", cartdata);
+  const dispatch = useDispatch();
+  const deletecartItems = (book) => {
+    const { id, ...rest } = book;
+    // dispatch(resetCart());
+    dispatch(removeTocart(id));
+  };
+  useEffect(() => {
+    setCartItem(cartdata);
+  }, [cartdata]);
+
+  const updateOnChangeHandler = (newVal, currentObj) => {
+    let updatedObj = { ...currentObj };
+    updatedObj.quantity = newVal;
+
+    const {
+      id,
+      authors,
+      bookCode,
+      courseSemesters,
+      image,
+      isFeatured,
+      languageId,
+      quantity,
+      languageNav,
+      mRP,
+      numId,
+      name,
+      ...rest
+    } = updatedObj;
+    dispatch(
+      updateTocart({
+        product: {
+          id,
+          authors,
+          bookCode,
+          courseSemesters,
+          image,
+          isFeatured,
+          languageId,
+          languageNav,
+          mRP,
+          numId,
+          name,
+          quantity,
+        },
+      })
+    );
+  };
+
   return (
     <>
       <Header />
@@ -106,113 +162,76 @@ function Cart() {
                       Action
                     </th>
                   </tr>
-                  <tr>
-                    <td>
-                      <img
-                        src="Images/Book1.jpg"
-                        alt="Best Sellers"
-                        loading="lazy"
-                        style={{ height: "12vh" }}
-                      />
-                    </td>
-                    <td style={{ "font-weight": "600", "font-size": "18px" }}>
-                      Book Name Here
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        className="form-control"
-                        name="quantity"
-                        defaultValue={10}
-                        style={{ width: "60%" }}
-                      />
-                    </td>
-                    <td
-                      style={{
-                        "-webkit-text-align": "right",
-                        "text-align": "right",
-                      }}
-                    >
-                      Rs. 300
-                    </td>
-                    <td
-                      style={{
-                        "-webkit-text-align": "right",
-                        "text-align": "right",
-                      }}
-                    >
-                      Rs. 3000
-                    </td>
-                    <td
-                      style={{
-                        "font-size": "25px",
-                        "-webkit-text-align": "center",
-                        "text-align": "center",
-                      }}
-                    >
-                      <i
-                        className="fa fa-trash"
-                        aria-hidden="true"
-                        style={{ "font-size": "20px", color: "#d82028" }}
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <img
-                        src="Images/Book2.jpg"
-                        alt="Best Sellers"
-                        loading="lazy"
-                        style={{ height: "12vh" }}
-                      />
-                    </td>
-                    <td style={{ "font-weight": "600", "font-size": "18px" }}>
-                      Book Name Here
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        className="form-control"
-                        name="quantity"
-                        defaultValue={10}
-                        style={{ width: "60%" }}
-                      />
-                    </td>
-                    <td
-                      style={{
-                        "-webkit-text-align": "right",
-                        "text-align": "right",
-                      }}
-                    >
-                      Rs. 300
-                    </td>
-                    <td
-                      style={{
-                        "-webkit-text-align": "right",
-                        "text-align": "right",
-                      }}
-                    >
-                      Rs. 3000
-                    </td>
-                    <td
-                      style={{
-                        "font-size": "25px",
-                        "-webkit-text-align": "center",
-                        "text-align": "center",
-                      }}
-                    >
-                      <i
-                        className="fa fa-trash"
-                        aria-hidden="true"
-                        style={{ "font-size": "20px", color: "#d82028" }}
-                      />
-                    </td>
-                  </tr>
+                  {cartItem &&
+                    cartItem.length > 0 &&
+                    cartItem.map((book, index) => (
+                      <tr index={index}>
+                        <td>
+                          <img
+                            src={`${REACT_APP_URL}/Image/${book.image}`}
+                            alt="Best Sellers"
+                            loading="lazy"
+                            style={{ height: "12vh" }}
+                          />
+                        </td>
+                        <td
+                          style={{ "font-weight": "600", "font-size": "18px" }}
+                        >
+                          {book.name}
+                        </td>
+                        <td>
+                          <input
+                            type="number"
+                            className="form-control"
+                            name="quantity"
+                            min={1}
+                            max={1000}
+                            value={book.quantity || null}
+                            style={{ width: "100%" }}
+                            onChange={(e) => {
+                              updateOnChangeHandler(e.target.value, book);
+                            }}
+                          />
+                        </td>
+                        <td
+                          style={{
+                            "-webkit-text-align": "right",
+                            "text-align": "right",
+                          }}
+                        >
+                          Rs. {book.mRP}{" "}
+                        </td>
+                        <td
+                          style={{
+                            "-webkit-text-align": "right",
+                            "text-align": "right",
+                          }}
+                        >
+                          Rs.{book.quantity * book.mRP}{" "}
+                        </td>
+                        <td
+                          style={{
+                            "font-size": "25px",
+                            "-webkit-text-align": "center",
+                            "text-align": "center",
+                          }}
+                        >
+                          <i
+                            className="fa fa-trash"
+                            aria-hidden="true"
+                            style={{ "font-size": "20px", color: "#d82028" }}
+                            onClick={() => {
+                              deletecartItems(book);
+                            }}
+                          />
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
               <center>
                 <a
-                  href="#"
+                  href="/checkout"
                   style={{
                     "-webkit-text-decoration": "none",
                     "text-decoration": "none",

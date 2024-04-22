@@ -11,27 +11,23 @@ import AboutUs from "../../../Images/AboutUs.png";
 import CivilEngineering from "../../../Images/CivilEngineering.png";
 import ElectricalEngineering from "../../../Images/ElectricalEngineering.png";
 import MechanicalEngineering from "../../../Images/MechanicalEngineering.png";
-import Book1 from "../../../Images/Book1.jpg";
-import Book2 from "../../../Images/Book2.jpg";
-import Book3 from "../../../Images/Book3.jpg";
-import Book4 from "../../../Images/Book4.jpg";
+import Logo1 from "../../../Images/Logo/1.jpg";
+import Logo2 from "../../../Images/Logo/11.png";
+import Logo3 from "../../../Images/Logo/2.jpg";
+import Logo4 from "../../../Images/Logo/22.png";
+import Logo5 from "../../../Images/Logo/4.jpg";
+import Logo6 from "../../../Images/Logo/44.png";
+import Logo7 from "../../../Images/Logo/5.jpg";
+import Logo8 from "../../../Images/Logo/55.png";
+import Logo9 from "../../../Images/Logo/6.jpg";
+import Logo10 from "../../../Images/Logo/66.png";
+import Logo11 from "../../../Images/Logo/3.jpg";
+import Logo12 from "../../../Images/Logo/33.png";
+
 // import "../../../css/Style.css";
 import "../../../css/bootstrap.min.css";
 
 function Home() {
-  const slider = [
-    "Images/Logo/1.jpg",
-    "Images/Logo/11.png",
-    "Images/Logo/2.jpg",
-    "Images/Logo/22.png",
-    "Images/Logo/3.jpg",
-    "Images/Logo/4.jpg",
-    "Images/Logo/44.png",
-    "Images/Logo/5.jpg",
-    "Images/Logo/55.png",
-    "Images/Logo/6.jpg",
-    "Images/Logo/66.png",
-  ];
   const { loading, books } = useSelector((state) => state.book);
   const dispatch = useDispatch();
   const [allBooks, setAllBooks] = useState([]);
@@ -249,7 +245,11 @@ function Home() {
           </span>
         </p>
         <br />
-        {allBooks && allBooks.length > 0 && <BookSlider slider={allBooks} />}
+        <div className="container-fluid">
+          {/* <div className="col-lg-3" style={{ float: "left" }}> */}
+          {allBooks && allBooks.length > 0 && <BookSlider slider={allBooks} />}
+          {/* </div> */}
+        </div>
         {/* <div className="container-fluid">
           <div className="col-lg-3" style={{ float: "left" }}>
             <center>
@@ -711,62 +711,170 @@ function Home() {
       >
         <div className="col-lg-2 col2column" style={{ float: "left" }}>
           <center>
-            <div className="col-lg-11 col2column1" style={{}} />
+            <div
+              className="col-lg-11 col2column1"
+              style={{
+                backgroundImage: `url(${Logo1})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                height: "18vh",
+                width: "150px",
+              }}
+            />
           </center>
         </div>
         <div className="col-lg-2 col2column" style={{ float: "left" }}>
           <center>
-            <div className="col-lg-11 col2column1" style={{}} />
+            <div
+              className="col-lg-11 col2column1"
+              style={{
+                backgroundImage: `url(${Logo2})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                height: "18vh",
+                width: "150px",
+              }}
+            />
           </center>
         </div>
         <div className="col-lg-2 col2column" style={{ float: "left" }}>
           <center>
-            <div className="col-lg-11 col2column1" style={{}} />
+            <div
+              className="col-lg-11 col2column1"
+              style={{
+                backgroundImage: `url(${Logo3})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                height: "18vh",
+                width: "150px",
+              }}
+            />
           </center>
         </div>
         <div className="col-lg-2 col2column" style={{ float: "left" }}>
           <center>
-            <div className="col-lg-11 col2column1" style={{}} />
+            <div
+              className="col-lg-11 col2column1"
+              style={{
+                backgroundImage: `url(${Logo4})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                height: "18vh",
+                width: "150px",
+              }}
+            />
           </center>
         </div>
         <div className="col-lg-2 col2column" style={{ float: "left" }}>
           <center>
-            <div className="col-lg-11 col2column1" style={{}} />
+            <div
+              className="col-lg-11 col2column1"
+              style={{
+                backgroundImage: `url(${Logo5})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                height: "18vh",
+                width: "150px",
+              }}
+            />
           </center>
         </div>
         <div className="col-lg-2 col2column" style={{ float: "left" }}>
           <center>
-            <div className="col-lg-11 col2column1" style={{}} />
+            <div
+              className="col-lg-11 col2column1"
+              style={{
+                backgroundImage: `url(${Logo6})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                height: "18vh",
+                width: "150px",
+              }}
+            />
           </center>
         </div>
         <div className="col-lg-2 col2column" style={{ float: "left" }}>
           <center>
-            <div className="col-lg-11 col2column1" style={{}} />
+            <div
+              className="col-lg-11 col2column1"
+              style={{
+                backgroundImage: `url(${Logo7})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                height: "18vh",
+                width: "150px",
+              }}
+            />
           </center>
         </div>
         <div className="col-lg-2 col2column" style={{ float: "left" }}>
           <center>
-            <div className="col-lg-11 col2column1" style={{}} />
+            <div
+              className="col-lg-11 col2column1"
+              style={{
+                backgroundImage: `url(${Logo8})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                height: "18vh",
+                width: "150px",
+              }}
+            />
           </center>
         </div>
         <div className="col-lg-2 col2column" style={{ float: "left" }}>
           <center>
-            <div className="col-lg-11 col2column1" style={{}} />
+            <div
+              className="col-lg-11 col2column1"
+              style={{
+                backgroundImage: `url(${Logo9})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                height: "18vh",
+                width: "150px",
+              }}
+            />
           </center>
         </div>
         <div className="col-lg-2 col2column" style={{ float: "left" }}>
           <center>
-            <div className="col-lg-11 col2column1" style={{}} />
+            <div
+              className="col-lg-11 col2column1"
+              style={{
+                backgroundImage: `url(${Logo10})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                height: "18vh",
+                width: "150px",
+              }}
+            />
           </center>
         </div>
         <div className="col-lg-2 col2column" style={{ float: "left" }}>
           <center>
-            <div className="col-lg-11 col2column1" style={{}} />
+            <div
+              className="col-lg-11 col2column1"
+              style={{
+                backgroundImage: `url(${Logo11})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                height: "18vh",
+                width: "150px",
+              }}
+            />
           </center>
         </div>
         <div className="col-lg-2 col2column" style={{ float: "left" }}>
           <center>
-            <div className="col-lg-11 col2column1" style={{}} />
+            <div
+              className="col-lg-11 col2column1"
+              style={{
+                backgroundImage: `url(${Logo12})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                height: "18vh",
+                width: "150px",
+              }}
+            />
           </center>
         </div>
       </div>

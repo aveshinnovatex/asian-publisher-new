@@ -3,8 +3,6 @@ import Header from "../../common/header/Header";
 import Footer from "../../common/footer/Footer";
 import { createBecomeAuthor } from "../../../redux/slices/becomeAuthorSlice";
 import { useDispatch, useSelector } from "react-redux";
-import AsianLogoText from "../../../Images/AsianLogoText.jpeg";
-import AsianLogo from "../../../Images/AsianLogo.jpeg";
 import becomeanauthor from "../../../Images/becomeanauthor.png";
 function BecomeanAuthor() {
   const { loading, becomeAuthors } = useSelector((state) => state.becomeAuthor);
@@ -12,10 +10,11 @@ function BecomeanAuthor() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",
+    mobileNo: "",
+    address: "",
     message: "",
   });
-  const { name, email, subject, message } = formData;
+  const { name, email, mobileNo, address, message } = formData;
 
   /**handle change method here  */
   function handleChange(event) {
@@ -30,7 +29,8 @@ function BecomeanAuthor() {
     let becomeAuthorsData = new FormData();
     becomeAuthorsData.append("name", name);
     becomeAuthorsData.append("email", email);
-    becomeAuthorsData.append("subject", subject);
+    becomeAuthorsData.append("mobileNo", mobileNo);
+    becomeAuthorsData.append("address", address);
     becomeAuthorsData.append("message", message);
 
     /** hitt the create become author api from  here */
@@ -38,7 +38,13 @@ function BecomeanAuthor() {
   }
   useEffect(() => {
     if (loading === "fulfilled") {
-      setFormData({ name: "", email: "", subject: "", message: "" });
+      setFormData({
+        name: "",
+        email: "",
+        mobileNo: "",
+        address: "",
+        message: "",
+      });
     }
   }, [loading]);
 
@@ -97,8 +103,12 @@ function BecomeanAuthor() {
             <input
               className="form-control"
               type="text"
-              defaultValue=""
               placeholder="Name"
+              name="name"
+              value={formData.name}
+              required
+              onChange={handleChange}
+              // defaultValue=""
             />
           </div>
           <div className="col-lg-6" style={{ float: "left" }}>
@@ -108,6 +118,11 @@ function BecomeanAuthor() {
               type="text"
               defaultValue=""
               placeholder="Email"
+              name="email"
+              value={formData.email}
+              required
+              onChange={handleChange}
+              // defaultValue=""
             />
           </div>
           <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
@@ -115,8 +130,12 @@ function BecomeanAuthor() {
             <input
               className="form-control"
               type="text"
-              defaultValue=""
               placeholder="Mobile No."
+              name="mobileNo"
+              value={formData.mobileNo}
+              required
+              onChange={handleChange}
+              // defaultValue=""
             />
           </div>
           <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
@@ -124,18 +143,30 @@ function BecomeanAuthor() {
             <input
               className="form-control"
               type="text"
-              defaultValue=""
               placeholder="Address"
+              name="address"
+              value={formData.address}
+              required
+              onChange={handleChange}
+              // defaultValue=""
             />
           </div>
           <div className="col-lg-12" style={{ float: "left", marginTop: 20 }}>
             <label style={{ fontWeight: 600 }}>Message</label>
-            <textarea rows={5} className="form-control" defaultValue={""} />
+            <textarea
+              rows={5}
+              className="form-control"
+              name="message"
+              value={formData.message}
+              required
+              onChange={handleChange}
+            />
           </div>
           <div className="col-lg-12" style={{ float: "left", marginTop: 40 }}>
             <center>
               <a
                 href="#"
+                onClick={handleSubmit}
                 style={{
                   textDecoration: "none",
                   backgroundColor: "#d82028",

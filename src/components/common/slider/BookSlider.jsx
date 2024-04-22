@@ -3,9 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { REACT_APP_URL } from "../../../config/config";
-
 const BookSlider = ({ slider, type = "" }) => {
-  console.log("Slider type is " + slider);
   const settings = {
     dots: false,
     infinite: true,
@@ -29,59 +27,80 @@ const BookSlider = ({ slider, type = "" }) => {
   );
 };
 
-const CarousalItem = ({ image, name, authors, mRP, type }) => {
+const CarousalItem = ({ image, name, iSBN, authors, mRP, type }) => {
+  // const img = `${REACT_APP_URL}/Image/${image}`;
   return (
-    <div className="container-fluid">
-      <div className="col-lg-3" style={{ float: "left" }}>
-        <center>
-          <div className="book">
-            <div
-              className="book-cover"
-              // style={{ backgroundImage: `url(${Book1})` }}
-              style={{
-                backgroundImage: `url(${REACT_APP_URL}/Image/${image})`,
-              }}
-            >
-              <div className="effect"></div>
-              <div className="light"></div>
-            </div>
-            <div className="book-inside"></div>
-          </div>
-        </center>
-
-        <p
-          style={{
-            "font-size": "15px",
-            "-webkit-text-align": "center",
-            "text-align": "center",
-            "margin-top": "15px",
-            "font-weight": "700",
-          }}
-        >
-          <span style={{ "font-size": "12px", "font-weight": "500" }}>
-            ISBN No. 0987654321
-          </span>
-          <br />
-          {/* Computer Programming using Python */}
-          {name}
-          <br />
-          <span style={{ "font-size": "12px", "font-weight": "500" }}>
-            Author Name Here
-            {/* {author.name} */}
-          </span>
-          <br />
-          <span
+    <>
+      <center>
+        <div className="book">
+          <div
+            className="book-cover"
+            //  style={{ backgroundImage: `url(${img})` }}
             style={{
-              color: "red",
-              "font-size": "16px",
-              "font-weight": "600",
+              // backgroundImage: `url(${img})`,
+              backgroundImage: `url('https://api.asianpublisher.in/Image/2331. Workshop Technology Hindi K.K. Gupta (EV).jpg')`,
             }}
           >
-            Rs. 300
-          </span>
-        </p>
-      </div>
-    </div>
+            {/* <img
+              className="book-cover"
+              src={`${REACT_APP_URL}/Image/${book.image}`}
+              alt="Book Cover"
+              style={{
+                width: "100px",
+                height: "300px",
+              }}
+            /> */}
+            <div className="effect"></div>
+            <div className="light"></div>
+          </div>
+          <div className="book-inside"></div>
+        </div>
+      </center>
+
+      <p
+        style={{
+          "font-size": "15px",
+          "-webkit-text-align": "center",
+          "text-align": "center",
+          "margin-top": "15px",
+          "font-weight": "700",
+        }}
+      >
+        <span style={{ "font-size": "12px", "font-weight": "500" }}>
+          {/* ISBN No. 0987654321 */}
+          ISBN No. {iSBN}
+        </span>
+        <br />
+        {/* Computer Programming using Python */}
+        {name}
+        <br />
+        {authors && authors.length > 0 && (
+          <a href="#" className="remove_href">
+            {authors.map((author, index) => (
+              <span
+                key={author.id}
+                style={{ "font-size": "12px", "font-weight": "500" }}
+              >
+                {author.name}
+                {index !== authors.length - 1 ? ", " : ""}
+              </span>
+            ))}
+          </a>
+        )}
+        <br />
+        <span
+          style={{
+            color: "red",
+            "font-size": "16px",
+            "font-weight": "600",
+          }}
+        >
+          Rs. {mRP}
+        </span>
+      </p>
+    </>
+    // </div>
+    // </div>
     // <div class="arrivals-wrap item-wrapper">
     //   <div
     //     class="theme-products  feature-product-slider-active carsoule_arrow_style row"
