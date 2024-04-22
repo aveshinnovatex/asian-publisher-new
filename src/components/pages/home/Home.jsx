@@ -1,4 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBooks } from "../../../redux/slices/bookSlice";
+import "./Home.css";
+import { REACT_APP_URL } from "../../../config/config";
+import LogoSlider from "../../common/slider/LogoSlider";
+import BookSlider from "../../common/slider/BookSlider";
 import Header from "../../common/header/Header";
 import Footer from "../../common/footer/Footer";
 import AboutUs from "../../../Images/AboutUs.png";
@@ -13,6 +19,30 @@ import Book4 from "../../../Images/Book4.jpg";
 import "../../../css/bootstrap.min.css";
 
 function Home() {
+  const slider = [
+    "Images/Logo/1.jpg",
+    "Images/Logo/11.png",
+    "Images/Logo/2.jpg",
+    "Images/Logo/22.png",
+    "Images/Logo/3.jpg",
+    "Images/Logo/4.jpg",
+    "Images/Logo/44.png",
+    "Images/Logo/5.jpg",
+    "Images/Logo/55.png",
+    "Images/Logo/6.jpg",
+    "Images/Logo/66.png",
+  ];
+  const { loading, books } = useSelector((state) => state.book);
+  const dispatch = useDispatch();
+  const [allBooks, setAllBooks] = useState([]);
+  useEffect(() => {
+    dispatch(fetchBooks({}));
+  }, [dispatch]);
+  useEffect(() => {
+    if (loading === "fulfilled") {
+      setAllBooks(books);
+    }
+  }, [loading]);
   return (
     <>
       <Header />
@@ -219,7 +249,8 @@ function Home() {
           </span>
         </p>
         <br />
-        <div className="container-fluid">
+        {allBooks && allBooks.length > 0 && <BookSlider slider={allBooks} />}
+        {/* <div className="container-fluid">
           <div className="col-lg-3" style={{ float: "left" }}>
             <center>
               <div className="book">
@@ -393,7 +424,7 @@ function Home() {
               </span>
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
       <div
         className="row"
