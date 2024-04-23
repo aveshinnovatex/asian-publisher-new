@@ -10,10 +10,27 @@ import useOrder from "../../../hooks/useOrder";
 import Book1 from "../../../Images/Book1.jpg";
 import Book2 from "../../../Images/Book2.jpg";
 import CartHeaderImage from "../../../Images/CartHeaderImage.png";
+import axios from "axios";
 
 function Checkout() {
   const { cartdata } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+
+  const [options, setOptions] = useState({
+    atomTokenId: "",
+    merchId: "",
+    custEmail: "",
+    custMobile: "",
+    returnUrl: "https://api.asianpublisher.in/GateWay/Response",
+  });
+
+  console.log("API  options", options);
+
+  function openPay() {
+    let atom = new AtomPaynetz(options, "uat");
+    console.log("openPay", atom);
+  }
+
   const { loading, submitData } = useOrder();
   const [cartItem, setCartItem] = useState([]);
   const [totalQnt, setTotalQnt] = useState(0);
@@ -40,10 +57,28 @@ function Checkout() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
+    try {
+      const response = await axios.get(
+        "https://api.asianpublisher.in/GateWay/Request"
+      );
+      console.log("API  response", response);
 
-    submitData({ ...formData, orderMetas: cartdataitem });
+      const newData = {
+        atomTokenId: response.data.tokId,
+        merchId: response.data.merchId,
+        custEmail: response.data.mail,
+        custMobile: response.data.mob,
+        returnUrl: options.returnUrl,
+      };
+      setOptions((prev) => ({ ...prev, ...newData }));
+      // const messRes = openPay();
+      console.log("Your order messRes", openPay());
+      // submitData({ ...formData, orderMetas: cartdataitem });
+    } catch (error) {
+      console.log(error?.response?.data?.message);
+    }
   }
   useEffect(() => {
     setCartItem(cartdata);

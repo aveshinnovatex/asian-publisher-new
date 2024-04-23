@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../common/header/Header";
 import Footer from "../../common/footer/Footer";
-import "./Aboutus.css";
+// import "./Aboutus.css";
 import AsianLogo from "../../../Images/AsianLogo.jpeg";
 import AboutHeaderImage from "../../../Images/AboutHeaderImage.png";
 import AboutUsImage from "../../../Images/AboutUs.png";

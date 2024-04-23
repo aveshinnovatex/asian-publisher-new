@@ -33,27 +33,13 @@ const CarousalItem = ({ image, name, iSBN, authors, mRP, type }) => {
     <>
       <center>
         <div className="book">
-          <div
+          <img
             className="book-cover"
-            //  style={{ backgroundImage: `url(${img})` }}
-            style={{
-              // backgroundImage: `url(${img})`,
-              backgroundImage: `url('https://api.asianpublisher.in/Image/2331. Workshop Technology Hindi K.K. Gupta (EV).jpg')`,
-            }}
-          >
-            {/* <img
-              className="book-cover"
-              src={`${REACT_APP_URL}/Image/${book.image}`}
-              alt="Book Cover"
-              style={{
-                width: "100px",
-                height: "300px",
-              }}
-            /> */}
-            <div className="effect"></div>
-            <div className="light"></div>
-          </div>
-          <div className="book-inside"></div>
+            src={`${REACT_APP_URL}/Image/${image}`}
+            alt="Book Cover"
+          />
+          <div className="effect"></div>
+          <div className="light"></div>
         </div>
       </center>
 

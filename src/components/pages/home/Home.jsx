@@ -28,6 +28,19 @@ import Logo12 from "../../../Images/Logo/33.png";
 import "../../../css/bootstrap.min.css";
 
 function Home() {
+  const imgMainArr = [
+    "../../../Images/Logo/1.jpg",
+    "../../../Images/Logo/11.png",
+    "../../../Images/Logo/2.jpg",
+    "../../../Images/Logo/22.png",
+    "../../../Images/Logo/4.jpg",
+    "../../../Images/Logo/44.png",
+    "../../../Images/Logo/5.jpg",
+    "../../../Images/Logo/55.png",
+    "../../../Images/Logo/6.jpg",
+    "../../../Images/Logo/66.png",
+    "../../../Images/Logo/3.jpg",
+  ];
   const { loading, books } = useSelector((state) => state.book);
   const dispatch = useDispatch();
   const [allBooks, setAllBooks] = useState([]);
@@ -696,7 +709,22 @@ function Home() {
           Extreme Colleges <span style={{ color: "red" }}>We Are Serving</span>
         </span>
       </p>
-      <div
+      <div class="slider">
+        <div class="slide-track">
+          {imgMainArr?.map((item, index) => (
+            <div key={index} class="slide">
+              <img
+                src={item}
+                style={{
+                  height: "100%",
+                  width: "150px",
+                }}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* <div
         className="row"
         id="slideshow"
         style={{
@@ -877,7 +905,7 @@ function Home() {
             />
           </center>
         </div>
-      </div>
+      </div> */}
       <Footer />
     </>
   );

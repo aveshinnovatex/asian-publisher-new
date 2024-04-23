@@ -401,32 +401,21 @@ function Shop() {
               </div>
             </div>
           </div>
-          <div className="col-lg-12 aboutcontent">
+          <div className="row aboutcontent w-100">
             {allBooks &&
               allBooks.length > 0 &&
               allBooks.map((book) => (
                 <div className="col-lg-4" style={{ float: "left" }}>
                   <center>
                     <div className="book">
-                      <div
-                        className="book-cover"
-                        style={{ backgroundImage: `url(${Book1})` }}
-                        onClick={() => {
-                          navigate(`/BookDetails/${book.id}`);
-                        }}
-                      >
-                        <div className="effect" />
-                        <div className="light" />
-                      </div>
-                      {/* <img
+                      <img
                         className="book-cover"
                         src={`${REACT_APP_URL}/Image/${book.image}`}
                         alt="Book Cover"
-                        style={{
-                          width: "100px",
-                          height: "300px",
+                        onClick={() => {
+                          navigate(`/BookDetails/${book.id}`);
                         }}
-                      /> */}
+                      />
                       <div className="book-inside" />
                     </div>
                     <button onClick={() => handleCart(book)}>
