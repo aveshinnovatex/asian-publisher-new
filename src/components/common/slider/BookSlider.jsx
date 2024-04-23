@@ -31,6 +31,7 @@ const CarousalItem = ({ image, name, iSBN, authors, mRP, type }) => {
   // const img = `${REACT_APP_URL}/Image/${image}`;
   return (
     <>
+     <div className="col-lg-12" style={{float: "left"}}>
       <center>
         <div className="book">
           <img
@@ -84,6 +85,7 @@ const CarousalItem = ({ image, name, iSBN, authors, mRP, type }) => {
           Rs. {mRP}
         </span>
       </p>
+      </div>
     </>
     // </div>
     // </div>

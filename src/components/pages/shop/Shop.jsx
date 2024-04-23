@@ -9,6 +9,7 @@ import { fetchCourses } from "../../../redux/slices/courseSlice";
 import { fetchSemesters } from "../../../redux/slices/semesterSlice";
 import { addTocart } from "../../../redux/slices/cartSlice";
 import { REACT_APP_URL } from "../../../config/config";
+import { FaCartPlus } from "react-icons/fa";
 // import MultiCheckGroup from "../../common/MultiCheckGroup";
 import Spinner from "../../common/Spinner";
 import Checkbox from "@mui/material/Checkbox";
@@ -389,9 +390,9 @@ function Shop() {
         <div className="col-lg-9" style={{ float: "left" }}>
           <div className="shop-top-bar">
             <div className="select-shoing-wrap">
-              <div className="shop-select d-flex">
-                <label htmlFor="SortBy">Sort by :</label>
-                <select onChange={handleSort} name="SortBy" id="SortBy">
+              <div className="shop-select col-lg-4">
+                <label htmlFor="SortBy">Sort by :</label>&nbsp;&nbsp;
+                <select onChange={handleSort} name="SortBy" id="SortBy" className="form-control">
                   <option value="manual">Featured</option>
                   <option value="titleAscending">Alphabetically, A-Z</option>
                   <option value="titleDescending">Alphabetically, Z-A</option>
@@ -418,9 +419,7 @@ function Shop() {
                       />
                       <div className="book-inside" />
                     </div>
-                    <button onClick={() => handleCart(book)}>
-                      Add to Cart
-                    </button>
+                  
                   </center>
                   <p
                     style={{
@@ -432,7 +431,10 @@ function Shop() {
                     }}
                   >
                     <span style={{ "font-size": "12px", "font-weight": "500" }}>
-                      ISBN No. {book?.iSBN}
+                      ISBN No. {book?.iSBN} &nbsp;&nbsp;
+                      <button onClick={() => handleCart(book)} style={{border:"none", fontSize:"18px", backgroundColor:"#fff", color:"red"}}>
+                      <FaCartPlus />
+                    </button>
                     </span>
                     <br />
                     {book?.name}

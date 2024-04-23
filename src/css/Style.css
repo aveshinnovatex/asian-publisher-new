@@ -115,7 +115,7 @@
     float: left;
     text-align: justify;
     padding-top: 10px;
-    padding-left: 50px;
+    /* padding-left: 50px; */
   }
   .numstyle1 {
     float: left;
@@ -137,7 +137,7 @@
     padding: 0px 0px 20px 0px;
     clear: both;
     background: linear-gradient(to top, rgb(238, 238, 238, 0.4), #fff);
-    height: 100vh;
+    height: 110vh;
   }
   .homecoursesstyle {
     width: 100%;
