@@ -7,7 +7,8 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { fetchBooks } from "../../../redux/slices/bookSlice";
 import orderformimage from "../../../Images/orderformimage.png";
-
+import { toastError, toastSuceess } from "../../../util/reactToastify";
+import { Button } from "@mui/material";
 function OrderForm() {
   const { loading } = useSelector((state) => state.orderFrom);
   const { books } = useSelector((state) => state.book);
@@ -19,16 +20,17 @@ function OrderForm() {
     address: "",
     city: "",
     book: "",
-    quantity: 0,
-    mobNumber: "",
+    quantity: null,
+    mobileNo: "",
     description: "",
   });
   useEffect(() => {
     dispatch(fetchBooks({}));
   }, [dispatch]);
 
-  const { name, email, address, city, book, quantity, mobNumber, description } =
+  const { name, email, address, city, book, quantity, mobileNo, description } =
     formData;
+
   /**handle change  method implement here */
   function handleChange(event) {
     const { name, value } = event.target;
@@ -39,6 +41,11 @@ function OrderForm() {
   function handleSubmit(event) {
     event.preventDefault();
 
+    if (book === "") {
+      toastError("Please Fill the book");
+      return;
+    }
+
     /** create instance of Form data here */
     let orderFrom = new FormData();
 
@@ -47,13 +54,28 @@ function OrderForm() {
     orderFrom.append("address", address);
     orderFrom.append("city", city);
     orderFrom.append("bookId", book);
-    orderFrom.append("quantity", Number(quantity));
-    orderFrom.append("mobileNo", mobNumber);
+    orderFrom.append("quantity", parseInt(quantity));
+    orderFrom.append("mobileNo", mobileNo);
     orderFrom.append("description", description);
 
     /** hitt the create order from api from  here */
     dispatch(createOrderFrom(orderFrom));
   }
+  useEffect(() => {
+    if (loading === "fulfilled") {
+      setFormData({
+        name: "",
+        email: "",
+        address: "",
+        city: "",
+        book: "",
+        quantity: null,
+        mobileNo: "",
+        description: "",
+      });
+    }
+  }, [loading]);
+
   return (
     <>
       <Header />
@@ -103,135 +125,139 @@ function OrderForm() {
         id="AboutUsSection"
         style={{ display: "block", margin: 0, padding: 0, clear: "both" }}
       >
-        <div className="container">
-          <div className="col-lg-6" style={{ float: "left" }}>
-            <label style={{ fontWeight: 600 }}>Name</label>
-            <input
-              className="form-controlCustomized"
-              type="text"
-              placeholder="Name"
-              name="name"
-              required
-              value={formData.name}
-              onChange={handleChange}
-              // defaultValue=""
-            />
-          </div>
-          <div className="col-lg-6" style={{ float: "left" }}>
-            <label style={{ fontWeight: 600 }}>Email</label>
-            <input
-              className="form-controlCustomized"
-              type="text"
-              placeholder="Email"
-              name="email"
-              required
-              value={formData.email}
-              onChange={handleChange}
-              // defaultValue=""
-            />
-          </div>
-          <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
-            <label style={{ fontWeight: 600 }}>Address</label>
-            <input
-              className="form-controlCustomized"
-              type="text"
-              placeholder="Enter your Address"
-              name="address"
-              required
-              value={formData.address}
-              onChange={handleChange}
-              // defaultValue=""
-            />
-          </div>
-          <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
-            <label style={{ fontWeight: 600 }}>City</label>
-            <input
-              className="form-controlCustomized"
-              type="text"
-              placeholder="Enter Your City"
-              name="city"
-              required
-              value={formData.city}
-              onChange={handleChange}
-              // defaultValue=""
-            />
-          </div>
-          <div className="col-lg-12" style={{ float: "left", marginTop: 20 }}>
-            <label style={{ fontWeight: 600 }}>Books</label>
-            <Autocomplete
-              disablePortal
-              id="combo-box-demo"
-              options={topBooks}
-              onChange={(event, value) => {
-                setFormData((prev) => ({
-                  ...prev,
-                  book: value?.id,
-                }));
-              }}
-              sx={{
-                ".MuiAutocomplete-inputRoot": {
-                  "& .MuiAutocomplete-input": {
-                    fontSize: "16px",
-                  },
-                },
-              }}
-              renderInput={(params) => <TextField {...params} label="Books" />}
-            />
-          </div>
-          <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
-            <label style={{ fontWeight: 600 }}>Quantity</label>
-            <input
-              className="form-controlCustomized"
-              type="text"
-              name="quantity"
-              required
-              value={formData.quantity}
-              onChange={handleChange}
-              placeholder="Quantity"
-            />
-          </div>
-          <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
-            <label style={{ fontWeight: 600 }}>Mobile No.</label>
-            <input
-              className="form-controlCustomized"
-              type="text"
-              name="mobileNo"
-              required
-              value={formData.mobileNo}
-              onChange={handleChange}
-              placeholder="Mobile No."
-            />
-          </div>
-          <div className="col-lg-12" style={{ float: "left", marginTop: 20 }}>
-            <label style={{ fontWeight: 600 }}>Description</label>
-            <textarea
-              rows={5}
-              className="form-controlCustomized"
-              name="description"
-              required
-              value={formData.description}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="col-lg-12" style={{ float: "left", marginTop: 40 }}>
-            <center>
-              <a
-                href="#"
-                onClick={handleSubmit}
-                style={{
-                  textDecoration: "none",
-                  backgroundColor: "#d82028",
-                  color: "#fff",
-                  padding: "10px 50px 10px 50px",
-                  marginTop: 20,
-                  borderRadius: 10,
+        <form onSubmit={handleSubmit}>
+          <div className="container">
+            <div className="col-lg-6" style={{ float: "left" }}>
+              <label style={{ fontWeight: 600 }}>Name</label>
+              <input
+                className="form-controlCustomized"
+                type="text"
+                placeholder="Name"
+                name="name"
+                value={formData.name}
+                required
+                onChange={handleChange}
+                // defaultValue=""
+              />
+            </div>
+            <div className="col-lg-6" style={{ float: "left" }}>
+              <label style={{ fontWeight: 600 }}>Email</label>
+              <input
+                className="form-controlCustomized"
+                type="text"
+                placeholder="Email"
+                name="email"
+                value={formData.email}
+                required
+                onChange={handleChange}
+                // defaultValue=""
+              />
+            </div>
+            <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
+              <label style={{ fontWeight: 600 }}>Address</label>
+              <input
+                className="form-controlCustomized"
+                type="text"
+                placeholder="Enter your Address"
+                name="address"
+                value={formData.address}
+                required
+                onChange={handleChange}
+                // defaultValue=""
+              />
+            </div>
+            <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
+              <label style={{ fontWeight: 600 }}>City</label>
+              <input
+                className="form-controlCustomized"
+                type="text"
+                placeholder="Enter Your City"
+                name="city"
+                value={formData.city}
+                required
+                onChange={handleChange}
+                // defaultValue=""
+              />
+            </div>
+            <div className="col-lg-12" style={{ float: "left", marginTop: 20 }}>
+              <label style={{ fontWeight: 600 }}>Books</label>
+              <Autocomplete
+                disablePortal
+                id="combo-box-demo"
+                options={topBooks}
+                onChange={(event, value) => {
+                  setFormData((prev) => ({
+                    ...prev,
+                    book: value?.id,
+                  }));
                 }}
-              >
-                Order Now
-              </a>
-            </center>
+                sx={{
+                  ".MuiAutocomplete-inputRoot": {
+                    "& .MuiAutocomplete-input": {
+                      fontSize: "16px",
+                    },
+                  },
+                }}
+                renderInput={(params) => (
+                  <TextField {...params} label="Books" />
+                )}
+              />
+            </div>
+            <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
+              <label style={{ fontWeight: 600 }}>Quantity</label>
+              <input
+                className="form-controlCustomized"
+                type="number"
+                name="quantity"
+                value={formData.quantity}
+                required
+                onChange={handleChange}
+                placeholder="Quantity"
+              />
+            </div>
+            <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
+              <label style={{ fontWeight: 600 }}>Mobile No.</label>
+              <input
+                className="form-controlCustomized"
+                type="text"
+                name="mobileNo"
+                value={formData.mobileNo}
+                required
+                onChange={handleChange}
+                placeholder="Mobile No."
+              />
+            </div>
+            <div className="col-lg-12" style={{ float: "left", marginTop: 20 }}>
+              <label style={{ fontWeight: 600 }}>Description</label>
+              <textarea
+                rows={5}
+                className="form-controlCustomized"
+                name="description"
+                value={formData.description}
+                required
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-lg-12" style={{ float: "left", marginTop: 40 }}>
+              <center>
+                <Button
+                  // href="#"
+                  type="submit"
+                  style={{
+                    textDecoration: "none",
+                    backgroundColor: "#d82028",
+                    color: "#fff",
+                    padding: "10px 50px 10px 50px",
+                    marginTop: 20,
+                    borderRadius: 10,
+                  }}
+                >
+                  Order Now
+                </Button>
+              </center>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
       <Footer />
     </>
