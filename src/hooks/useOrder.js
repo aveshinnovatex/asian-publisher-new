@@ -24,7 +24,7 @@ function useOrder() {
         response?.data?.message !== undefined &&
         response?.data?.message === "Success"
       ) {
-        toastSuceess("Your order has picked successfully");
+        toastSuceess("Your Transaction has successfully done");
         setData(response.data);
         // toastSuceess(response?.data?.message);
       }

@@ -1,39 +1,21 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../common/header/Header";
 import Footer from "../../common/footer/Footer";
-import "./Checkout.css";
 import { updateTocart } from "../../../redux/slices/cartSlice";
-// import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { REACT_APP_URL } from "../../../config/config";
-import useOrder from "../../../hooks/useOrder";
-import Book1 from "../../../Images/Book1.jpg";
-import Book2 from "../../../Images/Book2.jpg";
 import CartHeaderImage from "../../../Images/CartHeaderImage.png";
 import axios from "axios";
+import Spinner from "../../common/Spinner";
+import { toastError, toastSuceess } from "../../../util/reactToastify";
 
 function Checkout() {
   const { cartdata } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-
-  const [options, setOptions] = useState({
-    atomTokenId: "",
-    merchId: "",
-    custEmail: "",
-    custMobile: "",
-    returnUrl: "https://api.asianpublisher.in/GateWay/Response",
-  });
-
-  console.log("API  options", options);
-
-  function openPay() {
-    let atom = new AtomPaynetz(options, "uat");
-    console.log("openPay", atom);
-  }
-
-  const { loading, submitData } = useOrder();
+  const [loader, setLoader] = useState(false);
   const [cartItem, setCartItem] = useState([]);
   const [totalQnt, setTotalQnt] = useState(0);
+  const [orderId, setOrderId] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalAmmount, setTotalAmmount] = useState(0);
   const [formData, setFormData] = useState({
@@ -47,38 +29,74 @@ function Checkout() {
     pincode: "",
   });
 
+  const [options, setOptions] = useState({
+    atomTokenId: "",
+    merchId: "",
+    custEmail: "",
+    custMobile: "",
+    returnUrl: "https://api.asianpublisher.in/GateWay/Response",
+  });
+  console.log("API  options", options);
+
+  function openPay() {
+    let atom = new AtomPaynetz(options, "uat");
+  }
+  useEffect(() => {
+    if (
+      options.atomTokenId !== "" &&
+      options.merchId !== "" &&
+      options.custEmail !== "" &&
+      options.custMobile !== ""
+    ) {
+      openPay();
+    }
+  }, [options]);
+
   const cartdataitem = cartdata.map((cart) => ({
     bookId: cart.id,
     quantity: cart.quantity,
     price: cart.mRP,
   }));
+
   function handleChange(event) {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   }
-
+  /**handle submit  */
   async function handleSubmit(event) {
     event.preventDefault();
+    setLoader(true);
     try {
-      const response = await axios.get(
-        "https://api.asianpublisher.in/GateWay/Request"
+      const response = await axios.post(
+        "https://api.asianpublisher.in/api/OrderApi",
+        { ...formData, orderMetas: cartdataitem },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
       console.log("API  response", response);
 
-      const newData = {
-        atomTokenId: response.data.tokId,
-        merchId: response.data.merchId,
-        custEmail: response.data.mail,
-        custMobile: response.data.mob,
-        returnUrl: options.returnUrl,
-      };
-      setOptions((prev) => ({ ...prev, ...newData }));
-      // const messRes = openPay();
-      console.log("Your order messRes", openPay());
-      // submitData({ ...formData, orderMetas: cartdataitem });
+      if (
+        response?.data?.order?.tokenId !== "" &&
+        response?.data?.order?.merchId !== "" &&
+        response?.data?.message === "Success"
+      ) {
+        toastSuceess("Your order has picked successfully");
+        setOrderId(response?.data?.order?.id);
+        const newData = {
+          atomTokenId: response?.data?.order?.tokenId,
+          merchId: response?.data?.order?.merchId,
+          custEmail: response?.data?.order?.email,
+          custMobile: response?.data?.order?.mobileNo,
+        };
+        setOptions((prev) => ({ ...prev, ...newData }));
+      }
     } catch (error) {
-      console.log(error?.response?.data?.message);
+      toastError(error?.response?.data?.message);
     }
+    setLoader(false);
   }
   useEffect(() => {
     setCartItem(cartdata);
@@ -140,6 +158,7 @@ function Checkout() {
 
   return (
     <>
+      {loader && <Spinner />}
       <Header />
       <div
         className="Headerrowabout"

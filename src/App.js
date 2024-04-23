@@ -24,6 +24,7 @@ import CheckoutOld from "./components/pages/checkout/CheckoutOld";
 import Checkout from "./components/pages/checkout/Checkout";
 import BookDetailsOld from "./components/pages/shop/BookDetailsOld";
 import BookDetails from "./components/pages/shop/BookDetails";
+import Response from "./components/pages/checkout/Response";
 // import Layout from "./components/Layout";
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
       {/* <Layout> */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/response" element={<Response />} />
         <Route path="/shop" element={<ShopNew />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/orderForm" element={<OrderForm />} />
