@@ -15,9 +15,15 @@ function Checkout() {
   const [loader, setLoader] = useState(false);
   const [cartItem, setCartItem] = useState([]);
   const [totalQnt, setTotalQnt] = useState(0);
-  const [orderId, setOrderId] = useState("");
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalAmmount, setTotalAmmount] = useState(0);
+  const [options, setOptions] = useState({
+    atomTokenId: "",
+    merchId: "",
+    custEmail: "",
+    custMobile: "",
+    returnUrl: "https://api.asianpublisher.in/GateWay/Response",
+  });
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,15 +35,7 @@ function Checkout() {
     pincode: "",
   });
 
-  const [options, setOptions] = useState({
-    atomTokenId: "",
-    merchId: "",
-    custEmail: "",
-    custMobile: "",
-    returnUrl: "https://api.asianpublisher.in/GateWay/Response",
-  });
   console.log("API  options", options);
-
   function openPay() {
     let atom = new AtomPaynetz(options, "uat");
   }
@@ -76,7 +74,6 @@ function Checkout() {
           },
         }
       );
-      console.log("API  response", response);
 
       if (
         response?.data?.order?.tokenId !== "" &&
@@ -84,7 +81,6 @@ function Checkout() {
         response?.data?.message === "Success"
       ) {
         toastSuceess("Your order has picked successfully");
-        setOrderId(response?.data?.order?.id);
         const newData = {
           atomTokenId: response?.data?.order?.tokenId,
           merchId: response?.data?.order?.merchId,
@@ -430,6 +426,13 @@ function Checkout() {
                         </td>
                       </tr>
                     ))}
+                  <tr>
+                    <th>Total</th>
+                    <th></th>
+                    <th style={{ textAlign: "right" }}>{totalQnt}</th>
+                    <th style={{ textAlign: "right" }}>Rs. {totalPrice}</th>
+                    <th style={{ textAlign: "right" }}>Rs. {totalAmmount}</th>
+                  </tr>
                 </tbody>
               </table>
             </div>

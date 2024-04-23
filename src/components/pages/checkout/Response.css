@@ -12,12 +12,9 @@
   margin-bottom: 20px;
 }
 
-.transaction-details {
-  margin-bottom: 20px;
-}
-
-.transaction-details p {
-  margin: 5px 0;
+.transaction-header h2 {
+  font-size: 24px;
+  color: #333;
 }
 
 .btn-back {
@@ -31,4 +28,14 @@
 
 .btn-back:hover {
   background-color: #0056b3;
+}
+
+.btn-back:focus {
+  outline: none; /* Remove button outline on focus */
+}
+
+/* Style link as a button */
+.transaction-footer a {
+  text-decoration: none;
+  color: inherit;
 }
