@@ -184,7 +184,9 @@ function Header() {
                         className="fa fa-shopping-cart"
                         onClick={() => navigate("/cart")}
                       >
+                        <span style={{backgroundColor:"#fff", borderRadius:"50%", color:"#000", fontSize:"8px", padding:"5px",}}>
                         {quantity}
+                        </span>
                       </i>
                     </a>
                   </li>

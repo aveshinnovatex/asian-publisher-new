@@ -139,10 +139,10 @@ function BookDetails() {
               padding: "0px",
             }}
           >
-            <div className="col-lg-6" style={{ float: "left", padding: "0px" }}>
+             <div className="col-lg-6" style={{ float: "left", padding: "0px" }}>
               <img
                 src={`${REACT_APP_URL}/Image/${bookDetail.image}`}
-                style={{ height: "100vh" }}
+                style={{ width:"100%"}}
               />
             </div>
             <div
@@ -154,7 +154,7 @@ function BookDetails() {
               <p style={{ color: "red", "font-weight": "600" }}>
                 Rs. {bookDetail.mRP}{" "}
               </p>
-              <table classname="table table-spriped">
+              {/* <table classname="table table-spriped">
                 <tbody>
                   <tr>
                     <th>Sr. No.</th>
@@ -165,7 +165,7 @@ function BookDetails() {
                     <td>Test</td>
                   </tr>
                 </tbody>
-              </table>
+              </table> */}
               <center>
                 <div className="quantity" style={{ width: "50%" }}>
                   {/* Button to decrease quantity */}

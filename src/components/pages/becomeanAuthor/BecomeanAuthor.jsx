@@ -101,7 +101,7 @@ function BecomeanAuthor() {
           <div className="col-lg-6" style={{ float: "left" }}>
             <label style={{ fontWeight: 600 }}>Name</label>
             <input
-              className="form-control"
+              className="form-controlCustomized"
               type="text"
               placeholder="Name"
               name="name"
@@ -114,7 +114,7 @@ function BecomeanAuthor() {
           <div className="col-lg-6" style={{ float: "left" }}>
             <label style={{ fontWeight: 600 }}>Email</label>
             <input
-              className="form-control"
+              className="form-controlCustomized"
               type="text"
               defaultValue=""
               placeholder="Email"
@@ -128,7 +128,7 @@ function BecomeanAuthor() {
           <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
             <label style={{ fontWeight: 600 }}>Mobile No.</label>
             <input
-              className="form-control"
+              className="form-controlCustomized"
               type="text"
               placeholder="Mobile No."
               name="mobileNo"
@@ -141,7 +141,7 @@ function BecomeanAuthor() {
           <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
             <label style={{ fontWeight: 600 }}>Address</label>
             <input
-              className="form-control"
+              className="form-controlCustomized"
               type="text"
               placeholder="Address"
               name="address"
@@ -155,7 +155,7 @@ function BecomeanAuthor() {
             <label style={{ fontWeight: 600 }}>Message</label>
             <textarea
               rows={5}
-              className="form-control"
+              className="form-controlCustomized"
               name="message"
               value={formData.message}
               required

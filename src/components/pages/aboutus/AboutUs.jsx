@@ -307,7 +307,7 @@ function AboutUs() {
                 }}
               >
                 THE JOURNEY TO
-                <span style={{ color: "red" }}>IMPACT LIVES…</span>
+                <span style={{ color: "red" }}> IMPACT LIVES…</span>
               </span>
             </p>
             <p style={{ textAlign: "justify", width: "90%" }}>
@@ -329,6 +329,18 @@ function AboutUs() {
               Uttarakhand and Uttar Pradesh!
             </p>
           </div>
+          <div
+            className="col-lg-5"
+            style={{
+              float: "left",
+              backgroundImage: `url(${Director})`,
+              height: "70vh",
+              borderTopLeftRadius: "100px",
+              borderBottomRightRadius: "100px",
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+            }}
+          ></div>
         </div>
       </div>
       <Footer />

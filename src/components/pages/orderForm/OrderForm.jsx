@@ -107,7 +107,7 @@ function OrderForm() {
           <div className="col-lg-6" style={{ float: "left" }}>
             <label style={{ fontWeight: 600 }}>Name</label>
             <input
-              className="form-control"
+              className="form-controlCustomized"
               type="text"
               placeholder="Name"
               name="name"
@@ -120,7 +120,7 @@ function OrderForm() {
           <div className="col-lg-6" style={{ float: "left" }}>
             <label style={{ fontWeight: 600 }}>Email</label>
             <input
-              className="form-control"
+              className="form-controlCustomized"
               type="text"
               placeholder="Email"
               name="email"
@@ -133,7 +133,7 @@ function OrderForm() {
           <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
             <label style={{ fontWeight: 600 }}>Address</label>
             <input
-              className="form-control"
+              className="form-controlCustomized"
               type="text"
               placeholder="Enter your Address"
               name="address"
@@ -146,7 +146,7 @@ function OrderForm() {
           <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
             <label style={{ fontWeight: 600 }}>City</label>
             <input
-              className="form-control"
+              className="form-controlCustomized"
               type="text"
               placeholder="Enter Your City"
               name="city"
@@ -169,7 +169,6 @@ function OrderForm() {
                 }));
               }}
               sx={{
-                width: 700,
                 ".MuiAutocomplete-inputRoot": {
                   "& .MuiAutocomplete-input": {
                     fontSize: "16px",
@@ -182,7 +181,7 @@ function OrderForm() {
           <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
             <label style={{ fontWeight: 600 }}>Quantity</label>
             <input
-              className="form-control"
+              className="form-controlCustomized"
               type="text"
               name="quantity"
               required
@@ -194,7 +193,7 @@ function OrderForm() {
           <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
             <label style={{ fontWeight: 600 }}>Mobile No.</label>
             <input
-              className="form-control"
+              className="form-controlCustomized"
               type="text"
               name="mobileNo"
               required
@@ -207,7 +206,7 @@ function OrderForm() {
             <label style={{ fontWeight: 600 }}>Description</label>
             <textarea
               rows={5}
-              className="form-control"
+              className="form-controlCustomized"
               name="description"
               required
               value={formData.description}
