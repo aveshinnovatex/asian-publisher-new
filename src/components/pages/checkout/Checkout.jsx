@@ -8,6 +8,7 @@ import CartHeaderImage from "../../../Images/CartHeaderImage.png";
 import axios from "axios";
 import Spinner from "../../common/Spinner";
 import { toastError, toastSuceess } from "../../../util/reactToastify";
+import "./atomPaynetz.js";
 
 function Checkout() {
   const { cartdata } = useSelector((state) => state.cart);
@@ -154,6 +155,10 @@ function Checkout() {
 
   return (
     <>
+      <script
+        src="https://pgtest.atomtech.in/staticdata/ots/js/atomcheckout.js"
+        type="text/javascript"
+      ></script>
       {loader && <Spinner />}
       <Header />
       <div
