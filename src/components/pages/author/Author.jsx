@@ -91,261 +91,71 @@ function Author() {
         <div className="container-fluid">
           {countBookByAuthor &&
             countBookByAuthor.length > 0 &&
-            countBookByAuthor.map((author) => (
-              <div
-                key={author.id}
-                className="col-lg-6"
-                style={{ float: "left", "margin-bottom": "60px" }}
-              >
-                <div className="col-lg-1" style={{ float: "left" }}>
-                  &nbsp;
-                </div>
-                <div
-                  className="col-lg-11"
-                  style={{
-                    float: "left",
-                    border: "1px solid #eee",
-                    padding: "30px",
-                    "box-shadow": "0px 0px 10px rgba(0, 0, 0, 0.1)",
-                    "border-top-left-radius": "50px",
-                    "border-bottom-right-radius": "50px",
-                    "border-top-color": "#d82028",
-                    "border-bottom-color": "#d82028",
-                  }}
-                >
-                  <h5
-                    style={{
-                      "-webkit-text-align": "center",
-                      "text-align": "center",
-                      "-webkit-text-transform": "uppercase",
-                      "text-transform": "uppercase",
-                    }}
+            countBookByAuthor.map((author) => {
+              if (author?.authorNav?.content !== "") {
+                return (
+                  <div
+                    key={author.id}
+                    className="col-lg-6"
+                    style={{ float: "left", "margin-bottom": "60px" }}
                   >
-                    {author?.authorNav?.name}
-                  </h5>
-                  <p
-                    style={{
-                      "-webkit-text-align": "justify",
-                      "text-align": "justify",
-                    }}
-                  >
-                    {author?.authorNav?.content !== ""
-                      ? author?.authorNav?.content
-                      : ""}
-                  </p>
-                  <center>
-                    <a
-                      // href="#"
+                    <div className="col-lg-1" style={{ float: "left" }}>
+                      &nbsp;
+                    </div>
+                    <div
+                      className="col-lg-11"
                       style={{
-                        zoom: "80%",
-                        "-webkit-text-decoration": "none",
-                        "text-decoration": "none",
-                        "background-color": "#d82028",
-                        color: "#fff",
-                        padding: "10px 20px 10px 20px",
-                        "margin-top": "20px",
-                        "border-radius": "10px",
+                        float: "left",
+                        border: "1px solid #eee",
+                        padding: "30px",
+                        "box-shadow": "0px 0px 10px rgba(0, 0, 0, 0.1)",
+                        "border-top-left-radius": "50px",
+                        "border-bottom-right-radius": "50px",
+                        "border-top-color": "#d82028",
+                        "border-bottom-color": "#d82028",
                       }}
-                      onClick={() => handleAuthor(author)}
                     >
-                      View {author?.bookCount}
-                    </a>
-                  </center>
-                </div>
-              </div>
-            ))}
-          {/* <div
-            className="col-lg-6"
-            style={{ float: "left", "margin-bottom": "60px" }}
-          >
-            <div className="col-lg-1" style={{ float: "left" }}>
-              &nbsp;
-            </div>
-            <div
-              className="col-lg-11"
-              style={{
-                float: "left",
-                border: "1px solid #eee",
-                padding: "30px",
-                "box-shadow": "0px 0px 10px rgba(0, 0, 0, 0.1)",
-                "border-top-left-radius": "50px",
-                "border-bottom-right-radius": "50px",
-                "border-top-color": "#d82028",
-                "border-bottom-color": "#d82028",
-              }}
-            >
-              <h5
-                style={{
-                  "-webkit-text-align": "center",
-                  "text-align": "center",
-                  "-webkit-text-transform": "uppercase",
-                  "text-transform": "uppercase",
-                }}
-              >
-                Author Name Here
-              </h5>
-              <p
-                style={{
-                  "-webkit-text-align": "justify",
-                  "text-align": "justify",
-                }}
-              >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-                suscipit animi sapiente sit blanditiis vero nihil in! Totam
-                aliquam nulla harum! Dignissimos, esse. Alias cumque illum
-                blanditiis, mollitia dolorum sunt! Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Atque suscipit animi sapiente sit
-                blanditiis vero nihil in! Totam aliquam nulla harum!
-                Dignissimos, esse. Alias cumque illum blanditiis, mollitia
-                dolorum sunt.
-              </p>
-              <center>
-                <a
-                  href="#"
-                  style={{
-                    zoom: "80%",
-                    "-webkit-text-decoration": "none",
-                    "text-decoration": "none",
-                    "background-color": "#d82028",
-                    color: "#fff",
-                    padding: "10px 20px 10px 20px",
-                    "margin-top": "20px",
-                    "border-radius": "10px",
-                  }}
-                >
-                  View Books (10)
-                </a>
-              </center>
-            </div>
-          </div>
-          <div
-            className="col-lg-6"
-            style={{ float: "left", "margin-bottom": "60px" }}
-          >
-            <div className="col-lg-1" style={{ float: "left" }}>
-              &nbsp;
-            </div>
-            <div
-              className="col-lg-11"
-              style={{
-                float: "left",
-                border: "1px solid #eee",
-                padding: "30px",
-                "box-shadow": "0px 0px 10px rgba(0, 0, 0, 0.1)",
-                "border-top-left-radius": "50px",
-                "border-bottom-right-radius": "50px",
-                "border-top-color": "#d82028",
-                "border-bottom-color": "#d82028",
-              }}
-            >
-              <h5
-                style={{
-                  "-webkit-text-align": "center",
-                  "text-align": "center",
-                  "-webkit-text-transform": "uppercase",
-                  "text-transform": "uppercase",
-                }}
-              >
-                Author Name Here
-              </h5>
-              <p
-                style={{
-                  "-webkit-text-align": "justify",
-                  "text-align": "justify",
-                }}
-              >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-                suscipit animi sapiente sit blanditiis vero nihil in! Totam
-                aliquam nulla harum! Dignissimos, esse. Alias cumque illum
-                blanditiis, mollitia dolorum sunt! Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Atque suscipit animi sapiente sit
-                blanditiis vero nihil in! Totam aliquam nulla harum!
-                Dignissimos, esse. Alias cumque illum blanditiis, mollitia
-                dolorum sunt.
-              </p>
-              <center>
-                <a
-                  href="#"
-                  style={{
-                    zoom: "80%",
-                    "-webkit-text-decoration": "none",
-                    "text-decoration": "none",
-                    "background-color": "#d82028",
-                    color: "#fff",
-                    padding: "10px 20px 10px 20px",
-                    "margin-top": "20px",
-                    "border-radius": "10px",
-                  }}
-                >
-                  View Books (10)
-                </a>
-              </center>
-            </div>
-          </div>
-          <div
-            className="col-lg-6"
-            style={{ float: "left", "margin-bottom": "60px" }}
-          >
-            <div className="col-lg-1" style={{ float: "left" }}>
-              &nbsp;
-            </div>
-            <div
-              className="col-lg-11"
-              style={{
-                float: "left",
-                border: "1px solid #eee",
-                padding: "30px",
-                "box-shadow": "0px 0px 10px rgba(0, 0, 0, 0.1)",
-                "border-top-left-radius": "50px",
-                "border-bottom-right-radius": "50px",
-                "border-top-color": "#d82028",
-                "border-bottom-color": "#d82028",
-              }}
-            >
-              <h5
-                style={{
-                  "-webkit-text-align": "center",
-                  "text-align": "center",
-                  "-webkit-text-transform": "uppercase",
-                  "text-transform": "uppercase",
-                }}
-              >
-                Author Name Here
-              </h5>
-              <p
-                style={{
-                  "-webkit-text-align": "justify",
-                  "text-align": "justify",
-                }}
-              >
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-                suscipit animi sapiente sit blanditiis vero nihil in! Totam
-                aliquam nulla harum! Dignissimos, esse. Alias cumque illum
-                blanditiis, mollitia dolorum sunt! Lorem ipsum dolor sit amet
-                consectetur adipisicing elit. Atque suscipit animi sapiente sit
-                blanditiis vero nihil in! Totam aliquam nulla harum!
-                Dignissimos, esse. Alias cumque illum blanditiis, mollitia
-                dolorum sunt.
-              </p>
-              <center>
-                <a
-                  href="#"
-                  style={{
-                    zoom: "80%",
-                    "-webkit-text-decoration": "none",
-                    "text-decoration": "none",
-                    "background-color": "#d82028",
-                    color: "#fff",
-                    padding: "10px 20px 10px 20px",
-                    "margin-top": "20px",
-                    "border-radius": "10px",
-                  }}
-                >
-                  View Books (10)
-                </a>
-              </center>
-            </div>
-          </div> */}
+                      <h5
+                        style={{
+                          "-webkit-text-align": "center",
+                          "text-align": "center",
+                          "-webkit-text-transform": "uppercase",
+                          "text-transform": "uppercase",
+                        }}
+                      >
+                        {author?.authorNav?.name}
+                      </h5>
+                      <p
+                        style={{
+                          "-webkit-text-align": "justify",
+                          "text-align": "justify",
+                        }}
+                      >
+                        {author?.authorNav?.content}
+                      </p>
+                      <center>
+                        <a
+                          // href="#"
+                          style={{
+                            zoom: "80%",
+                            "-webkit-text-decoration": "none",
+                            "text-decoration": "none",
+                            "background-color": "#d82028",
+                            color: "#fff",
+                            padding: "10px 20px 10px 20px",
+                            "margin-top": "20px",
+                            "border-radius": "10px",
+                          }}
+                          onClick={() => handleAuthor(author)}
+                        >
+                          View {author?.bookCount}
+                        </a>
+                      </center>
+                    </div>
+                  </div>
+                );
+              }
+            })}
         </div>
       </div>
       <Footer />
