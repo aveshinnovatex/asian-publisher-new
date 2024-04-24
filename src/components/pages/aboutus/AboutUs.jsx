@@ -9,6 +9,8 @@ import WhoWeAreImage from "../../../Images/WhoWeAreImage.png";
 import WhyUsImage from "../../../Images/WhyUsImage.png";
 import Director from "../../../Images/Director.jpg";
 import AsianLogoText from "../../../Images/AsianLogoText.jpeg";
+import AboutUsSlider from "../aboutus/AboutUsSlider";
+import AboutUsImgArr from "../aboutus/aboutUsImg";
 
 function AboutUs() {
   return (
@@ -17,7 +19,7 @@ function AboutUs() {
       <div
         className="Headerrowabout"
         style={{
-          backgroundImage: `url(${AboutHeaderImage})`, //`url(${ShopHeaderImage})`
+          backgroundImage: `url(${AboutHeaderImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -83,7 +85,7 @@ function AboutUs() {
         </p>
         <br />
         <div className="col-lg-6" style={{ float: "left" }}>
-          <img src={AboutUsImage} className="Knowmorestyle" />
+          <AboutUsSlider slider={AboutUsImgArr} />
         </div>
         <div className="col-lg-6" style={{ float: "left" }}>
           <div className="col-lg-1" style={{ float: "left" }} />

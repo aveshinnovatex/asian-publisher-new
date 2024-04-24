@@ -8,10 +8,12 @@ import Header from "../../common/header/Header";
 import Footer from "../../common/footer/Footer";
 import AboutUs from "../../../Images/AboutUs.png";
 import HomeVideo from "../../../Images/HomeVideo.mp4";
-import courseData from "../../common/slider/courseData"
+import courseData from "../../common/slider/courseData";
 // import "../../../css/Style.css";
 import "../../../css/bootstrap.min.css";
 import Spinner from "../../common/Spinner";
+import AboutUsImgArr from "../aboutus/aboutUsImg";
+import AboutUsSlider from "../aboutus/AboutUsSlider";
 
 function Home() {
   const imgMainArr = [
@@ -158,8 +160,11 @@ function Home() {
           </span>
         </p>
         <br />
-        <div className="col-lg-6" style={{ float: "left" }}>
+        {/* <div className="col-lg-6" style={{ float: "left" }}>
           <img src={AboutUs} className="Knowmorestyle" />
+        </div> */}
+        <div className="col-lg-6" style={{ float: "left" }}>
+          <AboutUsSlider slider={AboutUsImgArr} />
         </div>
         <div className="col-lg-6" style={{ float: "left" }}>
           <div className="col-lg-1" style={{ float: "left" }} />
@@ -312,7 +317,6 @@ function Home() {
             <CourseSlider slider={courseData} />
           )}
         </div>
-  
       </div>
       <div
         className="row"
