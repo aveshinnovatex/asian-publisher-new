@@ -4,6 +4,7 @@ import Footer from "../../common/footer/Footer";
 import { createBecomeAuthor } from "../../../redux/slices/becomeAuthorSlice";
 import { useDispatch, useSelector } from "react-redux";
 import becomeanauthor from "../../../Images/becomeanauthor.png";
+import { Button } from "@mui/material";
 function BecomeanAuthor() {
   const { loading, becomeAuthors } = useSelector((state) => state.becomeAuthor);
   const dispatch = useDispatch();
@@ -97,90 +98,93 @@ function BecomeanAuthor() {
         id="AboutUsSection"
         style={{ display: "block", margin: 0, padding: 0, clear: "both" }}
       >
-        <div className="container">
-          <div className="col-lg-6" style={{ float: "left" }}>
-            <label style={{ fontWeight: 600 }}>Name</label>
-            <input
-              className="form-controlCustomized"
-              type="text"
-              placeholder="Name"
-              name="name"
-              value={formData.name}
-              required
-              onChange={handleChange}
-              // defaultValue=""
-            />
+        <form onSubmit={handleSubmit}>
+          <div className="container">
+            <div className="col-lg-6" style={{ float: "left" }}>
+              <label style={{ fontWeight: 600 }}>Name</label>
+              <input
+                className="form-controlCustomized"
+                type="text"
+                placeholder="Name"
+                name="name"
+                value={formData.name}
+                required
+                onChange={handleChange}
+                // defaultValue=""
+              />
+            </div>
+            <div className="col-lg-6" style={{ float: "left" }}>
+              <label style={{ fontWeight: 600 }}>Email</label>
+              <input
+                className="form-controlCustomized"
+                type="text"
+                defaultValue=""
+                placeholder="Email"
+                name="email"
+                value={formData.email}
+                required
+                onChange={handleChange}
+                // defaultValue=""
+              />
+            </div>
+            <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
+              <label style={{ fontWeight: 600 }}>Mobile No.</label>
+              <input
+                className="form-controlCustomized"
+                type="text"
+                placeholder="Mobile No."
+                name="mobileNo"
+                value={formData.mobileNo}
+                required
+                onChange={handleChange}
+                // defaultValue=""
+              />
+            </div>
+            <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
+              <label style={{ fontWeight: 600 }}>Address</label>
+              <input
+                className="form-controlCustomized"
+                type="text"
+                placeholder="Address"
+                name="address"
+                value={formData.address}
+                required
+                onChange={handleChange}
+                // defaultValue=""
+              />
+            </div>
+            <div className="col-lg-12" style={{ float: "left", marginTop: 20 }}>
+              <label style={{ fontWeight: 600 }}>Message</label>
+              <textarea
+                rows={5}
+                className="form-controlCustomized"
+                placeholder="Message"
+                name="message"
+                value={formData.message}
+                required
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-lg-12" style={{ float: "left", marginTop: 40 }}>
+              <center>
+                <Button
+                  // href="#"
+                  type="submit"
+                  style={{
+                    textDecoration: "none",
+                    backgroundColor: "#d82028",
+                    color: "#fff",
+                    padding: "10px 50px 10px 50px",
+                    marginTop: 20,
+                    borderRadius: 10,
+                  }}
+                >
+                  Submit Now
+                </Button>
+              </center>
+            </div>
           </div>
-          <div className="col-lg-6" style={{ float: "left" }}>
-            <label style={{ fontWeight: 600 }}>Email</label>
-            <input
-              className="form-controlCustomized"
-              type="text"
-              defaultValue=""
-              placeholder="Email"
-              name="email"
-              value={formData.email}
-              required
-              onChange={handleChange}
-              // defaultValue=""
-            />
-          </div>
-          <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
-            <label style={{ fontWeight: 600 }}>Mobile No.</label>
-            <input
-              className="form-controlCustomized"
-              type="text"
-              placeholder="Mobile No."
-              name="mobileNo"
-              value={formData.mobileNo}
-              required
-              onChange={handleChange}
-              // defaultValue=""
-            />
-          </div>
-          <div className="col-lg-6" style={{ float: "left", marginTop: 20 }}>
-            <label style={{ fontWeight: 600 }}>Address</label>
-            <input
-              className="form-controlCustomized"
-              type="text"
-              placeholder="Address"
-              name="address"
-              value={formData.address}
-              required
-              onChange={handleChange}
-              // defaultValue=""
-            />
-          </div>
-          <div className="col-lg-12" style={{ float: "left", marginTop: 20 }}>
-            <label style={{ fontWeight: 600 }}>Message</label>
-            <textarea
-              rows={5}
-              className="form-controlCustomized"
-              name="message"
-              value={formData.message}
-              required
-              onChange={handleChange}
-            />
-          </div>
-          <div className="col-lg-12" style={{ float: "left", marginTop: 40 }}>
-            <center>
-              <a
-                href="#"
-                onClick={handleSubmit}
-                style={{
-                  textDecoration: "none",
-                  backgroundColor: "#d82028",
-                  color: "#fff",
-                  padding: "10px 50px 10px 50px",
-                  marginTop: 20,
-                  borderRadius: 10,
-                }}
-              >
-                Submit Now
-              </a>
-            </center>
-          </div>
-        </div>
+        </form>
       </div>
       <Footer />
     </>

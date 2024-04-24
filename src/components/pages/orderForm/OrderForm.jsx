@@ -19,8 +19,8 @@ function OrderForm() {
     email: "",
     address: "",
     city: "",
-    book: "",
-    quantity: null,
+    bookId: null,
+    quantity: 1,
     mobileNo: "",
     description: "",
   });
@@ -28,8 +28,9 @@ function OrderForm() {
     dispatch(fetchBooks({}));
   }, [dispatch]);
 
-  const { name, email, address, city, book, quantity, mobileNo, description } =
+  const { name, email, address, city, bookId, quantity, mobileNo, description } =
     formData;
+  console.log(formData);
 
   /**handle change  method implement here */
   function handleChange(event) {
@@ -41,25 +42,33 @@ function OrderForm() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (book === "") {
+    if (!bookId) {
       toastError("Please Fill the book");
+      return;
+    }
+    if (quantity <= 0) {
+      toastError("Quantity Always greater than zero");
       return;
     }
 
     /** create instance of Form data here */
-    let orderFrom = new FormData();
+    // let orderFrom = new FormData();
 
-    orderFrom.append("name", name);
-    orderFrom.append("email", email);
-    orderFrom.append("address", address);
-    orderFrom.append("city", city);
-    orderFrom.append("bookId", book);
-    orderFrom.append("quantity", parseInt(quantity));
-    orderFrom.append("mobileNo", mobileNo);
-    orderFrom.append("description", description);
+    // orderFrom.append("name", name);
+    // orderFrom.append("email", email);
+    // orderFrom.append("address", address);
+    // orderFrom.append("city", city);
+    // orderFrom.append("bookId", book);
+    // orderFrom.append("quantity", parseInt(quantity));
+    // orderFrom.append("mobileNo", mobileNo);
+    // orderFrom.append("description", description);
 
     /** hitt the create order from api from  here */
-    dispatch(createOrderFrom(orderFrom));
+    let payload = { ...formData };
+    payload.bookId = bookId?.id ? payload.bookId?.id : "";
+    payload.quantity = parseInt(payload.quantity);
+
+    dispatch(createOrderFrom(payload));
   }
   useEffect(() => {
     if (loading === "fulfilled") {
@@ -68,8 +77,8 @@ function OrderForm() {
         email: "",
         address: "",
         city: "",
-        book: "",
-        quantity: null,
+        bookId: null,
+        quantity: 1,
         mobileNo: "",
         description: "",
       });
@@ -184,11 +193,12 @@ function OrderForm() {
               <Autocomplete
                 disablePortal
                 id="combo-box-demo"
+                value={formData.bookId}
                 options={topBooks}
                 onChange={(event, value) => {
                   setFormData((prev) => ({
                     ...prev,
-                    book: value?.id,
+                    bookId: value,
                   }));
                 }}
                 sx={{
@@ -208,6 +218,7 @@ function OrderForm() {
               <input
                 className="form-controlCustomized"
                 type="number"
+                min={1}
                 name="quantity"
                 value={formData.quantity}
                 required

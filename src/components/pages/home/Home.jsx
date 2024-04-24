@@ -1,31 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBooks } from "../../../redux/slices/bookSlice";
-import "./Home.css";
-import { REACT_APP_URL } from "../../../config/config";
-import LogoSlider from "../../common/slider/LogoSlider";
+import { fetchCourses } from "../../../redux/slices/courseSlice";
 import BookSlider from "../../common/slider/BookSlider";
+import CourseSlider from "../../common/slider/CourseSlider";
 import Header from "../../common/header/Header";
 import Footer from "../../common/footer/Footer";
 import AboutUs from "../../../Images/AboutUs.png";
-import CivilEngineering from "../../../Images/CivilEngineering.png";
-import ElectricalEngineering from "../../../Images/ElectricalEngineering.png";
-import MechanicalEngineering from "../../../Images/MechanicalEngineering.png";
-import Logo1 from "../../../Images/Logo/1.jpg";
-import Logo2 from "../../../Images/Logo/11.png";
-import Logo3 from "../../../Images/Logo/2.jpg";
-import Logo4 from "../../../Images/Logo/22.png";
-import Logo5 from "../../../Images/Logo/4.jpg";
-import Logo6 from "../../../Images/Logo/44.png";
-import Logo7 from "../../../Images/Logo/5.jpg";
-import Logo8 from "../../../Images/Logo/55.png";
-import Logo9 from "../../../Images/Logo/6.jpg";
-import Logo10 from "../../../Images/Logo/66.png";
-import Logo11 from "../../../Images/Logo/3.jpg";
-import Logo12 from "../../../Images/Logo/33.png";
-
+import HomeVideo from "../../../Images/HomeVideo.mp4";
+import courseData from "../../common/slider/courseData"
 // import "../../../css/Style.css";
 import "../../../css/bootstrap.min.css";
+import Spinner from "../../common/Spinner";
 
 function Home() {
   const imgMainArr = [
@@ -42,23 +28,42 @@ function Home() {
     "../../../Images/Logo/3.jpg",
   ];
   const { loading, books } = useSelector((state) => state.book);
+  const { loading: coursesLoading, courses } = useSelector(
+    (state) => state.course
+  );
   const dispatch = useDispatch();
   const [allBooks, setAllBooks] = useState([]);
+  const [loader, setLoader] = useState(true);
+  const [allCourses, setAllCourses] = useState([]);
+  useEffect(() => {
+    if (allBooks?.length > 0) {
+      setLoader(false);
+    }
+  }, [allCourses, allBooks]);
   useEffect(() => {
     dispatch(fetchBooks({}));
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchCourses());
   }, [dispatch]);
   useEffect(() => {
     if (loading === "fulfilled") {
       setAllBooks(books);
     }
   }, [loading]);
+  useEffect(() => {
+    if (coursesLoading === "fulfilled") {
+      setAllCourses(courses);
+    }
+  }, [coursesLoading]);
   return (
     <>
+      {loader && <Spinner />}
       <Header />
       <div className="Headerrow">
         <div className="video-background">
           <video autoPlay loop muted className="video homeheadervideo">
-            <source src="Images/HomeVideo.mp4" type="video/mp4" />
+            <source src={HomeVideo} type="video/mp4" />
           </video>
         </div>
         <div className="gradient-overlay" />
@@ -302,113 +307,12 @@ function Home() {
           </span>
         </p>
         <br />
-        <div className="col-lg-4" style={{ float: "left" }}>
-          <img src={CivilEngineering} className="homecoursesstyle" />
-          <p
-            style={{
-              "font-size": "20px",
-              "-webkit-text-align": "center",
-              "text-align": "center",
-              "margin-top": "15px",
-              "font-weight": "600",
-              "-webkit-text-transform": "uppercase",
-              "text-transform": "uppercase",
-              "-webkit-text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
-              "text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
-            }}
-          >
-            Civil <span style={{ color: "red" }}>Engineering</span>
-            <br />
-            <span
-              style={{
-                "font-size": "15px",
-                "font-weight": "normal",
-                "-webkit-text-transform": "none",
-                "text-transform": "none",
-                color: "#000",
-                "-webkit-text-shadow": "none",
-                "text-shadow": "none",
-              }}
-            >
-              Our Civil Engineering books furnish the students with the
-              knowledge to apply various principles of Mathematics and Science
-              in solving real-life engineering problems through a range of
-              private and public projects.
-            </span>
-          </p>
+        <div className="col-lg-12" style={{ float: "left" }}>
+          {allCourses && allCourses.length > 0 && (
+            <CourseSlider slider={courseData} />
+          )}
         </div>
-        <div className="col-lg-4" style={{ float: "left" }}>
-          <img src={ElectricalEngineering} className="homecoursesstyle" />
-          <p
-            style={{
-              "font-size": "20px",
-              "-webkit-text-align": "center",
-              "text-align": "center",
-              "margin-top": "15px",
-              "font-weight": "600",
-              "-webkit-text-transform": "uppercase",
-              "text-transform": "uppercase",
-              "-webkit-text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
-              "text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
-            }}
-          >
-            Electrical <span style={{ color: "red" }}>Engineering</span>
-            <br />
-            <span
-              style={{
-                "font-size": "15px",
-                "font-weight": "normal",
-                "-webkit-text-transform": "none",
-                "text-transform": "none",
-                color: "#000",
-                "-webkit-text-shadow": "none",
-                "text-shadow": "none",
-              }}
-            >
-              Our Civil Engineering books furnish the students with the
-              knowledge to apply various principles of Mathematics and Science
-              in solving real-life engineering problems through a range of
-              private and public projects.
-            </span>
-          </p>
-        </div>
-        <div className="col-lg-4" style={{ float: "left" }}>
-          <img src={MechanicalEngineering} className="homecoursesstyle" />
-          <p
-            style={{
-              "font-size": "20px",
-              "-webkit-text-align": "center",
-              "text-align": "center",
-              "margin-top": "15px",
-              "font-weight": "600",
-              "-webkit-text-transform": "uppercase",
-              "text-transform": "uppercase",
-              "-webkit-text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
-              "text-shadow": "2px 2px 4px rgba(0, 0, 0, 0.2)",
-            }}
-          >
-            Mechanical <span style={{ color: "red" }}>Engineering</span>
-            <br />
-            <span
-              style={{
-                "font-size": "15px",
-                "font-weight": "normal",
-                "-webkit-text-transform": "none",
-                "text-transform": "none",
-                color: "#000",
-                "-webkit-text-shadow": "none",
-                "text-shadow": "none",
-              }}
-            >
-              Our Civil Engineering books furnish the students with the
-              knowledge to apply various principles of Mathematics and Science
-              in solving real-life engineering problems through a range of
-              private and public projects.
-            </span>
-          </p>
-          <br />
-          <br />
-        </div>
+  
       </div>
       <div
         className="row"

@@ -35,6 +35,7 @@ function Shop() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const history = useLocation();
+  const [loader, setLoader] = useState(true);
   const [allBooks, setAllBooks] = useState([]);
   const [filterLoading, setFilterLoading] = useState(false);
   const [checked, setChecked] = useState(false);
@@ -46,6 +47,7 @@ function Shop() {
   const [filterSemesters, setFilterSemesters] = useState([]);
   const [orderFilter, setOrderFilter] = useState("");
   const author = history.state;
+
   useMemo(() => {
     if (author?.id !== undefined && author?.id !== "") {
       setFilterAuthors((prev) => [...prev, author?.id]);
@@ -85,6 +87,7 @@ function Shop() {
       setAllAuthors(authors);
       setAllCourses(courses);
       setAllSemesters(semesters);
+      setLoader(false);
     }
   }, [loading]);
 
@@ -162,8 +165,7 @@ function Shop() {
 
   return (
     <>
-      {/* {loading === "pending" || (filterLoading && <Spinner />)} */}
-
+      {loader && <Spinner />}
       <Header />
       <div
         className="Headerrowabout"
@@ -392,7 +394,12 @@ function Shop() {
             <div className="select-shoing-wrap">
               <div className="shop-select col-lg-4">
                 <label htmlFor="SortBy">Sort by :</label>&nbsp;&nbsp;
-                <select onChange={handleSort} name="SortBy" id="SortBy" className="form-control">
+                <select
+                  onChange={handleSort}
+                  name="SortBy"
+                  id="SortBy"
+                  className="form-control"
+                >
                   <option value="manual">Featured</option>
                   <option value="titleAscending">Alphabetically, A-Z</option>
                   <option value="titleDescending">Alphabetically, Z-A</option>
@@ -419,7 +426,6 @@ function Shop() {
                       />
                       <div className="book-inside" />
                     </div>
-                  
                   </center>
                   <p
                     style={{
@@ -432,9 +438,17 @@ function Shop() {
                   >
                     <span style={{ "font-size": "12px", "font-weight": "500" }}>
                       ISBN No. {book?.iSBN} &nbsp;&nbsp;
-                      <button onClick={() => handleCart(book)} style={{border:"none", fontSize:"18px", backgroundColor:"#fff", color:"red"}}>
-                      <FaCartPlus />
-                    </button>
+                      <button
+                        onClick={() => handleCart(book)}
+                        style={{
+                          border: "none",
+                          fontSize: "18px",
+                          backgroundColor: "#fff",
+                          color: "red",
+                        }}
+                      >
+                        <FaCartPlus />
+                      </button>
                     </span>
                     <br />
                     {book?.name}

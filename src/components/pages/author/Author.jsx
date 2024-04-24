@@ -7,18 +7,21 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../common/header/Header";
 import Footer from "../../common/footer/Footer";
 import authorpageimage from "../../../Images/authorpageimage.png";
+import Spinner from "../../common/Spinner";
 
 function Author() {
   const { loading, countBookauthor } = useSelector((state) => state.author);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [countBookByAuthor, setCountBookByAuthor] = useState([]);
+  const [loader, setLoader] = useState(true);
   useEffect(() => {
     dispatch(countBooksByAuthor());
   }, [dispatch]);
   useEffect(() => {
     if (loading === "fulfilled") {
       setCountBookByAuthor(countBookauthor);
+      setLoader(false);
     }
   }, [loading]);
 
@@ -30,6 +33,7 @@ function Author() {
   }
   return (
     <>
+      {loader && <Spinner />}
       <Header />
       <div
         className="Headerrowabout"
