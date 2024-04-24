@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./Author.css";
 import { countBooksByAuthor } from "../../../redux/slices/authorSlice";
 import { REACT_APP_URL } from "../../../config/config";
 import { useNavigate } from "react-router-dom";

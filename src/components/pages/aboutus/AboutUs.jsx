@@ -267,7 +267,7 @@ function AboutUs() {
         </div>
         <div className="col-lg-4" style={{ float: "left", padding: 25 }}>
           <div className="col-lg-7 numstyle1">
-            <div className="number" data-count={50}>
+            <div className="number" data-count={80}>
               0
             </div>
           </div>

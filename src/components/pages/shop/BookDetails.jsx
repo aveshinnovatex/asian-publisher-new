@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../common/header/Header";
 import Footer from "../../common/footer/Footer";
-import "./Shop.css";
 import { fetchBookDetails } from "../../../redux/slices/bookSlice";
 import { REACT_APP_URL } from "../../../config/config";
 import { useParams } from "react-router-dom";
@@ -139,10 +138,10 @@ function BookDetails() {
               padding: "0px",
             }}
           >
-             <div className="col-lg-6" style={{ float: "left", padding: "0px" }}>
+            <div className="col-lg-6" style={{ float: "left", padding: "0px" }}>
               <img
                 src={`${REACT_APP_URL}/Image/${bookDetail.image}`}
-                style={{ width:"100%"}}
+                style={{ width: "100%" }}
               />
             </div>
             <div
