@@ -157,7 +157,7 @@ function BecomeanAuthor() {
               <label style={{ fontWeight: 600 }}>Message</label>
               <textarea
                 rows={5}
-                className="form-controlCustomized"
+                className="form-control"
                 placeholder="Message"
                 name="message"
                 value={formData.message}

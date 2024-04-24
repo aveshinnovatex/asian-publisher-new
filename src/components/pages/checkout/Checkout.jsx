@@ -152,10 +152,6 @@ function Checkout() {
 
   return (
     <>
-      <script
-        src="https://pgtest.atomtech.in/staticdata/ots/js/atomcheckout.js"
-        type="text/javascript"
-      ></script>
       {loader && <Spinner />}
       <Header />
       <div

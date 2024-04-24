@@ -26,7 +26,6 @@ function Author() {
   }, [loading]);
 
   function handleAuthor(author) {
-    console.log("author in author page: " + author?.authorNav?.name);
     navigate("/shop", {
       state: { id: author?.authorNav?.id, name: author?.authorNav?.name },
     });
@@ -101,7 +100,10 @@ function Author() {
                   <div
                     key={author.id}
                     className="col-lg-6"
-                    style={{ float: "left", "margin-bottom": "60px" }}
+                    style={{
+                      float: "left",
+                      "margin-bottom": "60px",
+                    }}
                   >
                     <div className="col-lg-1" style={{ float: "left" }}>
                       &nbsp;
@@ -133,6 +135,9 @@ function Author() {
                         style={{
                           "-webkit-text-align": "justify",
                           "text-align": "justify",
+                          height: "14vh",
+                          overflowY: "scroll",
+                          padding: "10px 30px 30px 30px",
                         }}
                       >
                         {author?.authorNav?.content}

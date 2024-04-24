@@ -1,13 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 // import "../../../css/Style.css";
 // import "../../../css/bootstrap.min.css";
 import AsianLogo from "../../../Images/AsianLogo.jpeg";
+import catalog from "../../../Images/catalog.pdf";
 
 function Header() {
   const navigate = useNavigate();
   const { quantity } = useSelector((state) => state.cart);
+  const [myClass, setMyClass] = useState("search-box");
+  const [search, setSearch] = useState("");
+
+  function handleChange(event) {
+    setSearch(event.target.value);
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    navigate("/shop", {
+      state: search,
+    });
+  }
 
   return (
     <>
@@ -110,8 +123,9 @@ function Header() {
                   </li>
                   <li className="nav-item" style={{ zIndex: 1 }}>
                     <a
+                      download
                       className="nav-link"
-                      href="#"
+                      href={catalog}
                       style={{
                         color: "#fff",
                         fontSize: 16,
@@ -156,15 +170,28 @@ function Header() {
                       href="#"
                       style={{ color: "#fff", fontSize: 16, fontWeight: 600 }}
                     >
-                      <i className="fa fa-search" />
+                      <i
+                        className="fa fa-search"
+                        onClick={() => {
+                          myClass === "search-box"
+                            ? setMyClass("search-boxOpen")
+                            : setMyClass("search-box");
+                        }}
+                      />
                     </a>
-                    {/* Search Box */}
-                    <div className="search-box">
+                    {/* Search Box search-box  */}
+                    <div className={myClass}>
                       <div className="row">
-                        <input type="text" placeholder="Search..." />
-                        <button type="button">
-                          <i className="fa fa-search" />
-                        </button>
+                        <form onSubmit={handleSubmit}>
+                          <input
+                            type="text"
+                            placeholder="Search..."
+                            onChange={handleChange}
+                          />
+                          <button type="submit">
+                            <i className="fa fa-search" />
+                          </button>
+                        </form>
                       </div>
                     </div>
                   </li>
@@ -184,8 +211,16 @@ function Header() {
                         className="fa fa-shopping-cart"
                         onClick={() => navigate("/cart")}
                       >
-                        <span style={{backgroundColor:"#fff", borderRadius:"50%", color:"#000", fontSize:"8px", padding:"5px",}}>
-                        {quantity}
+                        <span
+                          style={{
+                            backgroundColor: "#fff",
+                            borderRadius: "50%",
+                            color: "#000",
+                            fontSize: "8px",
+                            padding: "5px",
+                          }}
+                        >
+                          {quantity}
                         </span>
                       </i>
                     </a>

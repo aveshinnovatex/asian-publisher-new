@@ -20,17 +20,23 @@ function Response() {
       <div className="transaction-header">
         {isPrintMessage && (
           <div>
-            <h1>Transaction Successfully</h1>
-            <h2>Our Team Will Contact You Soon</h2>
+            <h3>Transaction Successfully</h3>
+            <p>Our Team Will Contact You Soon</p>
           </div>
         )}
       </div>
-
-      <Link to={"/cart"}>
-        <div className="transaction-footer">
-          <button className="btn-back">Back to Cart</button>
-        </div>
-      </Link>
+      <center>
+        <Link to={"/cart"}>
+          <div className="transaction-footer">
+            <button
+              className="btn-back"
+              style={{ zoom: "80%", backgroundColor: "red" }}
+            >
+              Back to Cart
+            </button>
+          </div>
+        </Link>
+      </center>
     </div>
   );
 }

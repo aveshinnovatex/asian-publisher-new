@@ -10,14 +10,9 @@ import { fetchSemesters } from "../../../redux/slices/semesterSlice";
 import { addTocart } from "../../../redux/slices/cartSlice";
 import { REACT_APP_URL } from "../../../config/config";
 import { FaCartPlus } from "react-icons/fa";
-// import MultiCheckGroup from "../../common/MultiCheckGroup";
 import Spinner from "../../common/Spinner";
 import Checkbox from "@mui/material/Checkbox";
 import ShopHeaderImage from "../../../Images/ShopHeaderImage.png";
-import Book1 from "../../../Images/Book1.jpg";
-import Book2 from "../../../Images/Book2.jpg";
-import Book3 from "../../../Images/Book3.jpg";
-import Book4 from "../../../Images/Book4.jpg";
 import "../../../css/Style.css";
 import "../../../css/bootstrap.min.css";
 
@@ -37,8 +32,8 @@ function Shop() {
   const history = useLocation();
   const [loader, setLoader] = useState(true);
   const [allBooks, setAllBooks] = useState([]);
-  const [filterLoading, setFilterLoading] = useState(false);
   const [checked, setChecked] = useState(false);
+  const [checkedArr, setCheckedArr] = useState([]);
   const [allAuthors, setAllAuthors] = useState([]);
   const [allCourses, setAllCourses] = useState([]);
   const [allSemesters, setAllSemesters] = useState([]);
@@ -46,13 +41,21 @@ function Shop() {
   const [filterCourses, setFilterCourses] = useState([]);
   const [filterSemesters, setFilterSemesters] = useState([]);
   const [orderFilter, setOrderFilter] = useState("");
+  const [searchFilter, setSearchFilter] = useState("");
   const author = history.state;
 
   useMemo(() => {
-    if (author?.id !== undefined && author?.id !== "") {
-      setFilterAuthors((prev) => [...prev, author?.id]);
+    if (author && typeof author === typeof "String") {
+      if (author !== undefined && author !== "") {
+        setSearchFilter(author);
+      }
+    } else {
+      if (author?.id !== undefined && author?.id !== "") {
+        setFilterAuthors((prev) => [...prev, author?.id]);
+        setCheckedArr((prev) => [...prev, author?.id]);
+      }
     }
-  }, [author?.id]);
+  }, [author]);
 
   useEffect(() => {
     dispatch(
@@ -61,6 +64,7 @@ function Shop() {
         filterCourses,
         filterSemesters,
         orderFilter,
+        searchFilter,
       })
     );
   }, [
@@ -70,6 +74,7 @@ function Shop() {
     filterAuthors,
     orderFilter,
     checked,
+    searchFilter,
   ]);
   useEffect(() => {
     dispatch(fetchAuthors());
@@ -157,9 +162,11 @@ function Shop() {
     if (e.target.checked) {
       if (newVal.type === "Author") {
         setFilterAuthors((prev) => [...prev, newVal?.id]);
+        setCheckedArr((prev) => [...prev, newVal?.id]);
       }
     } else {
       setFilterAuthors((prev) => prev.filter((id) => id !== newVal.id));
+      setCheckedArr((prev) => prev.filter((id) => id !== newVal.id));
     }
   }
 
@@ -235,7 +242,7 @@ function Shop() {
                 allAuthors.map((item, index) => (
                   <>
                     <div
-                      key={item.id}
+                      key={index}
                       style={{
                         display: "flex",
                         justifyContent: "space-between",
@@ -251,6 +258,7 @@ function Shop() {
                       >
                         <div>
                           <Checkbox
+                            checked={checkedArr?.includes(item.id)}
                             onChange={(e) => authorsChangeHandler(e, item)}
                           />
                         </div>
@@ -259,23 +267,6 @@ function Shop() {
                     </div>
                   </>
                 ))}
-              {/* <input type="checkbox" id="authorCheckbox" /> &nbsp;&nbsp;
-              <label htmlFor="authorCheckbox">Your Text Here</label>
-              <br />
-              <input type="checkbox" id="authorCheckbox" /> &nbsp;&nbsp;
-              <label htmlFor="authorCheckbox">Your Text Here</label>
-              <br />
-              <input type="checkbox" id="authorCheckbox" /> &nbsp;&nbsp;
-              <label htmlFor="authorCheckbox">Your Text Here</label>
-              <br />
-              <input type="checkbox" id="authorCheckbox" /> &nbsp;&nbsp;
-              <label htmlFor="authorCheckbox">Your Text Here</label>
-              <br />
-              <input type="checkbox" id="authorCheckbox" /> &nbsp;&nbsp;
-              <label htmlFor="authorCheckbox">Your Text Here</label>
-              <br />
-              <input type="checkbox" id="authorCheckbox" /> &nbsp;&nbsp;
-              <label htmlFor="authorCheckbox">Your Text Here</label> */}
             </div>
           </div>
           <br />
@@ -290,7 +281,7 @@ function Shop() {
                 allSemesters.map((item, index) => (
                   <>
                     <div
-                      key={item.id}
+                      key={index}
                       style={{
                         display: "flex",
                         justifyContent: "space-between",
@@ -314,23 +305,6 @@ function Shop() {
                     </div>
                   </>
                 ))}
-              {/* <input type="checkbox" id="authorCheckbox" /> &nbsp;&nbsp;
-              <label htmlFor="authorCheckbox">Your Text Here</label>
-              <br />
-              <input type="checkbox" id="authorCheckbox" /> &nbsp;&nbsp;
-              <label htmlFor="authorCheckbox">Your Text Here</label>
-              <br />
-              <input type="checkbox" id="authorCheckbox" /> &nbsp;&nbsp;
-              <label htmlFor="authorCheckbox">Your Text Here</label>
-              <br />
-              <input type="checkbox" id="authorCheckbox" /> &nbsp;&nbsp;
-              <label htmlFor="authorCheckbox">Your Text Here</label>
-              <br />
-              <input type="checkbox" id="authorCheckbox" /> &nbsp;&nbsp;
-              <label htmlFor="authorCheckbox">Your Text Here</label>
-              <br />
-              <input type="checkbox" id="authorCheckbox" /> &nbsp;&nbsp;
-              <label htmlFor="authorCheckbox">Your Text Here</label> */}
             </div>
           </div>
           <br />
@@ -345,7 +319,7 @@ function Shop() {
                 allCourses.map((item, index) => (
                   <>
                     <div
-                      key={item.id}
+                      key={index}
                       style={{
                         display: "flex",
                         justifyContent: "space-between",
@@ -369,23 +343,6 @@ function Shop() {
                     </div>
                   </>
                 ))}
-              {/* <input type="checkbox" id="authorCheckbox" /> &nbsp;&nbsp;
-              <label htmlFor="authorCheckbox">Your Text Here</label>
-              <br />
-              <input type="checkbox" id="authorCheckbox" /> &nbsp;&nbsp;
-              <label htmlFor="authorCheckbox">Your Text Here</label>
-              <br />
-              <input type="checkbox" id="authorCheckbox" /> &nbsp;&nbsp;
-              <label htmlFor="authorCheckbox">Your Text Here</label>
-              <br />
-              <input type="checkbox" id="authorCheckbox" /> &nbsp;&nbsp;
-              <label htmlFor="authorCheckbox">Your Text Here</label>
-              <br />
-              <input type="checkbox" id="authorCheckbox" /> &nbsp;&nbsp;
-              <label htmlFor="authorCheckbox">Your Text Here</label>
-              <br />
-              <input type="checkbox" id="authorCheckbox" /> &nbsp;&nbsp;
-              <label htmlFor="authorCheckbox">Your Text Here</label> */}
             </div>
           </div>
         </div>
@@ -482,222 +439,6 @@ function Shop() {
                   </p>
                 </div>
               ))}
-            {/* </div> */}
-            {/* <div className="col-lg-4" style={{ float: "left" }}>
-              <center>
-                <div className="book">
-                  <div
-                    className="book-cover"
-                    style={{ backgroundImage: `url(${Book1})` }}
-                  >
-                    <div className="effect" />
-                    <div className="light" />
-                  </div>
-                  <div className="book-inside" />
-                </div>
-              </center>
-              <p
-                style={{
-                  "font-size": "15px",
-                  "-webkit-text-align": "center",
-                  "text-align": "center",
-                  "margin-top": "15px",
-                  "font-weight": "700",
-                }}
-              >
-                <span style={{ "font-size": "12px", "font-weight": "500" }}>
-                  ISBN No. 0987654321
-                </span>
-                <br />
-                Computer Programming using Python
-                <br />
-                <span style={{ "font-size": "12px", "font-weight": "500" }}>
-                  Author Name Here
-                </span>
-                <br />
-                <span
-                  style={{
-                    color: "red",
-                    "font-size": "16px",
-                    "font-weight": "600",
-                  }}
-                >
-                  Rs. 300
-                </span>
-              </p>
-            </div>
-            <div className="col-lg-4" style={{ float: "left" }}>
-              <center>
-                <div className="book">
-                  <div
-                    className="book-cover"
-                    style={{ backgroundImage: `url(${Book3})` }}
-                  >
-                    <div className="effect" />
-                    <div className="light" />
-                  </div>
-                  <div className="book-inside" />
-                </div>
-              </center>
-              <p
-                style={{
-                  "font-size": "15px",
-                  "-webkit-text-align": "center",
-                  "text-align": "center",
-                  "margin-top": "15px",
-                  "font-weight": "700",
-                }}
-              >
-                <span style={{ "font-size": "12px", "font-weight": "500" }}>
-                  ISBN No. 0987654321
-                </span>
-                <br />
-                Computer Programming using Python
-                <br />
-                <span style={{ "font-size": "12px", "font-weight": "500" }}>
-                  Author Name Here
-                </span>
-                <br />
-                <span
-                  style={{
-                    color: "red",
-                    "font-size": "16px",
-                    "font-weight": "600",
-                  }}
-                >
-                  Rs. 300
-                </span>
-              </p>
-            </div>
-            <div className="col-lg-4" style={{ float: "left" }}>
-              <center>
-                <div className="book">
-                  <div
-                    className="book-cover"
-                    style={{ backgroundImage: `url(${Book4})` }}
-                  >
-                    <div className="effect" />
-                    <div className="light" />
-                  </div>
-                  <div className="book-inside" />
-                </div>
-              </center>
-              <p
-                style={{
-                  "font-size": "15px",
-                  "-webkit-text-align": "center",
-                  "text-align": "center",
-                  "margin-top": "15px",
-                  "font-weight": "700",
-                }}
-              >
-                <span style={{ "font-size": "12px", "font-weight": "500" }}>
-                  ISBN No. 0987654321
-                </span>
-                <br />
-                Computer Programming using Python
-                <br />
-                <span style={{ "font-size": "12px", "font-weight": "500" }}>
-                  Author Name Here
-                </span>
-                <br />
-                <span
-                  style={{
-                    color: "red",
-                    "font-size": "16px",
-                    "font-weight": "600",
-                  }}
-                >
-                  Rs. 300
-                </span>
-              </p>
-            </div>
-            <div className="col-lg-4" style={{ float: "left" }}>
-              <center>
-                <div className="book">
-                  <div
-                    className="book-cover"
-                    style={{ backgroundImage: `url(${Book2})` }}
-                  >
-                    <div className="effect" />
-                    <div className="light" />
-                  </div>
-                  <div className="book-inside" />
-                </div>
-              </center>
-              <p
-                style={{
-                  "font-size": "15px",
-                  "-webkit-text-align": "center",
-                  "text-align": "center",
-                  "margin-top": "15px",
-                  "font-weight": "700",
-                }}
-              >
-                <span style={{ "font-size": "12px", "font-weight": "500" }}>
-                  ISBN No. 0987654321
-                </span>
-                <br />
-                Computer Programming using Python
-                <br />
-                <span style={{ "font-size": "12px", "font-weight": "500" }}>
-                  Author Name Here
-                </span>
-                <br />
-                <span
-                  style={{
-                    color: "red",
-                    "font-size": "16px",
-                    "font-weight": "600",
-                  }}
-                >
-                  Rs. 300
-                </span>
-              </p>
-            </div>
-            <div className="col-lg-4" style={{ float: "left" }}>
-              <center>
-                <div className="book">
-                  <div
-                    className="book-cover"
-                    style={{ backgroundImage: `url(${Book1})` }}
-                  >
-                    <div className="effect" />
-                    <div className="light" />
-                  </div>
-                  <div className="book-inside" />
-                </div>
-              </center>
-              <p
-                style={{
-                  "font-size": "15px",
-                  "-webkit-text-align": "center",
-                  "text-align": "center",
-                  "margin-top": "15px",
-                  "font-weight": "700",
-                }}
-              >
-                <span style={{ "font-size": "12px", "font-weight": "500" }}>
-                  ISBN No. 0987654321
-                </span>
-                <br />
-                Computer Programming using Python
-                <br />
-                <span style={{ "font-size": "12px", "font-weight": "500" }}>
-                  Author Name Here
-                </span>
-                <br />
-                <span
-                  style={{
-                    color: "red",
-                    "font-size": "16px",
-                    "font-weight": "600",
-                  }}
-                >
-                  Rs. 300
-                </span>
-              </p>
-            </div> */}
           </div>
         </div>
       </div>

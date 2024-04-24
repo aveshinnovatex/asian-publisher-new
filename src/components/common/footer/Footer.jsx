@@ -28,7 +28,7 @@ function Footer() {
             growth of students, teachers and professionals.
             <a
               style={{ textDecoration: "none", color: "#d82028" }}
-              href="index.html#AboutUsSection"
+              href="/about-us"
             >
               read more...
             </a>

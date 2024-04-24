@@ -1,12 +1,67 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AsianLogoText from "../../../Images/AsianLogoText.jpeg";
 import login from "../../../Images/Login.png";
 import "../../../css/login.css";
 import Header from "../header/Header";
+import axios from "axios";
+import { toastError, toastSuceess } from "../../../util/reactToastify";
+import Spinner from "../../common/Spinner";
 
 function Login() {
+  const [loader, setLoader] = useState(false);
+  const [empty, setEmpty] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const { email, password } = formData;
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  }
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setLoader(true);
+    try {
+      const response = await axios.post(
+        "https://api.asianpublisher.in/api/LoginUserApi",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (
+        response?.data?.order?.tokenId !== "" &&
+        response?.data?.order?.merchId !== "" &&
+        response?.data?.message === "Success"
+      ) {
+        toastSuceess("Log in successfully");
+        setEmpty(true);
+      }
+    } catch (error) {
+      toastError(error?.response?.data?.message);
+    }
+    setLoader(false);
+  }
+
+  useEffect(() => {
+    if (empty) {
+      setFormData({
+        email: "",
+        password: "",
+      });
+    }
+  }, [empty]);
+
   return (
     <>
+      {loader && <Spinner />}
+
       <link
         href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap"
         rel="stylesheet"
@@ -55,7 +110,7 @@ function Login() {
           />
           <br />
           <br />
-          <form action="#" style={{ maxWidth: "none" }}>
+          <form onSubmit={handleSubmit} style={{ maxWidth: "none" }}>
             <div className="form-group">
               <label htmlFor="email" className="sr-only">
                 Email
@@ -63,9 +118,12 @@ function Login() {
               <input
                 type="email"
                 name="email"
+                value={email}
                 id="email"
+                required
                 className="form-control"
                 placeholder="Email address"
+                onChange={handleChange}
               />
             </div>
             <div className="form-group">
@@ -75,9 +133,12 @@ function Login() {
               <input
                 type="password"
                 name="password"
+                value={password}
                 id="password"
+                required
                 className="form-control"
                 placeholder="Password"
+                onChange={handleChange}
               />
             </div>
             <center>
@@ -85,8 +146,8 @@ function Login() {
                 name="login"
                 id="login"
                 className="login-btn mb-4"
-                type="button"
-                defaultValue="SIgn In Now"
+                type="submit"
+                value="SIgn In Now"
                 style={{
                   backgroundColor: "#D82028",
                   color: "#fff",
@@ -98,7 +159,7 @@ function Login() {
           </form>
           <p className="login-card-footer-text">
             Don't have an account?
-            <a href="/Register" className="text-reset">
+            <a href="/register" className="text-reset">
               Sign Up here
             </a>
           </p>

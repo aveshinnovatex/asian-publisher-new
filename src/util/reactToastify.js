@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 
 export const toastError = (msg) => {
   toast.error(msg, {
-    position: "top-right",
+    position: "bottom-right",
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
@@ -15,7 +15,7 @@ export const toastError = (msg) => {
 
 export const toastSuceess = (msg) => {
   toast.success(msg, {
-    position: "top-right",
+    position: "bottom-right",
     autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,

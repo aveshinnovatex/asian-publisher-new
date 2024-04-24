@@ -28,8 +28,16 @@ function OrderForm() {
     dispatch(fetchBooks({}));
   }, [dispatch]);
 
-  const { name, email, address, city, bookId, quantity, mobileNo, description } =
-    formData;
+  const {
+    name,
+    email,
+    address,
+    city,
+    bookId,
+    quantity,
+    mobileNo,
+    description,
+  } = formData;
   console.log(formData);
 
   /**handle change  method implement here */
@@ -242,7 +250,7 @@ function OrderForm() {
               <label style={{ fontWeight: 600 }}>Description</label>
               <textarea
                 rows={5}
-                className="form-controlCustomized"
+                className="form-control"
                 name="description"
                 value={formData.description}
                 required

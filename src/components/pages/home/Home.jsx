@@ -6,7 +6,7 @@ import BookSlider from "../../common/slider/BookSlider";
 import CourseSlider from "../../common/slider/CourseSlider";
 import Header from "../../common/header/Header";
 import Footer from "../../common/footer/Footer";
-import AboutUs from "../../../Images/AboutUs.png";
+import AboutUs from "../../../Images/AboutUs3.jpeg";
 import HomeVideo from "../../../Images/HomeVideo.mp4";
 import courseData from "../../common/slider/courseData";
 // import "../../../css/Style.css";
@@ -101,7 +101,7 @@ function Home() {
             </p>
             <br />
             <a
-              href="#"
+              href="/shop"
               style={{
                 color: "#fff",
                 "background-color": "#d82028",
@@ -164,7 +164,8 @@ function Home() {
           <img src={AboutUs} className="Knowmorestyle" />
         </div> */}
         <div className="col-lg-6" style={{ float: "left" }}>
-          <AboutUsSlider slider={AboutUsImgArr} />
+          {/* <AboutUsSlider slider={AboutUsImgArr} /> */}
+          <img src={AboutUs} className="Knowmorestyle" />
         </div>
         <div className="col-lg-6" style={{ float: "left" }}>
           <div className="col-lg-1" style={{ float: "left" }} />
@@ -222,7 +223,7 @@ function Home() {
         </div>
         <div className="col-lg-4" style={{ float: "left", padding: "25px" }}>
           <div className="col-lg-7 numstyle1">
-            <div className="number" data-count={50}>
+            <div className="number" data-count={80}>
               0
             </div>
           </div>

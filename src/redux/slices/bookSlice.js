@@ -10,6 +10,7 @@ export const fetchBooks = createAsyncThunk(
     filterCourses = [],
     filterSemesters = [],
     orderFilter = "",
+    searchFilter = "",
   }) => {
     //   const { data } = await axiosInstance.get("/api/BookApi");
     //   return data.data;
@@ -29,6 +30,7 @@ export const fetchBooks = createAsyncThunk(
             Course: filterCourses,
             Semester: filterSemesters,
             orderFilter: orderFilter,
+            search: searchFilter,
           },
         }
       );

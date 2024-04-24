@@ -4,7 +4,7 @@ import Footer from "../../common/footer/Footer";
 // import "./Aboutus.css";
 import AsianLogo from "../../../Images/AsianLogo.jpeg";
 import AboutHeaderImage from "../../../Images/AboutHeaderImage.png";
-import AboutUsImage from "../../../Images/AboutUs.png";
+import AboutUsImage from "../../../Images/AboutUs2.jpeg";
 import WhoWeAreImage from "../../../Images/WhoWeAreImage.png";
 import WhyUsImage from "../../../Images/WhyUsImage.png";
 import Director from "../../../Images/Director.jpg";
@@ -85,7 +85,8 @@ function AboutUs() {
         </p>
         <br />
         <div className="col-lg-6" style={{ float: "left" }}>
-          <AboutUsSlider slider={AboutUsImgArr} />
+          <img src={AboutUsImage} className="Knowmorestyle" />
+          {/* <AboutUsSlider slider={AboutUsImgArr} /> */}
         </div>
         <div className="col-lg-6" style={{ float: "left" }}>
           <div className="col-lg-1" style={{ float: "left" }} />

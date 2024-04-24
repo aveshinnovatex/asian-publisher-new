@@ -34,9 +34,9 @@ export const cartSlice = createSlice({
         action.payload.product,
         checkcartdata
       );
-      console.log(" action.isItemExist", isItemExist);
+      // console.log(" action.isItemExist", isItemExist);
       if (isItemExist) {
-        toastError("item already exists");
+        toastError("Item already exists");
       }
 
       if (isItemExist) {
@@ -48,7 +48,7 @@ export const cartSlice = createSlice({
       } else {
         state.cartdata.push(action.payload.product);
         state.quantity += 1;
-        toastSuceess("item add successfully");
+        toastSuceess("Item add successfully");
         state.lastUpdated = Date.now() + sevenDaysInMillis;
       }
     },
@@ -63,7 +63,7 @@ export const cartSlice = createSlice({
         action.payload.product,
         checkcartdata
       );
-      console.log(" action.isItemExist", isItemExist);
+      // console.log(" action.isItemExist", isItemExist);
 
       if (isItemExist) {
         const sevenDaysInMillis = 7 * 24 * 60 * 60 * 1000;
@@ -72,13 +72,13 @@ export const cartSlice = createSlice({
         );
         if (indexToRemove !== -1) {
           state.cartdata.splice(indexToRemove, 1, action.payload.product);
-          toastSuceess("item updated successfully");
+          toastSuceess("Item updated successfully");
           state.lastUpdated = Date.now() + sevenDaysInMillis;
         }
       } else {
         state.cartdata.push(action.payload.product);
         state.quantity += 1;
-        toastSuceess("item add successfully");
+        toastSuceess("Item add successfully");
         state.lastUpdated = Date.now() + sevenDaysInMillis;
       }
     },
@@ -86,8 +86,8 @@ export const cartSlice = createSlice({
     removeTocart: (state, action) => {
       const sevenDaysInMillis = 7 * 24 * 60 * 60 * 1000;
       const removeitem = JSON.parse(JSON.stringify(state.cartdata));
-      console.log(" action.payload.item", action.payload);
-      console.log("removeitem removeitem", removeitem);
+      // console.log(" action.payload.item", action.payload);
+      // console.log("removeitem removeitem", removeitem);
 
       const filtereddata = removeitem.filter(
         (book) => book.id !== action.payload
@@ -97,7 +97,7 @@ export const cartSlice = createSlice({
       if (filtereddata.length < removeitem.length) {
         state.quantity -= 1;
       }
-      toastSuceess("item removed successfully");
+      toastSuceess("Item removed successfully");
       state.lastUpdated = Date.now() + sevenDaysInMillis;
     },
 

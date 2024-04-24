@@ -442,6 +442,31 @@
   background-color: #fff;
   cursor: pointer;
 }
+
+.search-boxOpen {
+  position: absolute;
+  top: 140%;
+  left: -150px;
+  width: 20vw; /* Adjust width as needed */
+  display: block;
+}
+
+.search-boxOpen input {
+  width: calc(100% - 40px);
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+}
+
+.search-boxOpen button {
+  width: 40px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-left: none;
+  border-radius: 0 5px 5px 0;
+  background-color: #fff;
+  cursor: pointer;
+}
 .table {
   border-collapse: collapse;
   width: 100%;
@@ -526,3 +551,7 @@
 .input-box[type="number"] {
   -moz-appearance: textfield;
 }
+/* .slick-cloned {
+  width: auto !important;
+  float: left;
+} */
