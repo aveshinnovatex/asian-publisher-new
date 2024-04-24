@@ -134,8 +134,10 @@ function Shop() {
 
   function handleSort(e) {
     setOrderFilter(e.target.value);
+    setLoader(true);
   }
   function coursesChangeHandler(e, newVal) {
+    setLoader(true);
     setChecked(e.target.checked);
     if (e.target.checked) {
       if (newVal.type === "Course") {
@@ -147,6 +149,7 @@ function Shop() {
   }
 
   function semestersChangeHandler(e, newVal) {
+    setLoader(true);
     setChecked(e.target.checked);
     if (e.target.checked) {
       if (newVal.type === "Semester") {
@@ -158,6 +161,7 @@ function Shop() {
   }
 
   function authorsChangeHandler(e, newVal) {
+    setLoader(true);
     setChecked(e.target.checked);
     if (e.target.checked) {
       if (newVal.type === "Author") {
@@ -357,7 +361,7 @@ function Shop() {
                   id="SortBy"
                   className="form-control"
                 >
-                  <option value="manual">Featured</option>
+                  <option value="manual">Sort By</option>
                   <option value="titleAscending">Alphabetically, A-Z</option>
                   <option value="titleDescending">Alphabetically, Z-A</option>
                   <option value="priceAscending">Price, low to high</option>
