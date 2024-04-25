@@ -15,7 +15,7 @@ import Checkbox from "@mui/material/Checkbox";
 import ShopHeaderImage from "../../../Images/ShopHeaderImage.png";
 import "../../../css/Style.css";
 import "../../../css/bootstrap.min.css";
-
+import { FaShoppingBag } from "react-icons/fa";
 function Shop() {
   const { loading, books } = useSelector((state) => state.book);
   const { loading: coursesLoading, courses } = useSelector(
@@ -409,6 +409,12 @@ function Shop() {
                         }}
                       >
                         <FaCartPlus />
+                        &nbsp;&nbsp;
+                        <FaShoppingBag
+                          onClick={() => {
+                            navigate("/checkout");
+                          }}
+                        />
                       </button>
                     </span>
                     <br />

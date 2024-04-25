@@ -25,8 +25,8 @@ function Login() {
     event.preventDefault();
     setLoader(true);
     try {
-      const response = await axios.post(
-        "https://api.asianpublisher.in/api/LoginUserApi",
+      const response = await axios.get(
+        `https://api.asianpublisher.in/api/UserApi?id=${email}`,
         formData,
         {
           headers: {
@@ -35,11 +35,7 @@ function Login() {
         }
       );
 
-      if (
-        response?.data?.order?.tokenId !== "" &&
-        response?.data?.order?.merchId !== "" &&
-        response?.data?.message === "Success"
-      ) {
+      if (response?.data?.message === "Success") {
         toastSuceess("Log in successfully");
         setEmpty(true);
       }
