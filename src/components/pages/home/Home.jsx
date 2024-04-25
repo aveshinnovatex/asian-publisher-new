@@ -12,8 +12,6 @@ import courseData from "../../common/slider/courseData";
 // import "../../../css/Style.css";
 import "../../../css/bootstrap.min.css";
 import Spinner from "../../common/Spinner";
-import AboutUsImgArr from "../aboutus/aboutUsImg";
-import AboutUsSlider from "../aboutus/AboutUsSlider";
 
 function Home() {
   const imgMainArr = [

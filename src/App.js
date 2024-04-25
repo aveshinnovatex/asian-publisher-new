@@ -13,6 +13,8 @@ import Cart from "./components/pages/cart/Cart";
 import Checkout from "./components/pages/checkout/Checkout";
 import BookDetails from "./components/pages/shop/BookDetails";
 import Response from "./components/pages/checkout/Response";
+import OrderList from "./components/pages/orderList/OrderList";
+import OrderDetails from "./components/pages/orderList/OrderDetails";
 // import Layout from "./components/Layout";
 
 const App = () => {
@@ -21,6 +23,8 @@ const App = () => {
       {/* <Layout> */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/order-list" element={<OrderList />} />
+        <Route path="/order-details" element={<OrderDetails />} />
         <Route path="/response" element={<Response />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/about-us" element={<AboutUs />} />

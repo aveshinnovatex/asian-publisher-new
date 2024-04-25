@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AsianLogoText from "../../../Images/AsianLogoText.jpeg";
 import login from "../../../Images/Login.png";
+import { useNavigate } from "react-router-dom";
 import "../../../css/login.css";
 import Header from "../header/Header";
 import axios from "axios";
@@ -8,6 +9,7 @@ import { toastError, toastSuceess } from "../../../util/reactToastify";
 import Spinner from "../../common/Spinner";
 
 function Login() {
+  const navigate = useNavigate();
   const [loader, setLoader] = useState(false);
   const [empty, setEmpty] = useState(false);
   const [formData, setFormData] = useState({
@@ -26,18 +28,12 @@ function Login() {
     setLoader(true);
     try {
       const response = await axios.get(
-        `https://api.asianpublisher.in/api/UserApi?id=${email}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        `https://api.asianpublisher.in/api/UserApi?email=${email}&&password=${password}`
       );
-
-      if (response?.data?.message === "Success") {
-        toastSuceess("Log in successfully");
-        setEmpty(true);
+      if (response?.data?.message === "Success" && response?.data?.userId) {
+        navigate("/order-list", { state: response?.data?.userId });
+      } else {
+        toastError("You Email or Password is incorrect");
       }
     } catch (error) {
       toastError(error?.response?.data?.message);
@@ -153,12 +149,6 @@ function Login() {
               />
             </center>
           </form>
-          <p className="login-card-footer-text">
-            Don't have an account?
-            <a href="/register" className="text-reset">
-              Sign Up here
-            </a>
-          </p>
         </div>
       </div>
     </>
